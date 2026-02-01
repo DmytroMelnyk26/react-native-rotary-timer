@@ -40,7 +40,7 @@ const useGesture = () => {
 
             currentRotationSharedValue.value = targetRotation;
             rotationSharedValue.value = withSpring(targetRotation, {
-              duration: 500,
+              duration: 100,
             });
           }
 

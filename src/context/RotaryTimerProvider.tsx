@@ -14,8 +14,10 @@ const RotaryTimerProvider = ({
   size,
   ringWidth,
   ticksCount,
+  feedbackTicksCount,
   rotationSharedValue: externalRotationSharedValue,
   onChange,
+  onFeedback,
   renderLabel,
 }: RotaryTimerProviderProps) => {
   const internalRotationSharedValue = useSharedValue(0);
@@ -31,9 +33,20 @@ const RotaryTimerProvider = ({
       rotationSharedValue,
       ticksCount,
       onChange: emitChange,
+      onFeedback,
+      feedbackTicksCount,
       renderLabel,
     }),
-    [size, ringWidth, rotationSharedValue, ticksCount, emitChange, renderLabel]
+    [
+      size,
+      ringWidth,
+      rotationSharedValue,
+      ticksCount,
+      feedbackTicksCount,
+      emitChange,
+      onFeedback,
+      renderLabel,
+    ]
   );
 
   return (
