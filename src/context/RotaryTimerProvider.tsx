@@ -1,13 +1,11 @@
 import React, { type PropsWithChildren, useMemo } from 'react';
 import RotaryTimerContext from './RotaryTimerContext';
 import type { IRotaryTimerContext } from './types';
-import { useSharedValue } from 'react-native-reanimated';
 import useStableCallback from '../hooks/useStableCallback';
-import type { Optional } from '../types';
 
 interface RotaryTimerProviderProps
   extends PropsWithChildren,
-    Optional<IRotaryTimerContext, 'rotationSharedValue'> {}
+    IRotaryTimerContext {}
 
 const RotaryTimerProvider = ({
   children,
@@ -15,15 +13,11 @@ const RotaryTimerProvider = ({
   ringWidth,
   ticksCount,
   feedbackTicksCount,
-  rotationSharedValue: externalRotationSharedValue,
+  rotationSharedValue,
   onChange,
   onFeedback,
   renderLabel,
 }: RotaryTimerProviderProps) => {
-  const internalRotationSharedValue = useSharedValue(0);
-  const rotationSharedValue =
-    externalRotationSharedValue ?? internalRotationSharedValue;
-
   const emitChange = useStableCallback(onChange);
 
   const value = useMemo<IRotaryTimerContext>(

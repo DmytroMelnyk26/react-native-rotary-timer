@@ -3,6 +3,7 @@ import RotaryTimerProvider from './context/RotaryTimerProvider';
 import RotaryTimer from './components/RotaryTimer';
 import { renderLabel as renderLabelDefault } from './helper';
 import {
+  DEFAULT_INITIAL_ROTATION,
   DEFAULT_RING_WIDTH,
   DEFAULT_TICKS_COUNT,
   DEFAULT_TIMER_SIZE,
@@ -13,12 +14,14 @@ import Marker from './components/Marker';
 import Label from './components/Label';
 import EmptyState from './components/EmptyState';
 import type { IRotaryTimerProps } from './types';
+import { useSharedValue } from 'react-native-reanimated';
 
 const RotaryTimerWrapper = ({
   size = DEFAULT_TIMER_SIZE,
   ringWidth = DEFAULT_RING_WIDTH,
   ticksCount = DEFAULT_TICKS_COUNT,
-  rotationSharedValue,
+  initialRotation = DEFAULT_INITIAL_ROTATION,
+  rotationSharedValue: externalRotationSharedValue,
   onChange,
   onFeedback,
   feedbackTicksCount = ticksCount,
@@ -29,6 +32,10 @@ const RotaryTimerWrapper = ({
   LabelComponent = Label,
   EmptyStateComponent = EmptyState,
 }: IRotaryTimerProps) => {
+  const internalRotationSharedValue = useSharedValue(initialRotation);
+  const rotationSharedValue =
+    externalRotationSharedValue ?? internalRotationSharedValue;
+
   return (
     <RotaryTimerProvider
       size={size}

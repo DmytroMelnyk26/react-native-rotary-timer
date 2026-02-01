@@ -15,9 +15,9 @@ export default function App() {
     console.log('onChange', rad);
   }, []);
 
-  const onFeedback = () => {
+  const onFeedback = useCallback(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-  };
+  }, []);
 
   return (
     <GestureHandlerRootView>
@@ -25,7 +25,7 @@ export default function App() {
         <RotaryTimer
           size={300}
           // ringWidth={10}
-          feedbackTicksCount={2}
+          initialRotation={Math.PI}
           onChange={onChange}
           onFeedback={onFeedback}
           // ticksCount={30}
