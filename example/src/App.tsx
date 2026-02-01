@@ -1,13 +1,31 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-rotary-timer';
+import { View, StyleSheet } from 'react-native';
+import RotaryTimer from 'react-native-rotary-timer';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-const result = multiply(3, 7);
+import { useCallback } from 'react';
+
+function renderLabel(rad: number) {
+  'worklet';
+  return rad.toFixed(2);
+}
 
 export default function App() {
+  const onChange = useCallback((rad: number) => {
+    console.log('onChange', rad);
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <GestureHandlerRootView>
+      <View style={styles.container}>
+        <RotaryTimer
+          size={300}
+          ringWidth={10}
+          onChange={onChange}
+          ticksCount={30}
+          renderLabel={renderLabel}
+        />
+      </View>
+    </GestureHandlerRootView>
   );
 }
 
@@ -16,5 +34,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'white',
   },
 });

@@ -1,0 +1,7 @@
+export const DEFAULT_TIMER_SIZE = 200;
+
+export const DEFAULT_RING_WIDTH = 20;
+
+export const DEFAULT_TICKS_COUNT = 60;
+
+export const DEFAULT_MINUTES_PER_CIRCLE = DEFAULT_TICKS_COUNT;
