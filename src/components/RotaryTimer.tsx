@@ -10,7 +10,7 @@ const RotaryTimer = ({
   TicksComponent,
   MarkerComponent,
   LabelComponent,
-  EmptyStateComponent,
+  HintComponent,
 }: IRotaryTimerComponents) => {
   const gesture = useGesture();
 
@@ -22,7 +22,7 @@ const RotaryTimer = ({
         TicksComponent={TicksComponent}
         MarkerComponent={MarkerComponent}
         LabelComponent={LabelComponent}
-        EmptyStateComponent={EmptyStateComponent}
+        HintComponent={HintComponent}
       />
     </GestureDetector>
   );

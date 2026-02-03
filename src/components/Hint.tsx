@@ -1,18 +1,18 @@
 import React, { type ReactElement } from 'react';
 import Animated from 'react-native-reanimated';
 import Svg, { Path } from 'react-native-svg';
-import useEmptyState from '../hooks/useEmptyState';
+import useHint from '../hooks/useHint';
 import { StyleSheet } from 'react-native';
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
-const EmptyState = (): ReactElement => {
-  const animatedProps = useEmptyState();
+const Hint = (): ReactElement => {
+  const animatedProps = useHint();
 
   return (
     <AnimatedSvg
       animatedProps={animatedProps}
-      style={styles.emptyState}
+      style={styles.state}
       width="200px"
       height="200px"
       fill="none"
@@ -30,8 +30,8 @@ const EmptyState = (): ReactElement => {
 };
 
 const styles = StyleSheet.create({
-  emptyState: {
+  state: {
     position: 'absolute',
   },
 });
-export default React.memo(EmptyState);
+export default React.memo(Hint);

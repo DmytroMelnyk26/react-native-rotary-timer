@@ -8,7 +8,7 @@ export interface IRotaryTimerComponents {
   TicksComponent: React.ComponentType;
   MarkerComponent: React.ComponentType;
   LabelComponent: React.ComponentType;
-  EmptyStateComponent: React.ComponentType;
+  HintComponent: React.ComponentType;
 }
 
 export interface IRotaryTimerProps extends Partial<IRotaryTimerComponents> {

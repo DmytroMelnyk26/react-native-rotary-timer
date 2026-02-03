@@ -12,7 +12,7 @@ import {
 
 const INVISIBLE_ARROW_TIME = 300;
 
-const useEmptyState = () => {
+const useHint = () => {
   const { rotationSharedValue } = useRotaryTimer();
 
   const arrowRotationSharedValue = useSharedValue(0);
@@ -54,4 +54,4 @@ const useEmptyState = () => {
   return animatedProps;
 };
 
-export default useEmptyState;
+export default useHint;

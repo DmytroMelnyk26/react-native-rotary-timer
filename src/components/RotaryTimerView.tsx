@@ -9,7 +9,7 @@ const RotaryTimerView = ({
   TicksComponent,
   MarkerComponent,
   LabelComponent,
-  EmptyStateComponent,
+  HintComponent,
 }: IRotaryTimerComponents) => {
   const { size } = useRotaryTimer();
 
@@ -23,7 +23,7 @@ const RotaryTimerView = ({
         <TicksComponent />
         <MarkerComponent />
       </Svg>
-      <EmptyStateComponent />
+      <HintComponent />
       <LabelComponent />
     </View>
   );

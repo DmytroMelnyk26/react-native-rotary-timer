@@ -13,7 +13,7 @@ import Ring from './components/Ring';
 import Ticks from './components/Ticks';
 import Marker from './components/Marker';
 import Label from './components/Label';
-import EmptyState from './components/EmptyState';
+import Hint from './components/Hint';
 import type { IRotaryTimerProps } from './types';
 import useRotationSharedValue from './hooks/useRotationSharedValue';
 
@@ -32,7 +32,7 @@ const RotaryTimerWrapper = ({
   TicksComponent = Ticks,
   MarkerComponent = Marker,
   LabelComponent = Label,
-  EmptyStateComponent = EmptyState,
+  HintComponent = Hint,
 }: IRotaryTimerProps) => {
   const rotationSharedValue = useRotationSharedValue(
     externalRotationSharedValue,
@@ -56,7 +56,7 @@ const RotaryTimerWrapper = ({
         TicksComponent={TicksComponent}
         MarkerComponent={MarkerComponent}
         LabelComponent={LabelComponent}
-        EmptyStateComponent={EmptyStateComponent}
+        HintComponent={HintComponent}
       />
     </RotaryTimerProvider>
   );
