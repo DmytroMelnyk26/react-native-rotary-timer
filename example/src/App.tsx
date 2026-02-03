@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
 
 import { useCallback } from 'react';
+import { useSharedValue } from 'react-native-reanimated';
 
 // const renderLabel = (rad: number) => {
 //   'worklet';
@@ -11,6 +12,7 @@ import { useCallback } from 'react';
 // };
 
 export default function App() {
+  const rotationSharedValue = useSharedValue(0);
   const onChange = useCallback((rad: number) => {
     console.log('onChange', rad);
   }, []);
@@ -24,6 +26,7 @@ export default function App() {
       <View style={styles.container}>
         <RotaryTimer
           size={300}
+          rotationSharedValue={rotationSharedValue}
           // ringWidth={10}
           initialRotation={Math.PI}
           onChange={onChange}
