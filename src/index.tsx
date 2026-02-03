@@ -1,6 +1,6 @@
 import React from 'react';
 import RotaryTimerProvider from './context/RotaryTimerProvider';
-import RotaryTimer from './components/RotaryTimer';
+import RotaryTimer from './components/timer/RotaryTimer';
 import { renderLabel as renderLabelDefault } from './helper';
 import {
   DEFAULT_INITIAL_ROTATION,
@@ -9,11 +9,6 @@ import {
   DEFAULT_TICKS_COUNT,
   DEFAULT_TIMER_SIZE,
 } from './constants/defaults';
-import Ring from './components/Ring';
-import Ticks from './components/Ticks';
-import Marker from './components/Marker';
-import Label from './components/Label';
-import Hint from './components/Hint';
 import type { IRotaryTimerProps } from './types';
 import useRotationSharedValue from './hooks/useRotationSharedValue';
 
@@ -28,11 +23,17 @@ const RotaryTimerWrapper = ({
   onFeedback,
   feedbackTicksCount = ticksCount,
   renderLabel = renderLabelDefault,
-  RingComponent = Ring,
-  TicksComponent = Ticks,
-  MarkerComponent = Marker,
-  LabelComponent = Label,
-  HintComponent = Hint,
+  RingComponent,
+  RingViewComponent,
+  TicksComponent,
+  TickItemComponent,
+  TickItemViewComponent,
+  MarkerComponent,
+  MarkerViewComponent,
+  LabelComponent,
+  LabelViewComponent,
+  HintComponent,
+  HintViewComponent,
 }: IRotaryTimerProps) => {
   const rotationSharedValue = useRotationSharedValue(
     externalRotationSharedValue,
@@ -53,10 +54,16 @@ const RotaryTimerWrapper = ({
     >
       <RotaryTimer
         RingComponent={RingComponent}
+        RingViewComponent={RingViewComponent}
         TicksComponent={TicksComponent}
+        TickItemComponent={TickItemComponent}
+        TickItemViewComponent={TickItemViewComponent}
         MarkerComponent={MarkerComponent}
+        MarkerViewComponent={MarkerViewComponent}
         LabelComponent={LabelComponent}
+        LabelViewComponent={LabelViewComponent}
         HintComponent={HintComponent}
+        HintViewComponent={HintViewComponent}
       />
     </RotaryTimerProvider>
   );

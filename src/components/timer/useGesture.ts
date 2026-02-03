@@ -1,13 +1,13 @@
 import { Gesture } from 'react-native-gesture-handler';
 import { useSharedValue, withSpring } from 'react-native-reanimated';
-import useRotaryTimer from './useRotaryTimer';
+import useRotaryTimer from '../../hooks/useRotaryTimer';
 import { useMemo } from 'react';
 import { scheduleOnRN } from 'react-native-worklets';
 import {
   angleFromPointTopZero,
   normalizeAngle0To2Pi,
   normalizeDeltaAngle,
-} from '../helper';
+} from '../../helper';
 
 const useGesture = () => {
   const { center, rotationSharedValue, isEditable, onChange } =

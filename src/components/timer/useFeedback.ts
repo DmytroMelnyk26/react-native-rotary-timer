@@ -1,8 +1,8 @@
-import useRotaryTimer from './useRotaryTimer';
+import useRotaryTimer from '../../hooks/useRotaryTimer';
 import { useAnimatedReaction } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { TWO_PI } from '../constants/math';
-import { normalizeAngle0To2Pi } from '../helper';
+import { TWO_PI } from '../../constants/math';
+import { normalizeAngle0To2Pi } from '../../helper';
 
 const useFeedback = () => {
   const { rotationSharedValue, feedbackTicksCount, onFeedback } =
@@ -14,7 +14,7 @@ const useFeedback = () => {
       return Math.floor(angle / (TWO_PI / feedbackTicksCount));
     },
     (currentStep, prevStep) => {
-      if (currentStep !== prevStep && onFeedback) {
+      if (currentStep !== prevStep && !!prevStep && onFeedback) {
         scheduleOnRN(onFeedback);
       }
     }

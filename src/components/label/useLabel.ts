@@ -1,4 +1,4 @@
-import useRotaryTimer from './useRotaryTimer';
+import useRotaryTimer from '../../hooks/useRotaryTimer';
 import { useAnimatedProps } from 'react-native-reanimated';
 
 const useLabel = () => {

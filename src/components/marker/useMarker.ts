@@ -1,6 +1,6 @@
-import useRotaryTimer from './useRotaryTimer';
+import useRotaryTimer from '../../hooks/useRotaryTimer';
 import { useAnimatedProps } from 'react-native-reanimated';
-import { normalizeAngle0To2Pi } from '../helper';
+import { normalizeAngle0To2Pi } from '../../helper';
 
 const useMarker = () => {
   const { center, radius, rotationSharedValue } = useRotaryTimer();

@@ -1,13 +1,14 @@
-import React, { type ReactElement } from 'react';
+import React from 'react';
 import { StyleSheet, TextInput } from 'react-native';
-import Animated from 'react-native-reanimated';
-import useLabel from '../hooks/useLabel';
+import Animated, { type AnimatedProps } from 'react-native-reanimated';
 
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
-const Label = (): ReactElement => {
-  const animatedProps = useLabel();
+export interface ILabelViewProps {
+  animatedProps: AnimatedProps<typeof AnimatedTextInput>;
+}
 
+const LabelView = ({ animatedProps }: ILabelViewProps) => {
   return (
     <AnimatedTextInput
       animatedProps={animatedProps}
@@ -26,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(Label);
+export default React.memo(LabelView);
