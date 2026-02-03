@@ -11,6 +11,7 @@ const RotaryTimerProvider = ({
   children,
   size,
   ringWidth,
+  isEditable,
   ticksCount,
   feedbackTicksCount,
   rotationSharedValue,
@@ -29,6 +30,7 @@ const RotaryTimerProvider = ({
       onChange: emitChange,
       onFeedback,
       feedbackTicksCount,
+      isEditable,
       renderLabel,
     }),
     [
@@ -40,6 +42,7 @@ const RotaryTimerProvider = ({
       emitChange,
       onFeedback,
       renderLabel,
+      isEditable,
     ]
   );
 

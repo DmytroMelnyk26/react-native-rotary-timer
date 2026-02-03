@@ -13,6 +13,7 @@ export interface IRotaryTimerComponents {
 
 export interface IRotaryTimerProps extends Partial<IRotaryTimerComponents> {
   size?: number;
+  isEditable?: boolean;
   ringWidth?: number;
   ticksCount?: number;
   feedbackTicksCount?: number;

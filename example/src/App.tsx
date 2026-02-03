@@ -28,6 +28,7 @@ export default function App() {
           initialRotation={Math.PI}
           onChange={onChange}
           onFeedback={onFeedback}
+          // isEditable={false}
           // ticksCount={30}
           // renderLabel={renderLabel}
         />

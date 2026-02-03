@@ -4,11 +4,12 @@ import RotaryTimer from './components/RotaryTimer';
 import { renderLabel as renderLabelDefault } from './helper';
 import {
   DEFAULT_INITIAL_ROTATION,
+  DEFAULT_IS_EDITABLE,
   DEFAULT_RING_WIDTH,
   DEFAULT_TICKS_COUNT,
   DEFAULT_TIMER_SIZE,
 } from './constants/defaults';
-import { Ring } from './components/Ring';
+import Ring from './components/Ring';
 import Ticks from './components/Ticks';
 import Marker from './components/Marker';
 import Label from './components/Label';
@@ -21,6 +22,7 @@ const RotaryTimerWrapper = ({
   ringWidth = DEFAULT_RING_WIDTH,
   ticksCount = DEFAULT_TICKS_COUNT,
   initialRotation = DEFAULT_INITIAL_ROTATION,
+  isEditable = DEFAULT_IS_EDITABLE,
   rotationSharedValue: externalRotationSharedValue,
   onChange,
   onFeedback,
@@ -41,6 +43,7 @@ const RotaryTimerWrapper = ({
       size={size}
       ringWidth={ringWidth}
       ticksCount={ticksCount}
+      isEditable={isEditable}
       feedbackTicksCount={feedbackTicksCount}
       rotationSharedValue={rotationSharedValue}
       onChange={onChange}

@@ -10,7 +10,8 @@ import {
 } from '../helper';
 
 const useGesture = () => {
-  const { center, rotationSharedValue, onChange } = useRotaryTimer();
+  const { center, rotationSharedValue, isEditable, onChange } =
+    useRotaryTimer();
 
   const previousAngleSharedValue = useSharedValue<number | null>(null);
   const currentRotationSharedValue = useSharedValue<number | null>(null);
@@ -50,39 +51,43 @@ const useGesture = () => {
           if (onChange) {
             scheduleOnRN(onChange, rotationSharedValue.value);
           }
-        }),
+        })
+        .enabled(!!isEditable),
     [
       center,
       previousAngleSharedValue,
       currentRotationSharedValue,
       rotationSharedValue,
+      isEditable,
       onChange,
     ]
   );
 
   const tapGesture = useMemo(
     () =>
-      Gesture.Tap().onEnd((e) => {
-        const x = e.x - center;
-        const y = e.y - center;
+      Gesture.Tap()
+        .onEnd((e) => {
+          const x = e.x - center;
+          const y = e.y - center;
 
-        const angle = angleFromPointTopZero(x, y);
-        const currentRotation = rotationSharedValue.value;
+          const angle = angleFromPointTopZero(x, y);
+          const currentRotation = rotationSharedValue.value;
 
-        const normalizedCurrent = normalizeAngle0To2Pi(currentRotation);
-        const diff = normalizeDeltaAngle(angle - normalizedCurrent);
+          const normalizedCurrent = normalizeAngle0To2Pi(currentRotation);
+          const diff = normalizeDeltaAngle(angle - normalizedCurrent);
 
-        const targetRotation = Math.max(0, currentRotation + diff);
+          const targetRotation = Math.max(0, currentRotation + diff);
 
-        rotationSharedValue.value = withSpring(targetRotation, {
-          duration: 500,
-        });
+          rotationSharedValue.value = withSpring(targetRotation, {
+            duration: 500,
+          });
 
-        if (onChange) {
-          scheduleOnRN(onChange, targetRotation);
-        }
-      }),
-    [center, rotationSharedValue, onChange]
+          if (onChange) {
+            scheduleOnRN(onChange, targetRotation);
+          }
+        })
+        .enabled(!!isEditable),
+    [center, rotationSharedValue, isEditable, onChange]
   );
 
   const gesture = useMemo(

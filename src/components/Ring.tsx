@@ -2,7 +2,7 @@ import React, { type ReactElement } from 'react';
 import { Circle } from 'react-native-svg';
 import useRotaryTimer from '../hooks/useRotaryTimer';
 
-export const Ring = (): ReactElement => {
+const Ring = (): ReactElement => {
   const { center, radius, ringWidth } = useRotaryTimer();
   return (
     <Circle
