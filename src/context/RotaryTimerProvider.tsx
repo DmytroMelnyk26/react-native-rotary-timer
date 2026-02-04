@@ -21,6 +21,7 @@ const RotaryTimerProvider = ({
   renderLabel,
 }: RotaryTimerProviderProps) => {
   const emitChange = useStableCallback(onChange);
+  const emitFeedback = useStableCallback(onFeedback);
 
   const value = useMemo<IRotaryTimerContext>(
     () => ({
@@ -28,7 +29,7 @@ const RotaryTimerProvider = ({
       ringWidth,
       rotationSharedValue,
       onChange: emitChange,
-      onFeedback,
+      onFeedback: emitFeedback,
       ticksCount,
       feedbackTicksCount,
       snapTicksCount,
@@ -43,7 +44,7 @@ const RotaryTimerProvider = ({
       feedbackTicksCount,
       snapTicksCount,
       emitChange,
-      onFeedback,
+      emitFeedback,
       renderLabel,
       isEditable,
     ]

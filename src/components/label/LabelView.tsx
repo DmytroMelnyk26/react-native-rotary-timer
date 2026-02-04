@@ -13,6 +13,8 @@ const LabelView = ({ animatedProps }: ILabelViewProps) => (
     animatedProps={animatedProps}
     style={styles.text}
     editable={false}
+    multiline={false}
+    underlineColorAndroid="transparent"
   />
 );
 
@@ -22,6 +24,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     textAlign: 'center',
+    paddingHorizontal: 4,
+    minWidth: 80,
   },
 });
 

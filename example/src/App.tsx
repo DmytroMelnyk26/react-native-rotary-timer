@@ -31,7 +31,7 @@ export default function App() {
           initialRotation={Math.PI}
           onChange={onChange}
           onFeedback={onFeedback}
-          snapTicksCount={6}
+          snapTicksCount={12}
           // LabelComponent={LabelWorklet}
           // isEditable={false}
           // ticksCount={30}
