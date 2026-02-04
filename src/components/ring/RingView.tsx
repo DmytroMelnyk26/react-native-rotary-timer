@@ -1,12 +1,14 @@
 import Animated, { type AnimatedProps } from 'react-native-reanimated';
-import { Circle } from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
 import React from 'react';
+import { StyleSheet } from 'react-native';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export interface IRingViewProps {
   animatedProps: AnimatedProps<typeof AnimatedCircle>;
   center: number;
+  size: number;
   radius: number;
   ringWidth: number;
 }
@@ -14,10 +16,11 @@ export interface IRingViewProps {
 const RingView = ({
   animatedProps,
   center,
+  size,
   radius,
   ringWidth,
 }: IRingViewProps) => (
-  <>
+  <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
     <Circle
       cx={center}
       cy={center}
@@ -38,7 +41,7 @@ const RingView = ({
       fill="none"
       transform={`rotate(-90 ${center} ${center})`}
     />
-  </>
+  </Svg>
 );
 
 export default React.memo(RingView);

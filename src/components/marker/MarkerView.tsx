@@ -1,21 +1,26 @@
-import Animated, { type AnimatedProps } from 'react-native-reanimated';
-import { Circle } from 'react-native-svg';
+import Animated, { type AnimatedStyle } from 'react-native-reanimated';
+import Svg, { Circle } from 'react-native-svg';
 import type { IRotaryTimerContext } from '../../context/types';
 import React from 'react';
 
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+import type { StyleProp, ViewStyle } from 'react-native';
+
+const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
 export interface IMarkerViewProps {
-  animatedProps: AnimatedProps<typeof AnimatedCircle>;
+  animatedStyle: StyleProp<AnimatedStyle<ViewStyle>>;
   ringWidth: IRotaryTimerContext['ringWidth'];
 }
 
-const MarkerView = ({ animatedProps, ringWidth }: IMarkerViewProps) => (
-  <AnimatedCircle
-    r={ringWidth / 2}
-    fill={'black'}
-    animatedProps={animatedProps}
-  />
+const MarkerView = ({ animatedStyle, ringWidth }: IMarkerViewProps) => (
+  <AnimatedSvg width={ringWidth} height={ringWidth} style={animatedStyle}>
+    <Circle
+      cx={ringWidth / 2}
+      cy={ringWidth / 2}
+      r={ringWidth / 2}
+      fill={'black'}
+    />
+  </AnimatedSvg>
 );
 
 export default React.memo(MarkerView);

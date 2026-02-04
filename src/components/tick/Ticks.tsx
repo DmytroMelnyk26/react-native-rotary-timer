@@ -1,4 +1,7 @@
 import React from 'react';
+import Svg from 'react-native-svg';
+import { StyleSheet } from 'react-native';
+import useRotaryTimer from '../../hooks/useRotaryTimer';
 import TickItem from './TickItem';
 import useTicks from './useTicks';
 import type { ITickItemViewProps } from './TickItemView';
@@ -12,10 +15,11 @@ const Ticks = ({
   TickItemComponent = TickItem,
   TickItemViewComponent,
 }: ITicksProps) => {
+  const { size } = useRotaryTimer();
   const ticks = useTicks();
 
   return (
-    <>
+    <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
       {ticks.map((tick) => (
         <TickItemComponent
           key={tick.index}
@@ -24,7 +28,7 @@ const Ticks = ({
           ViewComponent={TickItemViewComponent}
         />
       ))}
-    </>
+    </Svg>
   );
 };
 

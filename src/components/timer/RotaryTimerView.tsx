@@ -1,5 +1,4 @@
 import React from 'react';
-import Svg from 'react-native-svg';
 import useRotaryTimer from '../../hooks/useRotaryTimer';
 import { StyleSheet, View } from 'react-native';
 import type { IRotaryTimerComponents } from '../../types';
@@ -29,14 +28,12 @@ const RotaryTimerView = ({
       style={[{ width: size, height: size }, styles.container]}
       collapsable={false}
     >
-      <Svg width={size} height={size}>
-        <RingComponent ViewComponent={RingViewComponent} />
-        <TicksComponent
-          TickItemComponent={TickItemComponent}
-          TickItemViewComponent={TickItemViewComponent}
-        />
-        <MarkerComponent ViewComponent={MarkerViewComponent} />
-      </Svg>
+      <RingComponent ViewComponent={RingViewComponent} />
+      <TicksComponent
+        TickItemComponent={TickItemComponent}
+        TickItemViewComponent={TickItemViewComponent}
+      />
+      <MarkerComponent ViewComponent={MarkerViewComponent} />
       <HintComponent ViewComponent={HintViewComponent} />
       <LabelComponent ViewComponent={LabelViewComponent} />
     </View>
