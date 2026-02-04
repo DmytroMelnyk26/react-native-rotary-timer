@@ -22,6 +22,7 @@ const RotaryTimerWrapper = ({
   onChange,
   onFeedback,
   feedbackTicksCount = ticksCount,
+  snapTicksCount = ticksCount,
   renderLabel = renderLabelDefault,
   RingComponent,
   RingViewComponent,
@@ -44,9 +45,10 @@ const RotaryTimerWrapper = ({
     <RotaryTimerProvider
       size={size}
       ringWidth={ringWidth}
-      ticksCount={ticksCount}
       isEditable={isEditable}
+      ticksCount={ticksCount}
       feedbackTicksCount={feedbackTicksCount}
+      snapTicksCount={snapTicksCount}
       rotationSharedValue={rotationSharedValue}
       onChange={onChange}
       onFeedback={onFeedback}

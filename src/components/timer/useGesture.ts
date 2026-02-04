@@ -1,5 +1,9 @@
 import { Gesture } from 'react-native-gesture-handler';
-import { useSharedValue, withSpring } from 'react-native-reanimated';
+import {
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import useRotaryTimer from '../../hooks/useRotaryTimer';
 import { useMemo } from 'react';
 import { scheduleOnRN } from 'react-native-worklets';
@@ -9,9 +13,19 @@ import {
   normalizeDeltaAngle,
 } from '../../helper';
 
+const snapToStep = (value: number, step: number) => {
+  'worklet';
+  return Math.round(value / step) * step;
+};
+
 const useGesture = () => {
-  const { center, rotationSharedValue, isEditable, onChange } =
+  const { center, rotationSharedValue, isEditable, snapTicksCount, onChange } =
     useRotaryTimer();
+
+  const stepSnapping = useMemo(
+    () => (Math.PI * 2) / snapTicksCount,
+    [snapTicksCount]
+  );
 
   const previousAngleSharedValue = useSharedValue<number | null>(null);
   const currentRotationSharedValue = useSharedValue<number | null>(null);
@@ -34,13 +48,13 @@ const useGesture = () => {
               currentAngle - previousAngleSharedValue.value
             );
 
-            const targetRotation = Math.max(
+            const rawRotation = Math.max(
               0,
               (currentRotationSharedValue.value || 0) + deltaAngle
             );
 
-            currentRotationSharedValue.value = targetRotation;
-            rotationSharedValue.value = withSpring(targetRotation, {
+            currentRotationSharedValue.value = rawRotation;
+            rotationSharedValue.value = withSpring(rawRotation, {
               duration: 100,
             });
           }
@@ -48,8 +62,16 @@ const useGesture = () => {
           previousAngleSharedValue.value = currentAngle;
         })
         .onEnd(() => {
+          const targetRotation = snapToStep(
+            rotationSharedValue.value,
+            stepSnapping
+          );
+          rotationSharedValue.value = withTiming(targetRotation, {
+            duration: 100,
+          });
+
           if (onChange) {
-            scheduleOnRN(onChange, rotationSharedValue.value);
+            scheduleOnRN(onChange, targetRotation);
           }
         })
         .enabled(!!isEditable),
@@ -59,6 +81,7 @@ const useGesture = () => {
       currentRotationSharedValue,
       rotationSharedValue,
       isEditable,
+      stepSnapping,
       onChange,
     ]
   );
@@ -76,9 +99,10 @@ const useGesture = () => {
           const normalizedCurrent = normalizeAngle0To2Pi(currentRotation);
           const diff = normalizeDeltaAngle(angle - normalizedCurrent);
 
-          const targetRotation = Math.max(0, currentRotation + diff);
+          const rawRotation = Math.max(0, currentRotation + diff);
+          const targetRotation = snapToStep(rawRotation, stepSnapping);
 
-          rotationSharedValue.value = withSpring(targetRotation, {
+          rotationSharedValue.value = withTiming(targetRotation, {
             duration: 500,
           });
 
@@ -87,7 +111,7 @@ const useGesture = () => {
           }
         })
         .enabled(!!isEditable),
-    [center, rotationSharedValue, isEditable, onChange]
+    [center, rotationSharedValue, isEditable, stepSnapping, onChange]
   );
 
   const gesture = useMemo(

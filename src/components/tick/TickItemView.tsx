@@ -19,17 +19,15 @@ const TickItemView = ({
   height,
   width,
   rotationDeg,
-}: ITickItemViewProps) => {
-  return (
-    <Rect
-      x={x}
-      y={y}
-      width={width}
-      height={height}
-      fill={'#000'}
-      transform={`rotate(${rotationDeg} ${rotateX} ${rotateY})`}
-    />
-  );
-};
+}: ITickItemViewProps) => (
+  <Rect
+    x={x}
+    y={y}
+    width={width}
+    height={height}
+    fill={'#000'}
+    transform={`rotate(${rotationDeg} ${rotateX} ${rotateY})`}
+  />
+);
 
 export default React.memo(TickItemView);

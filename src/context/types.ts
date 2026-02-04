@@ -4,8 +4,9 @@ export interface IRotaryTimerContext {
   size: number;
   ringWidth: number;
   ticksCount: number;
-  isEditable?: boolean;
   feedbackTicksCount: number;
+  snapTicksCount: number;
+  isEditable?: boolean;
   rotationSharedValue: SharedValue<number>;
   onChange?: (ms: number) => void;
   onFeedback?: () => void;

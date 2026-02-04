@@ -34,6 +34,7 @@ export interface IRotaryTimerProps extends Partial<IRotaryTimerComponents> {
   ringWidth?: number;
   ticksCount?: number;
   feedbackTicksCount?: number;
+  snapTicksCount?: number;
   initialRotation?: number;
   rotationSharedValue?: SharedValue<number>;
   onChange?: (ms: number) => void;

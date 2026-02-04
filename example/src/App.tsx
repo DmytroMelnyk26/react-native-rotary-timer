@@ -7,7 +7,7 @@ import { useCallback } from 'react';
 import { useSharedValue } from 'react-native-reanimated';
 
 // const renderLabel = (rad: number) => {
-//   'worklet';
+//   // 'worklet';
 //   return rad.toFixed(2);
 // };
 
@@ -31,6 +31,8 @@ export default function App() {
           initialRotation={Math.PI}
           onChange={onChange}
           onFeedback={onFeedback}
+          snapTicksCount={6}
+          // LabelComponent={LabelWorklet}
           // isEditable={false}
           // ticksCount={30}
           // renderLabel={renderLabel}

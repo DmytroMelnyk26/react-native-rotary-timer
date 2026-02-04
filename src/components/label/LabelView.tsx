@@ -8,15 +8,13 @@ export interface ILabelViewProps {
   animatedProps: AnimatedProps<typeof AnimatedTextInput>;
 }
 
-const LabelView = ({ animatedProps }: ILabelViewProps) => {
-  return (
-    <AnimatedTextInput
-      animatedProps={animatedProps}
-      style={styles.text}
-      editable={false}
-    />
-  );
-};
+const LabelView = ({ animatedProps }: ILabelViewProps) => (
+  <AnimatedTextInput
+    animatedProps={animatedProps}
+    style={styles.text}
+    editable={false}
+  />
+);
 
 const styles = StyleSheet.create({
   text: {

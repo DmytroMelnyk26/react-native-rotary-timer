@@ -10,14 +10,12 @@ export interface IMarkerViewProps {
   ringWidth: IRotaryTimerContext['ringWidth'];
 }
 
-const MarkerView = ({ animatedProps, ringWidth }: IMarkerViewProps) => {
-  return (
-    <AnimatedCircle
-      r={ringWidth / 2}
-      fill={'black'}
-      animatedProps={animatedProps}
-    />
-  );
-};
+const MarkerView = ({ animatedProps, ringWidth }: IMarkerViewProps) => (
+  <AnimatedCircle
+    r={ringWidth / 2}
+    fill={'black'}
+    animatedProps={animatedProps}
+  />
+);
 
 export default React.memo(MarkerView);

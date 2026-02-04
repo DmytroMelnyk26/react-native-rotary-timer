@@ -1,16 +1,32 @@
 import useRotaryTimer from '../../hooks/useRotaryTimer';
-import { useAnimatedProps } from 'react-native-reanimated';
+import { useAnimatedProps, useAnimatedReaction } from 'react-native-reanimated';
+import { useCallback, useState } from 'react';
+import { scheduleOnRN } from 'react-native-worklets';
 
 const useLabel = () => {
+  const [text, setText] = useState('');
   const { rotationSharedValue, renderLabel } = useRotaryTimer();
 
+  const updateText = useCallback(
+    (value: number) => {
+      setText(renderLabel?.(value) || '');
+    },
+    [renderLabel]
+  );
+
+  useAnimatedReaction(
+    () => rotationSharedValue.value,
+    () => {
+      scheduleOnRN(updateText, rotationSharedValue.value);
+    }
+  );
+
   const animatedProps = useAnimatedProps(() => {
-    const value = renderLabel?.(rotationSharedValue.value);
     return {
-      text: value,
-      defaultValue: value,
+      text: text,
+      defaultValue: text,
     };
-  });
+  }, [text]);
 
   return animatedProps;
 };
