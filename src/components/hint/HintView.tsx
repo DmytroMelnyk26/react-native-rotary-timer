@@ -7,14 +7,15 @@ const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
 export interface IHintViewProps {
   animatedProps: AnimatedProps<typeof AnimatedSvg>;
+  size: number;
 }
 
-const HintView = ({ animatedProps }: IHintViewProps) => (
+const HintView = ({ animatedProps, size }: IHintViewProps) => (
   <AnimatedSvg
     animatedProps={animatedProps}
     style={styles.state}
-    width="200px"
-    height="200px"
+    width={(2 * size) / 3}
+    height={(2 * size) / 3}
     fill="none"
     viewBox="0 0 24 24"
   >

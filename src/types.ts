@@ -28,16 +28,75 @@ export interface IRotaryTimerComponents {
   HintViewComponent: React.ComponentType<IHintViewProps>;
 }
 
-export interface IRotaryTimerProps extends Partial<IRotaryTimerComponents> {
+export interface ICommonProps {
   size?: number;
   isEditable?: boolean;
-  ringWidth?: number;
-  ticksCount?: number;
-  feedbackTicksCount?: number;
-  snapTicksCount?: number;
   initialRotation?: number;
+
   rotationSharedValue?: SharedValue<number>;
+
   onChange?: (ms: number) => void;
+  onTouchTimerStart?: (rad: number) => void;
+  onTouchTimerEnd?: (rad: number) => void;
+}
+
+export interface ISnapProps {
+  snapTicksCount?: number;
+  snapAngle?: number;
+  snapOffsetAngle?: number;
+}
+
+export interface IFeedbackProps {
+  feedbackTicksCount?: number;
+  feedbackAngle?: number;
+  feedbackOffsetAngle?: number;
   onFeedback?: () => void;
+}
+
+export interface ITicksExternalProps {
+  ticksCount?: number;
+  tickAngle?: number;
+  tickOffsetAngle?: number;
+  tickHeight?: number;
+  tickWidth?: number;
+  tickColor?: string;
+  tickSpaceFromRing?: number;
+  tickBorderRadius?: number;
+}
+
+export interface IMarkerExternalProps {
+  markerSize?: number;
+  markerColor?: string;
+  markerBorderRadius?: number;
+}
+
+export interface ILabelExternalProps {
+  labelFontSize?: number;
+  labelColor?: string;
+  labelFontWeight?: string;
+  labelShowOnEmpty?: boolean;
   renderLabel?: (rad: number) => string;
 }
+
+export interface IHintExternalProps {
+  hintSize?: number;
+  hintColor?: string;
+  hintShowOnEmpty?: boolean;
+}
+
+export interface IRingExternalProps {
+  ringWidth?: number;
+  ringActiveColor?: string;
+  ringInactiveColor?: string;
+}
+
+export interface IRotaryTimerProps
+  extends ICommonProps,
+    ISnapProps,
+    IFeedbackProps,
+    ITicksExternalProps,
+    IMarkerExternalProps,
+    ILabelExternalProps,
+    IHintExternalProps,
+    IRingExternalProps,
+    Partial<IRotaryTimerComponents> {}

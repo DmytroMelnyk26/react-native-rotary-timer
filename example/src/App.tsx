@@ -7,7 +7,6 @@ import { useCallback } from 'react';
 import { useSharedValue } from 'react-native-reanimated';
 
 // const renderLabel = (rad: number) => {
-//   // 'worklet';
 //   return rad.toFixed(2);
 // };
 
@@ -21,17 +20,28 @@ export default function App() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   }, []);
 
+  const onTouchTimerStart = () => {
+    console.log('onTouchTimerStart');
+  };
+
+  const onTouchTimerEnd = () => {
+    console.log('onTouchTimerEnd');
+  };
+
   return (
     <GestureHandlerRootView>
       <View style={styles.container}>
         <RotaryTimer
-          size={300}
+          size={200}
           rotationSharedValue={rotationSharedValue}
-          // ringWidth={10}
-          initialRotation={Math.PI}
+          ringWidth={20}
+          snapTicksCount={60}
+          // initialRotation={Math.PI}
           onChange={onChange}
           onFeedback={onFeedback}
-          snapTicksCount={12}
+          onTouchTimerStart={onTouchTimerStart}
+          onTouchTimerEnd={onTouchTimerEnd}
+
           // LabelComponent={LabelWorklet}
           // isEditable={false}
           // ticksCount={30}

@@ -11,6 +11,7 @@ import {
 } from './constants/defaults';
 import type { IRotaryTimerProps } from './types';
 import useRotationSharedValue from './hooks/useRotationSharedValue';
+import useStableCallback from './hooks/useStableCallback';
 
 const RotaryTimerWrapper = ({
   size = DEFAULT_TIMER_SIZE,
@@ -21,6 +22,8 @@ const RotaryTimerWrapper = ({
   rotationSharedValue: externalRotationSharedValue,
   onChange,
   onFeedback,
+  onTouchTimerStart,
+  onTouchTimerEnd,
   feedbackTicksCount = ticksCount,
   snapTicksCount = ticksCount,
   renderLabel = renderLabelDefault,
@@ -41,6 +44,12 @@ const RotaryTimerWrapper = ({
     initialRotation
   );
 
+  const onChangeStable = useStableCallback(onChange);
+  const onFeedbackStable = useStableCallback(onFeedback);
+
+  const onTouchTimerStartStable = useStableCallback(onTouchTimerStart);
+  const onTouchTimerEndStable = useStableCallback(onTouchTimerEnd);
+
   return (
     <RotaryTimerProvider
       size={size}
@@ -50,9 +59,11 @@ const RotaryTimerWrapper = ({
       feedbackTicksCount={feedbackTicksCount}
       snapTicksCount={snapTicksCount}
       rotationSharedValue={rotationSharedValue}
-      onChange={onChange}
-      onFeedback={onFeedback}
+      onChange={onChangeStable}
+      onFeedback={onFeedbackStable}
       renderLabel={renderLabel}
+      onTouchTimerStart={onTouchTimerStartStable}
+      onTouchTimerEnd={onTouchTimerEndStable}
     >
       <RotaryTimer
         RingComponent={RingComponent}

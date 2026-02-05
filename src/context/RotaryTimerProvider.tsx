@@ -1,7 +1,6 @@
 import React, { type PropsWithChildren, useMemo } from 'react';
 import RotaryTimerContext from './RotaryTimerContext';
 import type { IRotaryTimerContext } from './types';
-import useStableCallback from '../hooks/useStableCallback';
 
 interface RotaryTimerProviderProps
   extends PropsWithChildren,
@@ -15,26 +14,31 @@ const RotaryTimerProvider = ({
   ticksCount,
   feedbackTicksCount,
   snapTicksCount,
+  snapAngle,
+  snapOffsetAngle,
   rotationSharedValue,
   onChange,
   onFeedback,
   renderLabel,
+  onTouchTimerStart,
+  onTouchTimerEnd,
 }: RotaryTimerProviderProps) => {
-  const emitChange = useStableCallback(onChange);
-  const emitFeedback = useStableCallback(onFeedback);
-
   const value = useMemo<IRotaryTimerContext>(
     () => ({
       size,
       ringWidth,
       rotationSharedValue,
-      onChange: emitChange,
-      onFeedback: emitFeedback,
+      onChange,
+      onFeedback,
       ticksCount,
       feedbackTicksCount,
       snapTicksCount,
+      snapAngle,
+      snapOffsetAngle,
       isEditable,
       renderLabel,
+      onTouchTimerStart,
+      onTouchTimerEnd,
     }),
     [
       size,
@@ -43,10 +47,14 @@ const RotaryTimerProvider = ({
       ticksCount,
       feedbackTicksCount,
       snapTicksCount,
-      emitChange,
-      emitFeedback,
+      snapAngle,
+      snapOffsetAngle,
+      onChange,
+      onFeedback,
       renderLabel,
       isEditable,
+      onTouchTimerStart,
+      onTouchTimerEnd,
     ]
   );
 
