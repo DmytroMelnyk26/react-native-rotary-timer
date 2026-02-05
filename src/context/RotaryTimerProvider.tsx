@@ -12,13 +12,18 @@ const RotaryTimerProvider = ({
   ringWidth,
   isEditable,
   ticksCount,
+
+  feedbackAngle,
   feedbackTicksCount,
-  snapTicksCount,
+  feedbackOffsetAngle,
+  onFeedback,
+
   snapAngle,
+  snapTicksCount,
   snapOffsetAngle,
+
   rotationSharedValue,
   onChange,
-  onFeedback,
   renderLabel,
   onTouchTimerStart,
   onTouchTimerEnd,
@@ -29,12 +34,17 @@ const RotaryTimerProvider = ({
       ringWidth,
       rotationSharedValue,
       onChange,
-      onFeedback,
       ticksCount,
+
+      feedbackAngle,
       feedbackTicksCount,
+      feedbackOffsetAngle,
+      onFeedback,
+
       snapTicksCount,
       snapAngle,
       snapOffsetAngle,
+
       isEditable,
       renderLabel,
       onTouchTimerStart,
@@ -45,12 +55,17 @@ const RotaryTimerProvider = ({
       ringWidth,
       rotationSharedValue,
       ticksCount,
+
+      feedbackAngle,
       feedbackTicksCount,
+      feedbackOffsetAngle,
+      onFeedback,
+
       snapTicksCount,
       snapAngle,
       snapOffsetAngle,
+
       onChange,
-      onFeedback,
       renderLabel,
       isEditable,
       onTouchTimerStart,

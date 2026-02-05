@@ -21,11 +21,18 @@ const RotaryTimerWrapper = ({
   isEditable = DEFAULT_IS_EDITABLE,
   rotationSharedValue: externalRotationSharedValue,
   onChange,
-  onFeedback,
   onTouchTimerStart,
   onTouchTimerEnd,
-  feedbackTicksCount = ticksCount,
+
   snapTicksCount = ticksCount,
+  snapAngle,
+  snapOffsetAngle,
+
+  feedbackTicksCount = ticksCount,
+  feedbackAngle,
+  feedbackOffsetAngle,
+  onFeedback,
+
   renderLabel = renderLabelDefault,
   RingComponent,
   RingViewComponent,
@@ -56,11 +63,15 @@ const RotaryTimerWrapper = ({
       ringWidth={ringWidth}
       isEditable={isEditable}
       ticksCount={ticksCount}
-      feedbackTicksCount={feedbackTicksCount}
       snapTicksCount={snapTicksCount}
+      snapAngle={snapAngle}
+      snapOffsetAngle={snapOffsetAngle}
+      onFeedback={onFeedbackStable}
+      feedbackTicksCount={feedbackTicksCount}
+      feedbackAngle={feedbackAngle}
+      feedbackOffsetAngle={feedbackOffsetAngle}
       rotationSharedValue={rotationSharedValue}
       onChange={onChangeStable}
-      onFeedback={onFeedbackStable}
       renderLabel={renderLabel}
       onTouchTimerStart={onTouchTimerStartStable}
       onTouchTimerEnd={onTouchTimerEndStable}

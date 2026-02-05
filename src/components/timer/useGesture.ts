@@ -12,7 +12,7 @@ import {
   normalizeAngle0To2Pi,
   normalizeDeltaAngle,
 } from '../../helper';
-import { TWO_PI } from '../../constants/math';
+import useStepAngle from '../../hooks/useStepAngle';
 
 const snapToStep = (value: number, step: number, offset: number = 0) => {
   'worklet';
@@ -35,14 +35,7 @@ const useGesture = () => {
     onTouchTimerEnd,
   } = useRotaryTimer();
 
-  const stepSnapping = useMemo(() => {
-    if (snapAngle) {
-      return snapAngle;
-    } else if (snapTicksCount) {
-      return TWO_PI / snapTicksCount;
-    }
-    return 0;
-  }, [snapAngle, snapTicksCount]);
+  const stepSnapping = useStepAngle(snapAngle, snapTicksCount);
 
   const previousAngleSharedValue = useSharedValue<number | null>(null);
   const currentRotationSharedValue = useSharedValue<number | null>(null);

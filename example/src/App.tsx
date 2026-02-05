@@ -41,7 +41,9 @@ export default function App() {
           onFeedback={onFeedback}
           onTouchTimerStart={onTouchTimerStart}
           onTouchTimerEnd={onTouchTimerEnd}
-
+          // feedbackTicksCount={4}
+          // feedbackAngle={Math.PI / 2}
+          // feedbackOffsetAngle={Math.PI / 4}
           // LabelComponent={LabelWorklet}
           // isEditable={false}
           // ticksCount={30}

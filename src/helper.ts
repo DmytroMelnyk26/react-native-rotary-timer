@@ -76,3 +76,12 @@ export function renderLabel(rad: number): string {
 
   return `${pad2(totalHours)}:${pad2(minutes)}`;
 }
+
+export function getStepAngle(angle?: number, stepCount?: number): number {
+  if (angle) {
+    return angle;
+  } else if (stepCount) {
+    return TWO_PI / stepCount;
+  }
+  return 0;
+}
