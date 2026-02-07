@@ -1,12 +1,17 @@
 import type { SharedValue } from 'react-native-reanimated';
-import type { IFeedbackProps, ISnapProps } from '../types';
+import type { IFeedbackProps, ISnapProps, ITicksExternalProps } from '../types';
 
-export interface IRotaryTimerContext extends ISnapProps, IFeedbackProps {
+export interface IRotaryTimerContext
+  extends ISnapProps,
+    IFeedbackProps,
+    ITicksExternalProps {
   size: number;
   ringWidth: number;
-  ticksCount: number;
   isEditable?: boolean;
   rotationSharedValue: SharedValue<number>;
+  minRotation?: number;
+  maxRotation?: number;
+
   onChange?: (ms: number) => void;
 
   renderLabel: (rad: number) => string;

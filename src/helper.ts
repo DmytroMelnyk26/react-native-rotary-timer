@@ -65,16 +65,19 @@ export function rotationToMs(
 
 export function renderLabel(rad: number): string {
   'worklet';
-  if (!Number.isFinite(rad) || rad < 0) {
+  if (!Number.isFinite(rad)) {
     return '00:00';
   }
 
-  const ms = rotationToMs(rad);
+  const value = Math.abs(rad);
+  const isNegative = rad < 0;
+
+  const ms = rotationToMs(value);
   const { totalHours, minutes } = convertMs(ms);
 
   const pad2 = (n: number) => String(n).padStart(2, '0');
 
-  return `${pad2(totalHours)}:${pad2(minutes)}`;
+  return `${isNegative ? '-' : ''}${pad2(totalHours)}:${pad2(minutes)}`;
 }
 
 export function getStepAngle(angle?: number, stepCount?: number): number {

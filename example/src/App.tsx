@@ -35,8 +35,12 @@ export default function App() {
           size={200}
           rotationSharedValue={rotationSharedValue}
           ringWidth={20}
-          snapTicksCount={60}
+          // maxRotation={Math.PI}
+          // minRotation={0}
+          // ticksCount={20}
+          // snapTicksCount={60}
           // initialRotation={Math.PI}
+          minRotation={0}
           onChange={onChange}
           onFeedback={onFeedback}
           onTouchTimerStart={onTouchTimerStart}

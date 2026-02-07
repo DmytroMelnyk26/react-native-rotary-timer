@@ -39,7 +39,7 @@ const useHint = () => {
   );
 
   const opacity = useDerivedValue(() => {
-    return withSpring(rotationSharedValue.value > 0 ? 0 : 1, {
+    return withSpring(rotationSharedValue.value !== 0 ? 0 : 1, {
       duration: INVISIBLE_ARROW_TIME,
     });
   });

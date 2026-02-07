@@ -1,5 +1,5 @@
 import useRotaryTimer from '../../hooks/useRotaryTimer';
-import { useAnimatedProps } from 'react-native-reanimated';
+import { useAnimatedProps, useAnimatedStyle } from 'react-native-reanimated';
 import { TWO_PI } from '../../constants/math';
 import { normalizeAngle0To2Pi } from '../../helper';
 
@@ -7,9 +7,10 @@ const useRing = () => {
   const { radius, rotationSharedValue } = useRotaryTimer();
 
   const animatedProps = useAnimatedProps(() => {
-    const fullRotations = Math.floor(rotationSharedValue.value / TWO_PI);
-    const remainder = normalizeAngle0To2Pi(rotationSharedValue.value);
-    const remainderLength = (remainder / TWO_PI) * TWO_PI * radius;
+    const absRotations = Math.abs(rotationSharedValue.value);
+    const fullRotations = Math.floor(absRotations / TWO_PI);
+    const remainder = normalizeAngle0To2Pi(absRotations);
+    const remainderLength = remainder * radius;
     const dashLength = fullRotations * TWO_PI * radius + remainderLength;
     const dashLengthSafe = dashLength === 0 ? 0.001 : dashLength;
     const gapLength = TWO_PI * radius * 10;
@@ -20,7 +21,12 @@ const useRing = () => {
     };
   });
 
-  return animatedProps;
+  const animatedStyle = useAnimatedStyle(() => {
+    const isNegative = rotationSharedValue.value < 0;
+    return { transform: [{ scaleX: isNegative ? -1 : 1 }] };
+  });
+
+  return { animatedStyle, animatedProps };
 };
 
 export default useRing;

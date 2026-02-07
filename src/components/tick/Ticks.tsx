@@ -20,11 +20,11 @@ const Ticks = ({
 
   return (
     <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
-      {ticks.map((tick) => (
+      {ticks.map(({ index, angle }) => (
         <TickItemComponent
-          key={tick.index}
-          index={tick.index}
-          angle={tick.angle}
+          key={index}
+          index={index}
+          angle={angle}
           ViewComponent={TickItemViewComponent}
         />
       ))}

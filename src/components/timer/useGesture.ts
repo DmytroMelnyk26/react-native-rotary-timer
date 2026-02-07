@@ -22,9 +22,20 @@ const snapToStep = (value: number, step: number, offset: number = 0) => {
   return Math.round((value - offset) / step) * step + offset;
 };
 
+const maxMinValue = (
+  value: number,
+  max: number | undefined = Number.POSITIVE_INFINITY,
+  min: number | undefined = Number.NEGATIVE_INFINITY
+) => {
+  'worklet';
+  return Math.max(Math.min(value, max), min);
+};
+
 const useGesture = () => {
   const {
     center,
+    maxRotation,
+    minRotation,
     rotationSharedValue,
     isEditable,
     snapTicksCount,
@@ -64,13 +75,14 @@ const useGesture = () => {
               currentAngle - previousAngleSharedValue.value
             );
 
-            const rawRotation = Math.max(
-              0,
-              (currentRotationSharedValue.value || 0) + deltaAngle
+            const limitedRotation = maxMinValue(
+              (currentRotationSharedValue.value || 0) + deltaAngle,
+              maxRotation,
+              minRotation
             );
 
-            currentRotationSharedValue.value = rawRotation;
-            rotationSharedValue.value = withSpring(rawRotation, {
+            currentRotationSharedValue.value = limitedRotation;
+            rotationSharedValue.value = withSpring(limitedRotation, {
               duration: 100,
             });
           }
@@ -78,20 +90,30 @@ const useGesture = () => {
           previousAngleSharedValue.value = currentAngle;
         })
         .onEnd(() => {
-          const targetRotation = snapToStep(
+          const snapRotation = snapToStep(
             rotationSharedValue.value,
             stepSnapping,
             snapOffsetAngle
           );
-          rotationSharedValue.value = withTiming(targetRotation, {
+
+          const limitedRotation = maxMinValue(
+            snapRotation,
+            maxRotation,
+            minRotation
+          );
+
+          rotationSharedValue.value = withTiming(limitedRotation, {
             duration: 100,
           });
 
           if (onTouchTimerEnd) {
-            scheduleOnRN(onTouchTimerEnd, targetRotation);
+            scheduleOnRN(onTouchTimerEnd, limitedRotation);
           }
-          if (onChange && targetRotation !== initialRotationSharedValue.value) {
-            scheduleOnRN(onChange, targetRotation);
+          if (
+            onChange &&
+            limitedRotation !== initialRotationSharedValue.value
+          ) {
+            scheduleOnRN(onChange, limitedRotation);
           }
         })
         .enabled(!!isEditable),
@@ -101,6 +123,8 @@ const useGesture = () => {
       currentRotationSharedValue,
       initialRotationSharedValue,
       rotationSharedValue,
+      maxRotation,
+      minRotation,
       isEditable,
       stepSnapping,
       snapOffsetAngle,
@@ -128,28 +152,35 @@ const useGesture = () => {
           const normalizedCurrent = normalizeAngle0To2Pi(currentRotation);
           const diff = normalizeDeltaAngle(angle - normalizedCurrent);
 
-          const rawRotation = Math.max(0, currentRotation + diff);
           const targetRotation = snapToStep(
-            rawRotation,
+            currentRotation + diff,
             stepSnapping,
             snapOffsetAngle
           );
 
-          rotationSharedValue.value = withTiming(targetRotation, {
+          const limitedRotation = maxMinValue(
+            targetRotation,
+            maxRotation,
+            minRotation
+          );
+
+          rotationSharedValue.value = withTiming(limitedRotation, {
             duration: 500,
           });
 
           if (onTouchTimerEnd) {
-            scheduleOnRN(onTouchTimerEnd, targetRotation);
+            scheduleOnRN(onTouchTimerEnd, limitedRotation);
           }
-          if (onChange && targetRotation !== currentRotation) {
-            scheduleOnRN(onChange, targetRotation);
+          if (onChange && limitedRotation !== currentRotation) {
+            scheduleOnRN(onChange, limitedRotation);
           }
         })
         .enabled(!!isEditable),
     [
       center,
       rotationSharedValue,
+      maxRotation,
+      minRotation,
       isEditable,
       stepSnapping,
       snapOffsetAngle,

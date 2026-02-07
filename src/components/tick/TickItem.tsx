@@ -8,15 +8,9 @@ export interface ITickItemProps {
   ViewComponent?: React.ComponentType<ITickItemViewProps>;
 }
 
-const TickItem = ({
-  index,
-  angle,
-  ViewComponent = TickItemView,
-}: ITickItemProps) => {
-  const { x, y, height, width, rotationDeg, rotateY, rotateX } = useTickItem(
-    index,
-    angle
-  );
+const TickItem = ({ angle, ViewComponent = TickItemView }: ITickItemProps) => {
+  const { x, y, height, width, rotationDeg, rotateY, rotateX } =
+    useTickItem(angle);
 
   return (
     <ViewComponent

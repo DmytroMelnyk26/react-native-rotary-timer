@@ -6,8 +6,15 @@ const TICKS_CONFIG = {
   extraHeight: 5,
 } as const;
 
-const useTickItem = (index: number, angle: number) => {
-  const { radius, center, ringWidth } = useRotaryTimer();
+const useTickItem = (angle: number) => {
+  const {
+    radius,
+    center,
+    ringWidth,
+    tickHeight,
+    tickWidth,
+    tickSpaceFromRing,
+  } = useRotaryTimer();
 
   const rotateX = center + radius * Math.cos(angle);
   const rotateY = center + radius * Math.sin(angle);
@@ -15,14 +22,15 @@ const useTickItem = (index: number, angle: number) => {
 
   const x = rotateX - TICKS_CONFIG.width / 2;
   const y =
-    rotateY - TICKS_CONFIG.height / 2 + ringWidth / 2 + TICKS_CONFIG.height / 2;
+    rotateY -
+    TICKS_CONFIG.height / 2 +
+    ringWidth / 2 +
+    TICKS_CONFIG.height / 2 +
+    (tickSpaceFromRing || 0);
 
-  const height =
-    index % 5 === 0
-      ? TICKS_CONFIG.height + TICKS_CONFIG.extraHeight
-      : TICKS_CONFIG.height;
+  const height = tickHeight || 0;
 
-  const width = TICKS_CONFIG.width;
+  const width = tickWidth || 0;
 
   return { x, y, height, width, rotationDeg, rotateX, rotateY };
 };

@@ -9,11 +9,12 @@ export interface IRingProps {
 
 const Ring = ({ ViewComponent = RingView }: IRingProps) => {
   const { size, center, radius, ringWidth } = useRotaryTimer();
-  const animatedProps = useRing();
+  const { animatedStyle, animatedProps } = useRing();
 
   return (
     <ViewComponent
       animatedProps={animatedProps}
+      animatedStyle={animatedStyle}
       center={center}
       size={size}
       radius={radius}

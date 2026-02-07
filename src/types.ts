@@ -32,6 +32,8 @@ export interface ICommonProps {
   size?: number;
   isEditable?: boolean;
   initialRotation?: number;
+  minRotation?: number;
+  maxRotation?: number;
 
   rotationSharedValue?: SharedValue<number>;
 

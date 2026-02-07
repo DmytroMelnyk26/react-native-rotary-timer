@@ -11,7 +11,18 @@ const RotaryTimerProvider = ({
   size,
   ringWidth,
   isEditable,
+
+  maxRotation,
+  minRotation,
+
   ticksCount,
+  tickAngle,
+  tickOffsetAngle,
+  tickHeight,
+  tickWidth,
+  tickColor,
+  tickSpaceFromRing,
+  tickBorderRadius,
 
   feedbackAngle,
   feedbackTicksCount,
@@ -32,9 +43,21 @@ const RotaryTimerProvider = ({
     () => ({
       size,
       ringWidth,
+
+      maxRotation,
+      minRotation,
+
       rotationSharedValue,
       onChange,
+
       ticksCount,
+      tickAngle,
+      tickOffsetAngle,
+      tickHeight,
+      tickWidth,
+      tickColor,
+      tickSpaceFromRing,
+      tickBorderRadius,
 
       feedbackAngle,
       feedbackTicksCount,
@@ -54,7 +77,17 @@ const RotaryTimerProvider = ({
       size,
       ringWidth,
       rotationSharedValue,
+      maxRotation,
+      minRotation,
+
       ticksCount,
+      tickAngle,
+      tickOffsetAngle,
+      tickHeight,
+      tickWidth,
+      tickColor,
+      tickSpaceFromRing,
+      tickBorderRadius,
 
       feedbackAngle,
       feedbackTicksCount,

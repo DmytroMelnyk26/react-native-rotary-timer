@@ -6,6 +6,9 @@ import {
   DEFAULT_INITIAL_ROTATION,
   DEFAULT_IS_EDITABLE,
   DEFAULT_RING_WIDTH,
+  DEFAULT_TICK_COLOR,
+  DEFAULT_TICK_HEIGHT,
+  DEFAULT_TICK_WIDTH,
   DEFAULT_TICKS_COUNT,
   DEFAULT_TIMER_SIZE,
 } from './constants/defaults';
@@ -16,13 +19,25 @@ import useStableCallback from './hooks/useStableCallback';
 const RotaryTimerWrapper = ({
   size = DEFAULT_TIMER_SIZE,
   ringWidth = DEFAULT_RING_WIDTH,
-  ticksCount = DEFAULT_TICKS_COUNT,
+
   initialRotation = DEFAULT_INITIAL_ROTATION,
+  maxRotation,
+  minRotation,
+
   isEditable = DEFAULT_IS_EDITABLE,
   rotationSharedValue: externalRotationSharedValue,
   onChange,
   onTouchTimerStart,
   onTouchTimerEnd,
+
+  ticksCount = DEFAULT_TICKS_COUNT,
+  tickAngle,
+  tickOffsetAngle,
+  tickHeight = DEFAULT_TICK_HEIGHT,
+  tickWidth = DEFAULT_TICK_WIDTH,
+  tickColor = DEFAULT_TICK_COLOR,
+  tickSpaceFromRing,
+  tickBorderRadius,
 
   snapTicksCount = ticksCount,
   snapAngle,
@@ -61,8 +76,17 @@ const RotaryTimerWrapper = ({
     <RotaryTimerProvider
       size={size}
       ringWidth={ringWidth}
+      maxRotation={maxRotation}
+      minRotation={minRotation}
       isEditable={isEditable}
       ticksCount={ticksCount}
+      tickAngle={tickAngle}
+      tickOffsetAngle={tickOffsetAngle}
+      tickHeight={tickHeight}
+      tickWidth={tickWidth}
+      tickColor={tickColor}
+      tickSpaceFromRing={tickSpaceFromRing}
+      tickBorderRadius={tickBorderRadius}
       snapTicksCount={snapTicksCount}
       snapAngle={snapAngle}
       snapOffsetAngle={snapOffsetAngle}
