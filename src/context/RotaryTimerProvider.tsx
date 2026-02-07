@@ -22,7 +22,7 @@ const RotaryTimerProvider = ({
   tickWidth,
   tickColor,
   tickSpaceFromRing,
-  tickBorderRadius,
+  tickRounding,
 
   feedbackAngle,
   feedbackTicksCount,
@@ -57,7 +57,7 @@ const RotaryTimerProvider = ({
       tickWidth,
       tickColor,
       tickSpaceFromRing,
-      tickBorderRadius,
+      tickRounding,
 
       feedbackAngle,
       feedbackTicksCount,
@@ -87,7 +87,7 @@ const RotaryTimerProvider = ({
       tickWidth,
       tickColor,
       tickSpaceFromRing,
-      tickBorderRadius,
+      tickRounding,
 
       feedbackAngle,
       feedbackTicksCount,

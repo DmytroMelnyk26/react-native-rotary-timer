@@ -37,7 +37,7 @@ const RotaryTimerWrapper = ({
   tickWidth = DEFAULT_TICK_WIDTH,
   tickColor = DEFAULT_TICK_COLOR,
   tickSpaceFromRing,
-  tickBorderRadius,
+  tickRounding,
 
   snapTicksCount = ticksCount,
   snapAngle,
@@ -86,7 +86,7 @@ const RotaryTimerWrapper = ({
       tickWidth={tickWidth}
       tickColor={tickColor}
       tickSpaceFromRing={tickSpaceFromRing}
-      tickBorderRadius={tickBorderRadius}
+      tickRounding={tickRounding}
       snapTicksCount={snapTicksCount}
       snapAngle={snapAngle}
       snapOffsetAngle={snapOffsetAngle}

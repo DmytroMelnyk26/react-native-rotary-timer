@@ -63,7 +63,7 @@ export interface ITicksExternalProps {
   tickWidth?: number;
   tickColor?: string;
   tickSpaceFromRing?: number;
-  tickBorderRadius?: number;
+  tickRounding?: number;
 }
 
 export interface IMarkerExternalProps {

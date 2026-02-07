@@ -9,6 +9,8 @@ export interface ITickItemViewProps {
   height: number;
   width: number;
   rotationDeg: number;
+  rounding?: number;
+  color?: string;
 }
 
 const TickItemView = ({
@@ -19,13 +21,17 @@ const TickItemView = ({
   height,
   width,
   rotationDeg,
+  color,
+  rounding,
 }: ITickItemViewProps) => (
   <Rect
     x={x}
     y={y}
     width={width}
     height={height}
-    fill={'#000'}
+    fill={color}
+    rx={rounding}
+    ry={rounding}
     transform={`rotate(${rotationDeg} ${rotateX} ${rotateY})`}
   />
 );

@@ -1,6 +1,7 @@
 import React from 'react';
 import TickItemView, { type ITickItemViewProps } from './TickItemView';
 import useTickItem from './useTickItem';
+import useRotaryTimer from '../../hooks/useRotaryTimer';
 
 export interface ITickItemProps {
   index: number;
@@ -9,6 +10,7 @@ export interface ITickItemProps {
 }
 
 const TickItem = ({ angle, ViewComponent = TickItemView }: ITickItemProps) => {
+  const { tickRounding, tickColor } = useRotaryTimer();
   const { x, y, height, width, rotationDeg, rotateY, rotateX } =
     useTickItem(angle);
 
@@ -21,6 +23,8 @@ const TickItem = ({ angle, ViewComponent = TickItemView }: ITickItemProps) => {
       height={height}
       width={width}
       rotationDeg={rotationDeg}
+      rounding={tickRounding}
+      color={tickColor}
     />
   );
 };
