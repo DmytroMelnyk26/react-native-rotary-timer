@@ -38,8 +38,13 @@ const RotaryTimerProvider = ({
   markerSize,
 
   labelTextStyle,
-  labelHideOnZero,
+  labelHideWhenZero,
   renderLabel,
+
+  hintSize,
+  hintColor,
+  hintHideWhenNotZero,
+  hintEnabledRotation,
 
   onChange,
   onTouchTimerStart,
@@ -78,8 +83,13 @@ const RotaryTimerProvider = ({
       markerSize,
 
       labelTextStyle,
-      labelHideOnZero,
+      labelHideWhenZero,
       renderLabel,
+
+      hintSize,
+      hintColor,
+      hintHideWhenNotZero,
+      hintEnabledRotation,
 
       isEditable,
       onTouchTimerStart,
@@ -114,8 +124,13 @@ const RotaryTimerProvider = ({
       markerSize,
 
       labelTextStyle,
-      labelHideOnZero,
+      labelHideWhenZero,
       renderLabel,
+
+      hintSize,
+      hintColor,
+      hintHideWhenNotZero,
+      hintEnabledRotation,
 
       onChange,
       isEditable,

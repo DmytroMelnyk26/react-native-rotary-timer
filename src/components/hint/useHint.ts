@@ -13,12 +13,16 @@ import {
 const INVISIBLE_ARROW_TIME = 300;
 
 const useHint = () => {
-  const { rotationSharedValue } = useRotaryTimer();
+  const { rotationSharedValue, hintEnabledRotation, hintHideWhenNotZero } =
+    useRotaryTimer();
 
   const arrowRotationSharedValue = useSharedValue(0);
 
   useAnimatedReaction(
-    () => rotationSharedValue.value === 0,
+    () =>
+      hintEnabledRotation &&
+      ((hintHideWhenNotZero && rotationSharedValue.value === 0) ||
+        !hintHideWhenNotZero),
     (shouldSpin, prev) => {
       if (shouldSpin && !prev) {
         arrowRotationSharedValue.value = withRepeat(
@@ -39,6 +43,9 @@ const useHint = () => {
   );
 
   const opacity = useDerivedValue(() => {
+    if (!hintHideWhenNotZero) {
+      return 1;
+    }
     return withSpring(rotationSharedValue.value !== 0 ? 0 : 1, {
       duration: INVISIBLE_ARROW_TIME,
     });

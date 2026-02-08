@@ -74,14 +74,15 @@ export interface IMarkerExternalProps {
 
 export interface ILabelExternalProps {
   labelTextStyle?: AnimatedStyle<TextStyle>;
-  labelHideOnZero?: boolean;
+  labelHideWhenZero?: boolean;
   renderLabel?: (rad: number) => string;
 }
 
 export interface IHintExternalProps {
   hintSize?: number;
   hintColor?: string;
-  hintShowOnEmpty?: boolean;
+  hintHideWhenNotZero?: boolean;
+  hintEnabledRotation?: boolean;
 }
 
 export interface IRingExternalProps {

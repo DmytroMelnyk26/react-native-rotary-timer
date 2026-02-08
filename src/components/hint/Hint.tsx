@@ -8,10 +8,16 @@ export interface IHintProps {
 }
 
 const Hint = ({ ViewComponent = HintView }: IHintProps) => {
-  const { size } = useRotaryTimer();
+  const { hintSize, hintColor } = useRotaryTimer();
   const animatedProps = useHint();
 
-  return <ViewComponent animatedProps={animatedProps} size={size} />;
+  return (
+    <ViewComponent
+      animatedProps={animatedProps}
+      size={hintSize}
+      color={hintColor}
+    />
+  );
 };
 
 export default React.memo(Hint);

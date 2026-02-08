@@ -40,7 +40,7 @@ export default function App() {
           // ticksCount={20}
           // snapTicksCount={60}
           // initialRotation={Math.PI}
-          labelHideOnZero={false}
+          labelHideWhenZero={false}
           ticksCount={24}
           tickWidth={1}
           tickRounding={1}
@@ -50,6 +50,8 @@ export default function App() {
           onFeedback={onFeedback}
           onTouchTimerStart={onTouchTimerStart}
           onTouchTimerEnd={onTouchTimerEnd}
+          hintHideWhenNotZero={false}
+          hintEnabledRotation={false}
           // markerColor={'blue'}
           // markerSize={5}
           // feedbackTicksCount={4}

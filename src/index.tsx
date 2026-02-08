@@ -3,6 +3,9 @@ import RotaryTimerProvider from './context/RotaryTimerProvider';
 import RotaryTimer from './components/timer/RotaryTimer';
 import { renderLabel as renderLabelDefault } from './helper';
 import {
+  DEFAULT_HINT_COLOR,
+  DEFAULT_HINT_ENABLED_ROTATION,
+  DEFAULT_HINT_SIZE,
   DEFAULT_INITIAL_ROTATION,
   DEFAULT_IS_EDITABLE,
   DEFAULT_RING_WIDTH,
@@ -52,8 +55,13 @@ const RotaryTimerWrapper = ({
   markerSize = ringWidth,
 
   labelTextStyle,
-  labelHideOnZero,
+  labelHideWhenZero,
   renderLabel = renderLabelDefault,
+
+  hintSize = DEFAULT_HINT_SIZE,
+  hintColor = DEFAULT_HINT_COLOR,
+  hintHideWhenNotZero,
+  hintEnabledRotation = DEFAULT_HINT_ENABLED_ROTATION,
 
   RingComponent,
   RingViewComponent,
@@ -104,8 +112,12 @@ const RotaryTimerWrapper = ({
       markerColor={markerColor}
       markerSize={markerSize}
       labelTextStyle={labelTextStyle}
-      labelHideOnZero={labelHideOnZero}
+      labelHideWhenZero={labelHideWhenZero}
       renderLabel={renderLabel}
+      hintColor={hintColor}
+      hintSize={hintSize}
+      hintHideWhenNotZero={hintHideWhenNotZero}
+      hintEnabledRotation={hintEnabledRotation}
       onChange={onChangeStable}
       onTouchTimerStart={onTouchTimerStartStable}
       onTouchTimerEnd={onTouchTimerEndStable}

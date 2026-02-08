@@ -1,6 +1,7 @@
 import type { SharedValue } from 'react-native-reanimated';
 import type {
   IFeedbackProps,
+  IHintExternalProps,
   ILabelExternalProps,
   IMarkerExternalProps,
   ISnapProps,
@@ -12,7 +13,8 @@ export interface IRotaryTimerContext
     IFeedbackProps,
     ITicksExternalProps,
     IMarkerExternalProps,
-    ILabelExternalProps {
+    ILabelExternalProps,
+    IHintExternalProps {
   size: number;
   ringWidth: number;
   isEditable?: boolean;
