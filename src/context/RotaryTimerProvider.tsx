@@ -9,8 +9,11 @@ interface RotaryTimerProviderProps
 const RotaryTimerProvider = ({
   children,
   size,
-  ringWidth,
   isEditable,
+
+  ringWidth,
+  ringActiveColor,
+  ringInactiveColor,
 
   rotationSharedValue,
   maxRotation,
@@ -53,7 +56,10 @@ const RotaryTimerProvider = ({
   const value = useMemo<IRotaryTimerContext>(
     () => ({
       size,
+
       ringWidth,
+      ringActiveColor,
+      ringInactiveColor,
 
       maxRotation,
       minRotation,
@@ -97,7 +103,11 @@ const RotaryTimerProvider = ({
     }),
     [
       size,
+
       ringWidth,
+      ringActiveColor,
+      ringInactiveColor,
+
       rotationSharedValue,
       maxRotation,
       minRotation,

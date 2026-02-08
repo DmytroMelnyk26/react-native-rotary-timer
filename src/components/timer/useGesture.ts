@@ -33,7 +33,7 @@ const maxMinValue = (
 
 const useGesture = () => {
   const {
-    center,
+    size,
     maxRotation,
     minRotation,
     rotationSharedValue,
@@ -65,8 +65,8 @@ const useGesture = () => {
           initialRotationSharedValue.value = rotationSharedValue.value;
         })
         .onChange((e) => {
-          const x = e.x - center;
-          const y = e.y - center;
+          const x = e.x - size / 2;
+          const y = e.y - size / 2;
 
           const currentAngle = angleFromPointTopZero(x, y);
 
@@ -118,7 +118,7 @@ const useGesture = () => {
         })
         .enabled(!!isEditable),
     [
-      center,
+      size,
       previousAngleSharedValue,
       currentRotationSharedValue,
       initialRotationSharedValue,
@@ -143,8 +143,8 @@ const useGesture = () => {
           }
         })
         .onEnd((e) => {
-          const x = e.x - center;
-          const y = e.y - center;
+          const x = e.x - size / 2;
+          const y = e.y - size / 2;
 
           const angle = angleFromPointTopZero(x, y);
           const currentRotation = rotationSharedValue.value;
@@ -177,7 +177,7 @@ const useGesture = () => {
         })
         .enabled(!!isEditable),
     [
-      center,
+      size,
       rotationSharedValue,
       maxRotation,
       minRotation,

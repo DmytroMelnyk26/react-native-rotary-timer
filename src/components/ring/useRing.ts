@@ -4,9 +4,10 @@ import { TWO_PI } from '../../constants/math';
 import { normalizeAngle0To2Pi } from '../../helper';
 
 const useRing = () => {
-  const { radius, rotationSharedValue } = useRotaryTimer();
+  const { size, ringWidth, rotationSharedValue } = useRotaryTimer();
 
   const animatedProps = useAnimatedProps(() => {
+    const radius = (size - ringWidth) / 2;
     const absRotations = Math.abs(rotationSharedValue.value);
     const fullRotations = Math.floor(absRotations / TWO_PI);
     const remainder = normalizeAngle0To2Pi(absRotations);

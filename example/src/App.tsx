@@ -50,8 +50,6 @@ export default function App() {
           onFeedback={onFeedback}
           onTouchTimerStart={onTouchTimerStart}
           onTouchTimerEnd={onTouchTimerEnd}
-          hintHideWhenNotZero={false}
-          hintEnabledRotation={false}
           // markerColor={'blue'}
           // markerSize={5}
           // feedbackTicksCount={4}

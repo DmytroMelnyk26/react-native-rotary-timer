@@ -3,16 +3,16 @@ import { useAnimatedStyle } from 'react-native-reanimated';
 import { normalizeAngle0To2Pi } from '../../helper';
 
 const useMarker = () => {
-  const { center, radius, rotationSharedValue } = useRotaryTimer();
+  const { size, ringWidth, rotationSharedValue } = useRotaryTimer();
 
   const animatedStyle = useAnimatedStyle(() => {
     const progress = normalizeAngle0To2Pi(rotationSharedValue.value);
-    const x = center + radius * Math.sin(progress);
-    const y = center - radius * Math.cos(progress);
+    const x = size / 2 + ((size - ringWidth) / 2) * Math.sin(progress);
+    const y = size / 2 - ((size - ringWidth) / 2) * Math.cos(progress);
 
     return {
       position: 'absolute',
-      transform: [{ translateX: x - center }, { translateY: y - center }],
+      transform: [{ translateX: x - size / 2 }, { translateY: y - size / 2 }],
     };
   });
 

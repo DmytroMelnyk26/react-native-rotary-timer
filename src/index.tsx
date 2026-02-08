@@ -8,6 +8,8 @@ import {
   DEFAULT_HINT_SIZE,
   DEFAULT_INITIAL_ROTATION,
   DEFAULT_IS_EDITABLE,
+  DEFAULT_RING_ACTIVE_COLOR,
+  DEFAULT_RING_INACTIVE_COLOR,
   DEFAULT_RING_WIDTH,
   DEFAULT_TICK_COLOR,
   DEFAULT_TICK_HEIGHT,
@@ -21,7 +23,10 @@ import useStableCallback from './hooks/useStableCallback';
 
 const RotaryTimerWrapper = ({
   size = DEFAULT_TIMER_SIZE,
+
   ringWidth = DEFAULT_RING_WIDTH,
+  ringActiveColor = DEFAULT_RING_ACTIVE_COLOR,
+  ringInactiveColor = DEFAULT_RING_INACTIVE_COLOR,
 
   initialRotation = DEFAULT_INITIAL_ROTATION,
   maxRotation,
@@ -90,6 +95,8 @@ const RotaryTimerWrapper = ({
     <RotaryTimerProvider
       size={size}
       ringWidth={ringWidth}
+      ringActiveColor={ringActiveColor}
+      ringInactiveColor={ringInactiveColor}
       rotationSharedValue={rotationSharedValue}
       maxRotation={maxRotation}
       minRotation={minRotation}

@@ -12,19 +12,19 @@ const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 export interface IRingViewProps {
   animatedProps: AnimatedProps<typeof AnimatedCircle>;
   animatedStyle: AnimatedStyle<ViewStyle>;
-  center: number;
   size: number;
-  radius: number;
-  ringWidth: number;
+  width: number;
+  activeColor?: string;
+  inactiveColor?: string;
 }
 
 const RingView = ({
   animatedProps,
   animatedStyle,
-  center,
   size,
-  radius,
-  ringWidth,
+  width,
+  activeColor,
+  inactiveColor,
 }: IRingViewProps) => (
   <AnimatedSvg
     width={size}
@@ -32,26 +32,23 @@ const RingView = ({
     style={[StyleSheet.absoluteFill, animatedStyle]}
   >
     <Circle
-      cx={center}
-      cy={center}
-      r={radius}
-      stroke={'#ccc'}
-      strokeWidth={ringWidth}
+      cx={size / 2}
+      cy={size / 2}
+      r={(size - width) / 2}
+      stroke={inactiveColor}
+      strokeWidth={width}
       fill="none"
     />
     <AnimatedCircle
-      cx={center}
-      cy={center}
-      r={radius}
-      stroke={'red'}
-      strokeWidth={ringWidth}
+      cx={size / 2}
+      cy={size / 2}
+      r={(size - width) / 2}
+      stroke={activeColor}
+      strokeWidth={width}
       strokeLinecap="round"
       animatedProps={animatedProps}
       fill="none"
-      // transform={`translate(0, ${
-      //   2 * center
-      // }) scale(1, -1) rotate(90 ${center} ${center})`}
-      transform={`rotate(-90 ${center} ${center})`}
+      transform={`rotate(-90 ${size / 2} ${size / 2})`}
     />
   </AnimatedSvg>
 );

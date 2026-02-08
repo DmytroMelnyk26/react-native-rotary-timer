@@ -5,7 +5,7 @@ const useLabel = () => {
   const { rotationSharedValue, renderLabel } = useRotaryTimer();
 
   const textSharedValue = useDerivedValue(() => {
-    return renderLabel?.(rotationSharedValue.value) || '123213';
+    return renderLabel?.(rotationSharedValue.value) || '';
   });
 
   const animatedProps = useAnimatedProps(() => {

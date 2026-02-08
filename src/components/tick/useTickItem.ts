@@ -7,17 +7,11 @@ const TICKS_CONFIG = {
 } as const;
 
 const useTickItem = (angle: number) => {
-  const {
-    radius,
-    center,
-    ringWidth,
-    tickHeight,
-    tickWidth,
-    tickSpaceFromRing,
-  } = useRotaryTimer();
+  const { size, ringWidth, tickHeight, tickWidth, tickSpaceFromRing } =
+    useRotaryTimer();
 
-  const rotateX = center + radius * Math.cos(angle);
-  const rotateY = center + radius * Math.sin(angle);
+  const rotateX = size / 2 + ((size - ringWidth) / 2) * Math.cos(angle);
+  const rotateY = size / 2 + ((size - ringWidth) / 2) * Math.sin(angle);
   const rotationDeg = ((angle + Math.PI / 2) * 180) / Math.PI;
 
   const x = rotateX - TICKS_CONFIG.width / 2;
