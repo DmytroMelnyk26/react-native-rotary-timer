@@ -48,6 +48,9 @@ const RotaryTimerWrapper = ({
   feedbackOffsetAngle,
   onFeedback,
 
+  markerColor,
+  markerSize = ringWidth,
+
   renderLabel = renderLabelDefault,
   RingComponent,
   RingViewComponent,
@@ -94,6 +97,8 @@ const RotaryTimerWrapper = ({
       feedbackTicksCount={feedbackTicksCount}
       feedbackAngle={feedbackAngle}
       feedbackOffsetAngle={feedbackOffsetAngle}
+      markerColor={markerColor}
+      markerSize={markerSize}
       rotationSharedValue={rotationSharedValue}
       onChange={onChangeStable}
       renderLabel={renderLabel}

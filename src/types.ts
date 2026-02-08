@@ -69,7 +69,6 @@ export interface ITicksExternalProps {
 export interface IMarkerExternalProps {
   markerSize?: number;
   markerColor?: string;
-  markerBorderRadius?: number;
 }
 
 export interface ILabelExternalProps {

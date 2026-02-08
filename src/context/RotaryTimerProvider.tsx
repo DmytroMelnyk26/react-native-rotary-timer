@@ -33,6 +33,9 @@ const RotaryTimerProvider = ({
   snapTicksCount,
   snapOffsetAngle,
 
+  markerColor,
+  markerSize,
+
   rotationSharedValue,
   onChange,
   renderLabel,
@@ -68,6 +71,9 @@ const RotaryTimerProvider = ({
       snapAngle,
       snapOffsetAngle,
 
+      markerColor,
+      markerSize,
+
       isEditable,
       renderLabel,
       onTouchTimerStart,
@@ -97,6 +103,9 @@ const RotaryTimerProvider = ({
       snapTicksCount,
       snapAngle,
       snapOffsetAngle,
+
+      markerColor,
+      markerSize,
 
       onChange,
       renderLabel,

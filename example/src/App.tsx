@@ -49,6 +49,8 @@ export default function App() {
           onFeedback={onFeedback}
           onTouchTimerStart={onTouchTimerStart}
           onTouchTimerEnd={onTouchTimerEnd}
+          // markerColor={'blue'}
+          // markerSize={5}
           // feedbackTicksCount={4}
           // feedbackAngle={Math.PI / 2}
           // feedbackOffsetAngle={Math.PI / 4}

@@ -8,10 +8,16 @@ export interface IMarkerProps {
 }
 
 const Marker = ({ ViewComponent = MarkerView }: IMarkerProps) => {
-  const { ringWidth } = useRotaryTimer();
+  const { markerSize, markerColor } = useRotaryTimer();
   const animatedStyle = useMarker();
 
-  return <ViewComponent animatedStyle={animatedStyle} ringWidth={ringWidth} />;
+  return (
+    <ViewComponent
+      animatedStyle={animatedStyle}
+      size={markerSize}
+      color={markerColor}
+    />
+  );
 };
 
 export default React.memo(Marker);

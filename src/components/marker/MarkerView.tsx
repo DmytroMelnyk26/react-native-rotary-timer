@@ -9,17 +9,13 @@ const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
 export interface IMarkerViewProps {
   animatedStyle: StyleProp<AnimatedStyle<ViewStyle>>;
-  ringWidth: IRotaryTimerContext['ringWidth'];
+  size?: IRotaryTimerContext['ringWidth'];
+  color?: string;
 }
 
-const MarkerView = ({ animatedStyle, ringWidth }: IMarkerViewProps) => (
-  <AnimatedSvg width={ringWidth} height={ringWidth} style={animatedStyle}>
-    <Circle
-      cx={ringWidth / 2}
-      cy={ringWidth / 2}
-      r={ringWidth / 2}
-      fill={'black'}
-    />
+const MarkerView = ({ animatedStyle, size = 0, color }: IMarkerViewProps) => (
+  <AnimatedSvg width={size} height={size} style={animatedStyle}>
+    <Circle cx={size / 2} cy={size / 2} r={size / 2} fill={color} />
   </AnimatedSvg>
 );
 
