@@ -9,27 +9,12 @@ import { useMemo } from 'react';
 import { scheduleOnRN } from 'react-native-worklets';
 import {
   angleFromPointTopZero,
+  maxMinValue,
   normalizeAngle0To2Pi,
   normalizeDeltaAngle,
+  snapToStep,
 } from '../../helper';
 import useStepAngle from '../../hooks/useStepAngle';
-
-const snapToStep = (value: number, step: number, offset: number = 0) => {
-  'worklet';
-  if (!step) {
-    return value;
-  }
-  return Math.round((value - offset) / step) * step + offset;
-};
-
-const maxMinValue = (
-  value: number,
-  max: number | undefined = Number.POSITIVE_INFINITY,
-  min: number | undefined = Number.NEGATIVE_INFINITY
-) => {
-  'worklet';
-  return Math.max(Math.min(value, max), min);
-};
 
 const useGesture = () => {
   const {
@@ -42,8 +27,8 @@ const useGesture = () => {
     snapAngle,
     snapOffsetAngle,
     onChange,
-    onTouchTimerStart,
-    onTouchTimerEnd,
+    onTouchStart,
+    onTouchEnd,
   } = useRotaryTimer();
 
   const stepSnapping = useStepAngle(snapAngle, snapTicksCount);
@@ -56,8 +41,8 @@ const useGesture = () => {
     () =>
       Gesture.Pan()
         .onStart(() => {
-          if (onTouchTimerStart) {
-            scheduleOnRN(onTouchTimerStart, rotationSharedValue.value);
+          if (onTouchStart) {
+            scheduleOnRN(onTouchStart, rotationSharedValue.value);
           }
 
           previousAngleSharedValue.value = null;
@@ -106,8 +91,8 @@ const useGesture = () => {
             duration: 100,
           });
 
-          if (onTouchTimerEnd) {
-            scheduleOnRN(onTouchTimerEnd, limitedRotation);
+          if (onTouchEnd) {
+            scheduleOnRN(onTouchEnd, limitedRotation);
           }
           if (
             onChange &&
@@ -129,8 +114,8 @@ const useGesture = () => {
       stepSnapping,
       snapOffsetAngle,
       onChange,
-      onTouchTimerStart,
-      onTouchTimerEnd,
+      onTouchStart,
+      onTouchEnd,
     ]
   );
 
@@ -138,8 +123,8 @@ const useGesture = () => {
     () =>
       Gesture.Tap()
         .onStart(() => {
-          if (onTouchTimerStart) {
-            scheduleOnRN(onTouchTimerStart, rotationSharedValue.value);
+          if (onTouchStart) {
+            scheduleOnRN(onTouchStart, rotationSharedValue.value);
           }
         })
         .onEnd((e) => {
@@ -168,8 +153,8 @@ const useGesture = () => {
             duration: 500,
           });
 
-          if (onTouchTimerEnd) {
-            scheduleOnRN(onTouchTimerEnd, limitedRotation);
+          if (onTouchEnd) {
+            scheduleOnRN(onTouchEnd, limitedRotation);
           }
           if (onChange && limitedRotation !== currentRotation) {
             scheduleOnRN(onChange, limitedRotation);
@@ -185,8 +170,8 @@ const useGesture = () => {
       stepSnapping,
       snapOffsetAngle,
       onChange,
-      onTouchTimerEnd,
-      onTouchTimerStart,
+      onTouchEnd,
+      onTouchStart,
     ]
   );
 

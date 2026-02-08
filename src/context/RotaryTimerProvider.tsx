@@ -15,6 +15,7 @@ const RotaryTimerProvider = ({
   ringActiveColor,
   ringInactiveColor,
 
+  initialRotation,
   rotationSharedValue,
   maxRotation,
   minRotation,
@@ -50,8 +51,8 @@ const RotaryTimerProvider = ({
   hintEnabledRotation,
 
   onChange,
-  onTouchTimerStart,
-  onTouchTimerEnd,
+  onTouchStart,
+  onTouchEnd,
 }: RotaryTimerProviderProps) => {
   const value = useMemo<IRotaryTimerContext>(
     () => ({
@@ -64,6 +65,7 @@ const RotaryTimerProvider = ({
       maxRotation,
       minRotation,
 
+      initialRotation,
       rotationSharedValue,
       onChange,
 
@@ -98,8 +100,8 @@ const RotaryTimerProvider = ({
       hintEnabledRotation,
 
       isEditable,
-      onTouchTimerStart,
-      onTouchTimerEnd,
+      onTouchStart,
+      onTouchEnd,
     }),
     [
       size,
@@ -108,6 +110,7 @@ const RotaryTimerProvider = ({
       ringActiveColor,
       ringInactiveColor,
 
+      initialRotation,
       rotationSharedValue,
       maxRotation,
       minRotation,
@@ -144,8 +147,8 @@ const RotaryTimerProvider = ({
 
       onChange,
       isEditable,
-      onTouchTimerStart,
-      onTouchTimerEnd,
+      onTouchStart,
+      onTouchEnd,
     ]
   );
 

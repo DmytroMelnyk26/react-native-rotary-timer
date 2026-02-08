@@ -18,7 +18,7 @@ export interface IRotaryTimerContext
     ILabelExternalProps,
     IHintExternalProps,
     IRingExternalProps,
-    Omit<ICommonProps, 'initialRotation'> {
+    ICommonProps {
   rotationSharedValue: SharedValue<number>;
   size: number;
   ringWidth: number;

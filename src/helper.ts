@@ -50,7 +50,7 @@ export function convertMs(ms: number): {
   };
 }
 
-export function rotationToMs(
+export function radToMs(
   rad: number,
   minutesPerCircle = DEFAULT_MINUTES_PER_CIRCLE
 ): number {
@@ -63,21 +63,31 @@ export function rotationToMs(
   return ms;
 }
 
+export function msToRad(
+  ms: number,
+  minutesPerCircle = DEFAULT_MINUTES_PER_CIRCLE
+) {
+  'worklet';
+  return (ms / (minutesPerCircle * 60 * 1000)) * TWO_PI;
+}
+
 export function renderLabel(rad: number): string {
   'worklet';
   if (!Number.isFinite(rad)) {
-    return '00:00';
+    return '00:00:00';
   }
 
   const value = Math.abs(rad);
   const isNegative = rad < 0;
 
-  const ms = rotationToMs(value);
-  const { totalHours, minutes } = convertMs(ms);
+  const ms = radToMs(value);
+  const { totalHours, minutes, seconds } = convertMs(ms);
 
   const pad2 = (n: number) => String(n).padStart(2, '0');
 
-  return `${isNegative ? '-' : ''}${pad2(totalHours)}:${pad2(minutes)}`;
+  return `${isNegative ? '-' : ''}${pad2(totalHours)}:${pad2(minutes)}:${pad2(
+    seconds
+  )}`;
 }
 
 export function getStepAngle(angle?: number, stepCount?: number): number {
@@ -88,3 +98,20 @@ export function getStepAngle(angle?: number, stepCount?: number): number {
   }
   return 0;
 }
+
+export const snapToStep = (value: number, step: number, offset: number = 0) => {
+  'worklet';
+  if (!step) {
+    return value;
+  }
+  return Math.round((value - offset) / step) * step + offset;
+};
+
+export const maxMinValue = (
+  value: number,
+  max: number | undefined = Number.POSITIVE_INFINITY,
+  min: number | undefined = Number.NEGATIVE_INFINITY
+) => {
+  'worklet';
+  return Math.max(Math.min(value, max), min);
+};

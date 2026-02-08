@@ -1,10 +1,11 @@
 import React from 'react';
 import RotaryTimerProvider from './context/RotaryTimerProvider';
-import RotaryTimer from './components/timer/RotaryTimer';
+import RotaryTimer from './components/timer/RotaryTimerGesture';
 import { renderLabel as renderLabelDefault } from './helper';
 import {
   DEFAULT_HINT_COLOR,
   DEFAULT_HINT_ENABLED_ROTATION,
+  DEFAULT_HINT_HIDE_WHEN_NOT_ZERO,
   DEFAULT_HINT_SIZE,
   DEFAULT_INITIAL_ROTATION,
   DEFAULT_IS_EDITABLE,
@@ -22,6 +23,7 @@ import useRotationSharedValue from './hooks/useRotationSharedValue';
 import useStableCallback from './hooks/useStableCallback';
 
 const RotaryTimerWrapper = ({
+  ref,
   size = DEFAULT_TIMER_SIZE,
 
   ringWidth = DEFAULT_RING_WIDTH,
@@ -35,8 +37,8 @@ const RotaryTimerWrapper = ({
   isEditable = DEFAULT_IS_EDITABLE,
   rotationSharedValue: externalRotationSharedValue,
   onChange,
-  onTouchTimerStart,
-  onTouchTimerEnd,
+  onTouchStart,
+  onTouchEnd,
 
   ticksCount = DEFAULT_TICKS_COUNT,
   tickAngle,
@@ -65,7 +67,7 @@ const RotaryTimerWrapper = ({
 
   hintSize = DEFAULT_HINT_SIZE,
   hintColor = DEFAULT_HINT_COLOR,
-  hintHideWhenNotZero,
+  hintHideWhenNotZero = DEFAULT_HINT_HIDE_WHEN_NOT_ZERO,
   hintEnabledRotation = DEFAULT_HINT_ENABLED_ROTATION,
 
   RingComponent,
@@ -88,8 +90,8 @@ const RotaryTimerWrapper = ({
   const onChangeStable = useStableCallback(onChange);
   const onFeedbackStable = useStableCallback(onFeedback);
 
-  const onTouchTimerStartStable = useStableCallback(onTouchTimerStart);
-  const onTouchTimerEndStable = useStableCallback(onTouchTimerEnd);
+  const onTouchStartStable = useStableCallback(onTouchStart);
+  const onTouchEndStable = useStableCallback(onTouchEnd);
 
   return (
     <RotaryTimerProvider
@@ -97,6 +99,7 @@ const RotaryTimerWrapper = ({
       ringWidth={ringWidth}
       ringActiveColor={ringActiveColor}
       ringInactiveColor={ringInactiveColor}
+      initialRotation={initialRotation}
       rotationSharedValue={rotationSharedValue}
       maxRotation={maxRotation}
       minRotation={minRotation}
@@ -126,10 +129,11 @@ const RotaryTimerWrapper = ({
       hintHideWhenNotZero={hintHideWhenNotZero}
       hintEnabledRotation={hintEnabledRotation}
       onChange={onChangeStable}
-      onTouchTimerStart={onTouchTimerStartStable}
-      onTouchTimerEnd={onTouchTimerEndStable}
+      onTouchStart={onTouchStartStable}
+      onTouchEnd={onTouchEndStable}
     >
       <RotaryTimer
+        ref={ref}
         RingComponent={RingComponent}
         RingViewComponent={RingViewComponent}
         TicksComponent={TicksComponent}

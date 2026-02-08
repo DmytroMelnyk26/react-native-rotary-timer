@@ -1,17 +1,19 @@
 import { View, StyleSheet } from 'react-native';
-import RotaryTimer from 'react-native-rotary-timer';
+import RotaryTimer, {
+  useCountdown,
+  msToRad,
+  type IRotaryTimerRef,
+} from 'react-native-rotary-timer';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
 
-import { useCallback } from 'react';
-import { useSharedValue } from 'react-native-reanimated';
+import { useCallback, useRef } from 'react';
 
 // const renderLabel = (rad: number) => {
 //   return rad.toFixed(2);
 // };
 
 export default function App() {
-  const rotationSharedValue = useSharedValue(0);
   const onChange = useCallback((rad: number) => {
     console.log('onChange', rad);
   }, []);
@@ -20,36 +22,41 @@ export default function App() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   }, []);
 
-  const onTouchTimerStart = () => {
-    console.log('onTouchTimerStart');
-  };
+  const timerRef = useRef<IRotaryTimerRef>(null);
 
-  const onTouchTimerEnd = () => {
-    console.log('onTouchTimerEnd');
-  };
+  const interval = useCallback(() => {
+    const rad = msToRad(1000);
+    return setInterval(() => {
+      timerRef.current?.reduceRotation?.(rad);
+    }, 1000);
+  }, []);
+
+  const { onTouchEnd, onTouchStart } = useCountdown(interval);
 
   return (
     <GestureHandlerRootView>
       <View style={styles.container}>
         <RotaryTimer
-          size={200}
-          rotationSharedValue={rotationSharedValue}
+          size={300}
+          hintSize={200}
+          ref={timerRef}
+          // rotationSharedValue={rotationSharedValue}
           ringWidth={20}
           // maxRotation={Math.PI}
-          // minRotation={0}
+          minRotation={0}
           // ticksCount={20}
           // snapTicksCount={60}
           // initialRotation={Math.PI}
           labelHideWhenZero={false}
-          ticksCount={24}
+          // ticksCount={24}
           tickWidth={1}
           tickRounding={1}
           tickSpaceFromRing={10}
-          minRotation={0}
+          // minRotation={0}
           onChange={onChange}
           onFeedback={onFeedback}
-          onTouchTimerStart={onTouchTimerStart}
-          onTouchTimerEnd={onTouchTimerEnd}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
           // markerColor={'blue'}
           // markerSize={5}
           // feedbackTicksCount={4}

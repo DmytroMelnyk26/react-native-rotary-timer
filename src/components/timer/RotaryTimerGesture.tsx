@@ -2,10 +2,12 @@ import React from 'react';
 import RotaryTimerView from './RotaryTimerView';
 import { GestureDetector } from 'react-native-gesture-handler';
 import useGesture from './useGesture';
-import type { IRotaryTimerComponents } from '../../types';
+import type { IRotaryTimerComponents, IRotaryTimerRef } from '../../types';
 import useFeedback from './useFeedback';
+import useControl from '../../hooks/useControl';
 
-const RotaryTimer = ({
+const RotaryTimerGesture = ({
+  ref,
   RingComponent,
   RingViewComponent,
   TicksComponent,
@@ -17,8 +19,10 @@ const RotaryTimer = ({
   LabelViewComponent,
   HintComponent,
   HintViewComponent,
-}: Partial<IRotaryTimerComponents>) => {
+}: Partial<IRotaryTimerComponents> & { ref?: React.Ref<IRotaryTimerRef> }) => {
   const gesture = useGesture();
+
+  useControl(ref);
 
   useFeedback();
   return (
@@ -40,4 +44,4 @@ const RotaryTimer = ({
   );
 };
 
-export default React.memo(RotaryTimer);
+export default React.memo(RotaryTimerGesture);

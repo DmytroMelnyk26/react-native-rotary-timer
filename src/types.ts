@@ -30,6 +30,7 @@ export interface IRotaryTimerComponents {
 }
 
 export interface ICommonProps {
+  ref?: React.Ref<IRotaryTimerRef>;
   size?: number;
   isEditable?: boolean;
   initialRotation?: number;
@@ -39,8 +40,8 @@ export interface ICommonProps {
   rotationSharedValue?: SharedValue<number>;
 
   onChange?: (ms: number) => void;
-  onTouchTimerStart?: (rad: number) => void;
-  onTouchTimerEnd?: (rad: number) => void;
+  onTouchStart?: (rad: number) => void;
+  onTouchEnd?: (rad: number) => void;
 }
 
 export interface ISnapProps {
@@ -89,6 +90,13 @@ export interface IRingExternalProps {
   ringWidth?: number;
   ringActiveColor?: string;
   ringInactiveColor?: string;
+}
+
+export interface IRotaryTimerRef {
+  increaseRotation: (rotation: number) => void;
+  reduceRotation: (rotation: number) => void;
+  setRotation: (rotation: number) => void;
+  reset: (rotation: number) => void;
 }
 
 export interface IRotaryTimerProps
