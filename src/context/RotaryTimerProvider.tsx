@@ -12,6 +12,7 @@ const RotaryTimerProvider = ({
   ringWidth,
   isEditable,
 
+  rotationSharedValue,
   maxRotation,
   minRotation,
 
@@ -36,9 +37,11 @@ const RotaryTimerProvider = ({
   markerColor,
   markerSize,
 
-  rotationSharedValue,
-  onChange,
+  labelTextStyle,
+  labelHideOnZero,
   renderLabel,
+
+  onChange,
   onTouchTimerStart,
   onTouchTimerEnd,
 }: RotaryTimerProviderProps) => {
@@ -74,8 +77,11 @@ const RotaryTimerProvider = ({
       markerColor,
       markerSize,
 
-      isEditable,
+      labelTextStyle,
+      labelHideOnZero,
       renderLabel,
+
+      isEditable,
       onTouchTimerStart,
       onTouchTimerEnd,
     }),
@@ -107,8 +113,11 @@ const RotaryTimerProvider = ({
       markerColor,
       markerSize,
 
-      onChange,
+      labelTextStyle,
+      labelHideOnZero,
       renderLabel,
+
+      onChange,
       isEditable,
       onTouchTimerStart,
       onTouchTimerEnd,

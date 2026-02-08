@@ -10,7 +10,8 @@ import { scheduleOnRN } from 'react-native-worklets';
 
 const useLabel = () => {
   const [text, setText] = useState('');
-  const { rotationSharedValue, renderLabel } = useRotaryTimer();
+  const { rotationSharedValue, labelHideOnZero, renderLabel } =
+    useRotaryTimer();
 
   const updateText = useCallback(
     (value: number) => {
@@ -27,8 +28,10 @@ const useLabel = () => {
   );
 
   const opacitySharedValue = useDerivedValue(() => {
-    return withSpring(rotationSharedValue.value === 0 ? 0 : 1);
-  });
+    return labelHideOnZero
+      ? withSpring(rotationSharedValue.value === 0 ? 0 : 1)
+      : 1;
+  }, [labelHideOnZero]);
 
   const animatedProps = useAnimatedProps(() => {
     return {

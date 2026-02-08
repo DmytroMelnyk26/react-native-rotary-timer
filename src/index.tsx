@@ -51,7 +51,10 @@ const RotaryTimerWrapper = ({
   markerColor,
   markerSize = ringWidth,
 
+  labelTextStyle,
+  labelHideOnZero,
   renderLabel = renderLabelDefault,
+
   RingComponent,
   RingViewComponent,
   TicksComponent,
@@ -79,6 +82,7 @@ const RotaryTimerWrapper = ({
     <RotaryTimerProvider
       size={size}
       ringWidth={ringWidth}
+      rotationSharedValue={rotationSharedValue}
       maxRotation={maxRotation}
       minRotation={minRotation}
       isEditable={isEditable}
@@ -99,9 +103,10 @@ const RotaryTimerWrapper = ({
       feedbackOffsetAngle={feedbackOffsetAngle}
       markerColor={markerColor}
       markerSize={markerSize}
-      rotationSharedValue={rotationSharedValue}
-      onChange={onChangeStable}
+      labelTextStyle={labelTextStyle}
+      labelHideOnZero={labelHideOnZero}
       renderLabel={renderLabel}
+      onChange={onChangeStable}
       onTouchTimerStart={onTouchTimerStartStable}
       onTouchTimerEnd={onTouchTimerEndStable}
     >

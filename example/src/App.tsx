@@ -40,6 +40,7 @@ export default function App() {
           // ticksCount={20}
           // snapTicksCount={60}
           // initialRotation={Math.PI}
+          labelHideOnZero={false}
           ticksCount={24}
           tickWidth={1}
           tickRounding={1}

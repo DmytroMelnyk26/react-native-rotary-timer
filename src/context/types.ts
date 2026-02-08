@@ -1,6 +1,7 @@
 import type { SharedValue } from 'react-native-reanimated';
 import type {
   IFeedbackProps,
+  ILabelExternalProps,
   IMarkerExternalProps,
   ISnapProps,
   ITicksExternalProps,
@@ -10,7 +11,8 @@ export interface IRotaryTimerContext
   extends ISnapProps,
     IFeedbackProps,
     ITicksExternalProps,
-    IMarkerExternalProps {
+    IMarkerExternalProps,
+    ILabelExternalProps {
   size: number;
   ringWidth: number;
   isEditable?: boolean;
@@ -19,8 +21,6 @@ export interface IRotaryTimerContext
   maxRotation?: number;
 
   onChange?: (ms: number) => void;
-
-  renderLabel: (rad: number) => string;
 
   onTouchTimerStart?: (rad: number) => void;
   onTouchTimerEnd?: (rad: number) => void;

@@ -1,4 +1,4 @@
-import type { SharedValue } from 'react-native-reanimated';
+import type { AnimatedStyle, SharedValue } from 'react-native-reanimated';
 import React from 'react';
 import type { IRingProps } from './components/ring/Ring';
 import type { IRingViewProps } from './components/ring/RingView';
@@ -11,6 +11,7 @@ import type { ITicksProps } from './components/tick/Ticks';
 import type { IMarkerProps } from './components/marker/Marker';
 import type { ILabelProps } from './components/label/Label';
 import type { IHintProps } from './components/hint/Hint';
+import type { TextStyle } from 'react-native';
 
 export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
@@ -72,10 +73,8 @@ export interface IMarkerExternalProps {
 }
 
 export interface ILabelExternalProps {
-  labelFontSize?: number;
-  labelColor?: string;
-  labelFontWeight?: string;
-  labelShowOnEmpty?: boolean;
+  labelTextStyle?: AnimatedStyle<TextStyle>;
+  labelHideOnZero?: boolean;
   renderLabel?: (rad: number) => string;
 }
 
