@@ -70,6 +70,12 @@ const RotaryTimerWrapper = ({
   hintHideWhenNotZero = DEFAULT_HINT_HIDE_WHEN_NOT_ZERO,
   hintEnabledRotation = DEFAULT_HINT_ENABLED_ROTATION,
 
+  backgroundSize = size,
+  backgroundColor,
+  backgroundStyle,
+
+  BackgroundComponent,
+  BackgroundViewComponent,
   RingComponent,
   RingViewComponent,
   TicksComponent,
@@ -128,12 +134,17 @@ const RotaryTimerWrapper = ({
       hintSize={hintSize}
       hintHideWhenNotZero={hintHideWhenNotZero}
       hintEnabledRotation={hintEnabledRotation}
+      backgroundSize={backgroundSize}
+      backgroundColor={backgroundColor}
+      backgroundStyle={backgroundStyle}
       onChange={onChangeStable}
       onTouchStart={onTouchStartStable}
       onTouchEnd={onTouchEndStable}
     >
       <RotaryTimer
         ref={ref}
+        BackgroundComponent={BackgroundComponent}
+        BackgroundViewComponent={BackgroundViewComponent}
         RingComponent={RingComponent}
         RingViewComponent={RingViewComponent}
         TicksComponent={TicksComponent}

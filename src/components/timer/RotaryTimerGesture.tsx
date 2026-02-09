@@ -8,6 +8,8 @@ import useControl from '../../hooks/useControl';
 
 const RotaryTimerGesture = ({
   ref,
+  BackgroundComponent,
+  BackgroundViewComponent,
   RingComponent,
   RingViewComponent,
   TicksComponent,
@@ -28,6 +30,8 @@ const RotaryTimerGesture = ({
   return (
     <GestureDetector gesture={gesture}>
       <RotaryTimerView
+        BackgroundComponent={BackgroundComponent}
+        BackgroundViewComponent={BackgroundViewComponent}
         RingComponent={RingComponent}
         RingViewComponent={RingViewComponent}
         TicksComponent={TicksComponent}

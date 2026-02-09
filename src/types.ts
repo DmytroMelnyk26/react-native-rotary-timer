@@ -11,11 +11,15 @@ import type { ITicksProps } from './components/tick/Ticks';
 import type { IMarkerProps } from './components/marker/Marker';
 import type { ILabelProps } from './components/label/Label';
 import type { IHintProps } from './components/hint/Hint';
-import type { TextStyle } from 'react-native';
+import type { TextStyle, ViewStyle } from 'react-native';
+import type { IBackgroundProps } from './components/background/Backbround';
+import type { IBackgroundViewProps } from './components/background/BackgroundView';
 
 export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
 export interface IRotaryTimerComponents {
+  BackgroundComponent: React.ComponentType<IBackgroundProps>;
+  BackgroundViewComponent: React.ComponentType<IBackgroundViewProps>;
   RingComponent: React.ComponentType<IRingProps>;
   RingViewComponent: React.ComponentType<IRingViewProps>;
   TicksComponent: React.ComponentType<ITicksProps>;
@@ -99,6 +103,12 @@ export interface IRotaryTimerRef {
   reset: (rotation: number) => void;
 }
 
+export interface IBackgroundExternalProps {
+  backgroundColor?: string;
+  backgroundSize?: number;
+  backgroundStyle?: AnimatedStyle<ViewStyle>;
+}
+
 export interface IRotaryTimerProps
   extends ICommonProps,
     ISnapProps,
@@ -108,4 +118,5 @@ export interface IRotaryTimerProps
     ILabelExternalProps,
     IHintExternalProps,
     IRingExternalProps,
+    IBackgroundExternalProps,
     Partial<IRotaryTimerComponents> {}

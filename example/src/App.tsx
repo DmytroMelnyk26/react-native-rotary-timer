@@ -66,6 +66,8 @@ export default function App() {
           // isEditable={false}
           // ticksCount={30}
           // renderLabel={renderLabel}
+          backgroundColor={'#f0f0f0'}
+          backgroundSize={250}
         />
       </View>
     </GestureHandlerRootView>

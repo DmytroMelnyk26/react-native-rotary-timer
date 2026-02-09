@@ -50,6 +50,10 @@ const RotaryTimerProvider = ({
   hintHideWhenNotZero,
   hintEnabledRotation,
 
+  backgroundSize,
+  backgroundColor,
+  backgroundStyle,
+
   onChange,
   onTouchStart,
   onTouchEnd,
@@ -99,6 +103,10 @@ const RotaryTimerProvider = ({
       hintHideWhenNotZero,
       hintEnabledRotation,
 
+      backgroundSize,
+      backgroundColor,
+      backgroundStyle,
+
       isEditable,
       onTouchStart,
       onTouchEnd,
@@ -144,6 +152,10 @@ const RotaryTimerProvider = ({
       hintColor,
       hintHideWhenNotZero,
       hintEnabledRotation,
+
+      backgroundSize,
+      backgroundColor,
+      backgroundStyle,
 
       onChange,
       isEditable,

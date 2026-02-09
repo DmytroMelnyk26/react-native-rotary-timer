@@ -7,8 +7,11 @@ import Ticks from '../tick/Ticks';
 import Marker from '../marker/Marker';
 import Label from '../label/Label';
 import Hint from '../hint/Hint';
+import Background from '../background/Backbround';
 
 const RotaryTimerView = ({
+  BackgroundComponent = Background,
+  BackgroundViewComponent,
   RingComponent = Ring,
   RingViewComponent,
   TicksComponent = Ticks,
@@ -28,6 +31,7 @@ const RotaryTimerView = ({
       style={[{ width: size, height: size }, styles.container]}
       collapsable={false}
     >
+      <BackgroundComponent ViewComponent={BackgroundViewComponent} />
       <RingComponent ViewComponent={RingViewComponent} />
       <TicksComponent
         TickItemComponent={TickItemComponent}

@@ -1,5 +1,6 @@
 import type { SharedValue } from 'react-native-reanimated';
 import type {
+  IBackgroundExternalProps,
   ICommonProps,
   IFeedbackProps,
   IHintExternalProps,
@@ -18,6 +19,7 @@ export interface IRotaryTimerContext
     ILabelExternalProps,
     IHintExternalProps,
     IRingExternalProps,
+    IBackgroundExternalProps,
     ICommonProps {
   rotationSharedValue: SharedValue<number>;
   size: number;
