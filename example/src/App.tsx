@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Button } from 'react-native';
 import RotaryTimer, {
   useCountdown,
   msToRad,
@@ -7,13 +7,14 @@ import RotaryTimer, {
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
 
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 // const renderLabel = (rad: number) => {
 //   return rad.toFixed(2);
 // };
 
 export default function App() {
+  const [isActive, setIsActive] = useState(false);
   const onChange = useCallback((rad: number) => {
     console.log('onChange', rad);
   }, []);
@@ -31,7 +32,7 @@ export default function App() {
     }, 1000);
   }, []);
 
-  const { onTouchEnd, onTouchStart } = useCountdown(interval);
+  const { onTouchEnd, onTouchStart } = useCountdown(interval, isActive);
 
   return (
     <GestureHandlerRootView>
@@ -68,6 +69,10 @@ export default function App() {
           // renderLabel={renderLabel}
           backgroundColor={'#f0f0f0'}
           backgroundSize={250}
+        />
+        <Button
+          title={isActive ? 'Stop timer' : 'Start timer'}
+          onPress={() => setIsActive(!isActive)}
         />
       </View>
     </GestureHandlerRootView>
