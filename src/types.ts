@@ -106,7 +106,7 @@ export interface IRotaryTimerRef {
   increaseRotation: (rotation: number) => void;
   reduceRotation: (rotation: number) => void;
   setRotation: (rotation: number) => void;
-  reset: (rotation: number) => void;
+  reset: () => void;
 }
 
 export interface IRotaryTimerProps

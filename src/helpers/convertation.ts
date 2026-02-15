@@ -8,11 +8,11 @@ export function convertMillisecondsToTime(ms: number): {
   totalMinutes: number;
   seconds: number;
   totalSeconds: number;
-  millis: number;
+  milliseconds: number;
 } {
   'worklet';
   const totalSeconds = Math.floor(ms / 1000);
-  const millis = Math.floor(ms % 1000);
+  const milliseconds = Math.floor(ms % 1000);
   const totalMinutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
   const totalHours = Math.floor(totalMinutes / 60);
@@ -28,7 +28,7 @@ export function convertMillisecondsToTime(ms: number): {
     totalMinutes,
     seconds,
     totalSeconds,
-    millis,
+    milliseconds,
   };
 }
 
