@@ -1,22 +1,21 @@
+import { useMemo } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
+import { scheduleOnRN } from 'react-native-worklets';
 import {
   useSharedValue,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import useRotaryTimer from '../../hooks/useRotaryTimer';
-import { useMemo } from 'react';
-import { scheduleOnRN } from 'react-native-worklets';
+import { useRotaryTimer, useStepAngle } from '../../hooks';
 import {
   angleFromPointTopZero,
   maxMinValue,
   normalizeAngle0To2Pi,
   normalizeDeltaAngle,
   snapToStep,
-} from '../../helper';
-import useStepAngle from '../../hooks/useStepAngle';
+} from '../../helpers';
 
-const useGesture = () => {
+export const useGesture = () => {
   const {
     size,
     maxRotation,
@@ -182,5 +181,3 @@ const useGesture = () => {
 
   return gesture;
 };
-
-export default useGesture;

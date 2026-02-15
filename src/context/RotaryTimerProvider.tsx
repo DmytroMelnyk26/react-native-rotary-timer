@@ -1,174 +1,174 @@
 import React, { type PropsWithChildren, useMemo } from 'react';
-import RotaryTimerContext from './RotaryTimerContext';
+import { RotaryTimerContext } from './RotaryTimerContext';
 import type { IRotaryTimerContext } from './types';
 
-interface RotaryTimerProviderProps
+interface IRotaryTimerProviderProps
   extends PropsWithChildren,
     IRotaryTimerContext {}
 
-const RotaryTimerProvider = ({
-  children,
-  size,
-  isEditable,
+export const RotaryTimerProvider = React.memo(
+  ({
+    children,
+    size,
+    isEditable,
 
-  ringWidth,
-  ringActiveColor,
-  ringInactiveColor,
+    ringWidth,
+    ringActiveColor,
+    ringInactiveColor,
 
-  initialRotation,
-  rotationSharedValue,
-  maxRotation,
-  minRotation,
+    initialRotation,
+    rotationSharedValue,
+    maxRotation,
+    minRotation,
 
-  ticksCount,
-  tickAngle,
-  tickOffsetAngle,
-  tickHeight,
-  tickWidth,
-  tickColor,
-  tickSpaceFromRing,
-  tickRounding,
+    ticksCount,
+    tickAngle,
+    tickOffsetAngle,
+    tickHeight,
+    tickWidth,
+    tickColor,
+    tickSpaceFromRing,
+    tickRounding,
 
-  feedbackAngle,
-  feedbackTicksCount,
-  feedbackOffsetAngle,
-  onFeedback,
+    feedbackAngle,
+    feedbackTicksCount,
+    feedbackOffsetAngle,
+    onFeedback,
 
-  snapAngle,
-  snapTicksCount,
-  snapOffsetAngle,
+    snapAngle,
+    snapTicksCount,
+    snapOffsetAngle,
 
-  markerColor,
-  markerSize,
+    markerColor,
+    markerSize,
 
-  labelTextStyle,
-  labelHideWhenZero,
-  renderLabel,
+    labelTextStyle,
+    labelHideWhenZero,
+    renderLabel,
 
-  hintSize,
-  hintColor,
-  hintHideWhenNotZero,
-  hintEnabledRotation,
+    hintSize,
+    hintColor,
+    hintHideWhenNotZero,
+    hintEnabledRotation,
 
-  backgroundSize,
-  backgroundColor,
-  backgroundStyle,
+    backgroundSize,
+    backgroundColor,
+    backgroundStyle,
 
-  onChange,
-  onTouchStart,
-  onTouchEnd,
-}: RotaryTimerProviderProps) => {
-  const value = useMemo<IRotaryTimerContext>(
-    () => ({
-      size,
+    onChange,
+    onTouchStart,
+    onTouchEnd,
+  }: IRotaryTimerProviderProps) => {
+    const value = useMemo<IRotaryTimerContext>(
+      () => ({
+        size,
 
-      ringWidth,
-      ringActiveColor,
-      ringInactiveColor,
+        ringWidth,
+        ringActiveColor,
+        ringInactiveColor,
 
-      maxRotation,
-      minRotation,
+        maxRotation,
+        minRotation,
 
-      initialRotation,
-      rotationSharedValue,
-      onChange,
+        initialRotation,
+        rotationSharedValue,
+        onChange,
 
-      ticksCount,
-      tickAngle,
-      tickOffsetAngle,
-      tickHeight,
-      tickWidth,
-      tickColor,
-      tickSpaceFromRing,
-      tickRounding,
+        ticksCount,
+        tickAngle,
+        tickOffsetAngle,
+        tickHeight,
+        tickWidth,
+        tickColor,
+        tickSpaceFromRing,
+        tickRounding,
 
-      feedbackAngle,
-      feedbackTicksCount,
-      feedbackOffsetAngle,
-      onFeedback,
+        feedbackAngle,
+        feedbackTicksCount,
+        feedbackOffsetAngle,
+        onFeedback,
 
-      snapTicksCount,
-      snapAngle,
-      snapOffsetAngle,
+        snapTicksCount,
+        snapAngle,
+        snapOffsetAngle,
 
-      markerColor,
-      markerSize,
+        markerColor,
+        markerSize,
 
-      labelTextStyle,
-      labelHideWhenZero,
-      renderLabel,
+        labelTextStyle,
+        labelHideWhenZero,
+        renderLabel,
 
-      hintSize,
-      hintColor,
-      hintHideWhenNotZero,
-      hintEnabledRotation,
+        hintSize,
+        hintColor,
+        hintHideWhenNotZero,
+        hintEnabledRotation,
 
-      backgroundSize,
-      backgroundColor,
-      backgroundStyle,
+        backgroundSize,
+        backgroundColor,
+        backgroundStyle,
 
-      isEditable,
-      onTouchStart,
-      onTouchEnd,
-    }),
-    [
-      size,
+        isEditable,
+        onTouchStart,
+        onTouchEnd,
+      }),
+      [
+        size,
 
-      ringWidth,
-      ringActiveColor,
-      ringInactiveColor,
+        ringWidth,
+        ringActiveColor,
+        ringInactiveColor,
 
-      initialRotation,
-      rotationSharedValue,
-      maxRotation,
-      minRotation,
+        initialRotation,
+        rotationSharedValue,
+        maxRotation,
+        minRotation,
 
-      ticksCount,
-      tickAngle,
-      tickOffsetAngle,
-      tickHeight,
-      tickWidth,
-      tickColor,
-      tickSpaceFromRing,
-      tickRounding,
+        ticksCount,
+        tickAngle,
+        tickOffsetAngle,
+        tickHeight,
+        tickWidth,
+        tickColor,
+        tickSpaceFromRing,
+        tickRounding,
 
-      feedbackAngle,
-      feedbackTicksCount,
-      feedbackOffsetAngle,
-      onFeedback,
+        feedbackAngle,
+        feedbackTicksCount,
+        feedbackOffsetAngle,
+        onFeedback,
 
-      snapTicksCount,
-      snapAngle,
-      snapOffsetAngle,
+        snapTicksCount,
+        snapAngle,
+        snapOffsetAngle,
 
-      markerColor,
-      markerSize,
+        markerColor,
+        markerSize,
 
-      labelTextStyle,
-      labelHideWhenZero,
-      renderLabel,
+        labelTextStyle,
+        labelHideWhenZero,
+        renderLabel,
 
-      hintSize,
-      hintColor,
-      hintHideWhenNotZero,
-      hintEnabledRotation,
+        hintSize,
+        hintColor,
+        hintHideWhenNotZero,
+        hintEnabledRotation,
 
-      backgroundSize,
-      backgroundColor,
-      backgroundStyle,
+        backgroundSize,
+        backgroundColor,
+        backgroundStyle,
 
-      onChange,
-      isEditable,
-      onTouchStart,
-      onTouchEnd,
-    ]
-  );
+        onChange,
+        isEditable,
+        onTouchStart,
+        onTouchEnd,
+      ]
+    );
 
-  return (
-    <RotaryTimerContext.Provider value={value}>
-      {children}
-    </RotaryTimerContext.Provider>
-  );
-};
-
-export default React.memo(RotaryTimerProvider);
+    return (
+      <RotaryTimerContext.Provider value={value}>
+        {children}
+      </RotaryTimerContext.Provider>
+    );
+  }
+);

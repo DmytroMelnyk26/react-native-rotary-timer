@@ -1,5 +1,5 @@
-import { Rect } from 'react-native-svg';
 import React from 'react';
+import { Rect } from 'react-native-svg';
 
 export interface ITickItemViewProps {
   x: number;
@@ -13,27 +13,27 @@ export interface ITickItemViewProps {
   color?: string;
 }
 
-const TickItemView = ({
-  x,
-  y,
-  rotateX,
-  rotateY,
-  height,
-  width,
-  rotationDeg,
-  color,
-  rounding,
-}: ITickItemViewProps) => (
-  <Rect
-    x={x}
-    y={y}
-    width={width}
-    height={height}
-    fill={color}
-    rx={rounding}
-    ry={rounding}
-    transform={`rotate(${rotationDeg} ${rotateX} ${rotateY})`}
-  />
+export const TickItemView = React.memo(
+  ({
+    x,
+    y,
+    rotateX,
+    rotateY,
+    height,
+    width,
+    rotationDeg,
+    color,
+    rounding,
+  }: ITickItemViewProps) => (
+    <Rect
+      x={x}
+      y={y}
+      width={width}
+      height={height}
+      fill={color}
+      rx={rounding}
+      ry={rounding}
+      transform={`rotate(${rotationDeg} ${rotateX} ${rotateY})`}
+    />
+  )
 );
-
-export default React.memo(TickItemView);

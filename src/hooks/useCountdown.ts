@@ -2,10 +2,12 @@ import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 type Interval = ReturnType<typeof setInterval>;
 
-const useCountdown = (countdown: () => Interval, isActive: boolean = true) => {
+export const useCountdown = (
+  countdown: () => Interval,
+  isActive: boolean = true
+) => {
   const intervalRef = useRef<Interval>(null);
 
-  console.log('isActive', isActive);
   const startCountdown = useCallback(() => {
     intervalRef.current = countdown();
   }, [intervalRef, countdown]);
@@ -40,5 +42,3 @@ const useCountdown = (countdown: () => Interval, isActive: boolean = true) => {
     [onTouchStart, onTouchEnd]
   );
 };
-
-export default useCountdown;

@@ -1,4 +1,3 @@
-import useRotaryTimer from '../../hooks/useRotaryTimer';
 import {
   cancelAnimation,
   useAnimatedProps,
@@ -9,10 +8,11 @@ import {
   withRepeat,
   withSpring,
 } from 'react-native-reanimated';
+import { useRotaryTimer } from '../../hooks';
 
 const INVISIBLE_ARROW_TIME = 300;
 
-const useHint = () => {
+export const useHint = () => {
   const { rotationSharedValue, hintEnabledRotation, hintHideWhenNotZero } =
     useRotaryTimer();
 
@@ -60,5 +60,3 @@ const useHint = () => {
 
   return animatedProps;
 };
-
-export default useHint;

@@ -12,14 +12,16 @@ export interface ILabelViewProps {
   style?: AnimatedStyle<TextStyle>;
 }
 
-const LabelView = ({ animatedProps, style }: ILabelViewProps) => (
-  <AnimatedTextInput
-    animatedProps={animatedProps}
-    style={[styles.text, style]}
-    editable={false}
-    multiline={false}
-    underlineColorAndroid="transparent"
-  />
+export const LabelView = React.memo(
+  ({ animatedProps, style }: ILabelViewProps) => (
+    <AnimatedTextInput
+      animatedProps={animatedProps}
+      style={[styles.text, style]}
+      editable={false}
+      multiline={false}
+      underlineColorAndroid="transparent"
+    />
+  )
 );
 
 const styles = StyleSheet.create({
@@ -31,5 +33,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
 });
-
-export default React.memo(LabelView);

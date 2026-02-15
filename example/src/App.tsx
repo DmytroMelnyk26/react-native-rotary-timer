@@ -1,7 +1,7 @@
 import { View, StyleSheet, Button } from 'react-native';
 import RotaryTimer, {
   useCountdown,
-  msToRad,
+  convertMillisecondsToRadians,
   type IRotaryTimerRef,
 } from 'react-native-rotary-timer';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -26,7 +26,7 @@ export default function App() {
   const timerRef = useRef<IRotaryTimerRef>(null);
 
   const interval = useCallback(() => {
-    const rad = msToRad(1000);
+    const rad = convertMillisecondsToRadians(1000);
     return setInterval(() => {
       timerRef.current?.reduceRotation?.(rad);
     }, 1000);

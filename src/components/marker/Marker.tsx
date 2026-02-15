@@ -1,13 +1,13 @@
 import React from 'react';
-import useRotaryTimer from '../../hooks/useRotaryTimer';
-import useMarker from './useMarker';
-import MarkerView, { type IMarkerViewProps } from './MarkerView';
+import { useMarker } from './useMarker';
+import { MarkerView, type IMarkerViewProps } from './MarkerView';
+import { useRotaryTimer } from '../../hooks';
 
 export interface IMarkerProps {
   ViewComponent?: React.ComponentType<IMarkerViewProps>;
 }
 
-const Marker = ({ ViewComponent = MarkerView }: IMarkerProps) => {
+export const Marker = ({ ViewComponent = MarkerView }: IMarkerProps) => {
   const { markerSize, markerColor } = useRotaryTimer();
   const animatedStyle = useMarker();
 
@@ -19,5 +19,3 @@ const Marker = ({ ViewComponent = MarkerView }: IMarkerProps) => {
     />
   );
 };
-
-export default React.memo(Marker);

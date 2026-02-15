@@ -1,10 +1,9 @@
-import useRotaryTimer from '../../hooks/useRotaryTimer';
 import { useAnimatedReaction } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { normalizeAngle0To2Pi } from '../../helper';
-import useStepAngle from '../../hooks/useStepAngle';
+import { useRotaryTimer, useStepAngle } from '../../hooks';
+import { normalizeAngle0To2Pi } from '../../helpers';
 
-const useFeedback = () => {
+export const useFeedback = () => {
   const {
     rotationSharedValue,
     feedbackAngle,
@@ -34,5 +33,3 @@ const useFeedback = () => {
     }
   );
 };
-
-export default useFeedback;

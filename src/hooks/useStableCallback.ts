@@ -2,7 +2,9 @@ import { useRef, useCallback, useEffect } from 'react';
 
 type AnyFn = (...args: any[]) => void;
 
-const useStableCallback = <F extends AnyFn>(callback: F | undefined): F => {
+export const useStableCallback = <F extends AnyFn>(
+  callback: F | undefined
+): F => {
   const callbackRef = useRef<F | undefined>(callback);
 
   const memoCallback = useCallback(
@@ -21,5 +23,3 @@ const useStableCallback = <F extends AnyFn>(callback: F | undefined): F => {
 
   return memoCallback;
 };
-
-export default useStableCallback;

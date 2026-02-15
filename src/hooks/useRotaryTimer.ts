@@ -1,8 +1,7 @@
 import { useContext, useMemo } from 'react';
-import type { IRotaryTimerContext } from '../context/types';
-import RotaryTimerContext from '../context/RotaryTimerContext';
+import { RotaryTimerContext, type IRotaryTimerContext } from '../context';
 
-const useRotaryTimer = (): IRotaryTimerContext => {
+export const useRotaryTimer = (): IRotaryTimerContext => {
   const value = useContext(RotaryTimerContext);
   if (value === null) {
     throw new Error('useRotaryTimer must be used within a RotaryTimerProvider');
@@ -10,5 +9,3 @@ const useRotaryTimer = (): IRotaryTimerContext => {
 
   return useMemo(() => value, [value]);
 };
-
-export default useRotaryTimer;

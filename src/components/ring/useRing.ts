@@ -1,9 +1,9 @@
-import useRotaryTimer from '../../hooks/useRotaryTimer';
 import { useAnimatedProps, useAnimatedStyle } from 'react-native-reanimated';
-import { TWO_PI } from '../../constants/math';
-import { normalizeAngle0To2Pi } from '../../helper';
+import { useRotaryTimer } from '../../hooks';
+import { normalizeAngle0To2Pi } from '../../helpers';
+import { TWO_PI } from '../../constants';
 
-const useRing = () => {
+export const useRing = () => {
   const { size, ringWidth, rotationSharedValue } = useRotaryTimer();
 
   const animatedProps = useAnimatedProps(() => {
@@ -29,5 +29,3 @@ const useRing = () => {
 
   return { animatedStyle, animatedProps };
 };
-
-export default useRing;

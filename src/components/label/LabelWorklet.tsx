@@ -1,18 +1,17 @@
 import React from 'react';
-import LabelView, { type ILabelViewProps } from './LabelView';
-import useLabelWorklet from './useLabelWorklet';
-import useRotaryTimer from '../../hooks/useRotaryTimer';
+import { useLabelWorklet } from './useLabelWorklet';
+import { LabelView } from './LabelView';
+import { useRotaryTimer } from '../../hooks';
+import type { ILabelProps } from './Label';
 
-export interface ILabelProps {
-  ViewComponent?: React.ComponentType<ILabelViewProps>;
-}
+export const LabelWorklet = React.memo(
+  ({ ViewComponent = LabelView }: ILabelProps) => {
+    const { labelTextStyle } = useRotaryTimer();
 
-const LabelWorklet = ({ ViewComponent = LabelView }: ILabelProps) => {
-  const { labelTextStyle } = useRotaryTimer();
+    const animatedProps = useLabelWorklet();
 
-  const animatedProps = useLabelWorklet();
-
-  return <ViewComponent animatedProps={animatedProps} style={labelTextStyle} />;
-};
-
-export default React.memo(LabelWorklet);
+    return (
+      <ViewComponent animatedProps={animatedProps} style={labelTextStyle} />
+    );
+  }
+);

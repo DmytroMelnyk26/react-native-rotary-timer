@@ -1,5 +1,5 @@
-import { StyleSheet, type ViewStyle } from 'react-native';
 import React from 'react';
+import { StyleSheet, type ViewStyle } from 'react-native';
 import Animated, { type AnimatedStyle } from 'react-native-reanimated';
 
 export interface IBackgroundViewProps {
@@ -8,8 +8,8 @@ export interface IBackgroundViewProps {
   style?: AnimatedStyle<ViewStyle>;
 }
 
-const BackgroundView = ({ color, size, style }: IBackgroundViewProps) => {
-  return (
+export const BackgroundView = React.memo(
+  ({ color, size, style }: IBackgroundViewProps) => (
     <Animated.View
       style={[
         styles.background,
@@ -22,13 +22,11 @@ const BackgroundView = ({ color, size, style }: IBackgroundViewProps) => {
         style,
       ]}
     />
-  );
-};
+  )
+);
 
 const styles = StyleSheet.create({
   background: {
     position: 'absolute',
   },
 });
-
-export default React.memo(BackgroundView);

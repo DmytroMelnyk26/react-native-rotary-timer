@@ -1,21 +1,21 @@
-import type { AnimatedStyle, SharedValue } from 'react-native-reanimated';
 import React from 'react';
-import type { IRingProps } from './components/ring/Ring';
-import type { IRingViewProps } from './components/ring/RingView';
-import type { ITickItemViewProps } from './components/tick/TickItemView';
-import type { IMarkerViewProps } from './components/marker/MarkerView';
-import type { ILabelViewProps } from './components/label/LabelView';
-import type { IHintViewProps } from './components/hint/HintView';
-import type { ITickItemProps } from './components/tick/TickItem';
-import type { ITicksProps } from './components/tick/Ticks';
-import type { IMarkerProps } from './components/marker/Marker';
-import type { ILabelProps } from './components/label/Label';
-import type { IHintProps } from './components/hint/Hint';
 import type { TextStyle, ViewStyle } from 'react-native';
-import type { IBackgroundProps } from './components/background/Backbround';
-import type { IBackgroundViewProps } from './components/background/BackgroundView';
-
-export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+import type { AnimatedStyle, SharedValue } from 'react-native-reanimated';
+import type {
+  IBackgroundProps,
+  IBackgroundViewProps,
+  IRingProps,
+  IRingViewProps,
+  ITickItemViewProps,
+  IMarkerViewProps,
+  ILabelViewProps,
+  IHintViewProps,
+  ITickItemProps,
+  ITicksProps,
+  IMarkerProps,
+  ILabelProps,
+  IHintProps,
+} from './components';
 
 export interface IRotaryTimerComponents {
   BackgroundComponent: React.ComponentType<IBackgroundProps>;
@@ -33,7 +33,7 @@ export interface IRotaryTimerComponents {
   HintViewComponent: React.ComponentType<IHintViewProps>;
 }
 
-export interface ICommonProps {
+export interface IRotaryTimerCommonProps {
   ref?: React.Ref<IRotaryTimerRef>;
   size?: number;
   isEditable?: boolean;
@@ -48,20 +48,20 @@ export interface ICommonProps {
   onTouchEnd?: (rad: number) => void;
 }
 
-export interface ISnapProps {
+export interface IRotaryTimerSnapProps {
   snapTicksCount?: number;
   snapAngle?: number;
   snapOffsetAngle?: number;
 }
 
-export interface IFeedbackProps {
+export interface IRotaryTimerFeedbackProps {
   feedbackTicksCount?: number;
   feedbackAngle?: number;
   feedbackOffsetAngle?: number;
   onFeedback?: () => void;
 }
 
-export interface ITicksExternalProps {
+export interface IRotaryTimerTicksProps {
   ticksCount?: number;
   tickAngle?: number;
   tickOffsetAngle?: number;
@@ -72,28 +72,34 @@ export interface ITicksExternalProps {
   tickRounding?: number;
 }
 
-export interface IMarkerExternalProps {
+export interface IRotaryTimerMarkerProps {
   markerSize?: number;
   markerColor?: string;
 }
 
-export interface ILabelExternalProps {
+export interface IRotaryTimerLabelProps {
   labelTextStyle?: AnimatedStyle<TextStyle>;
   labelHideWhenZero?: boolean;
   renderLabel?: (rad: number) => string;
 }
 
-export interface IHintExternalProps {
+export interface IRotaryTimerHintProps {
   hintSize?: number;
   hintColor?: string;
   hintHideWhenNotZero?: boolean;
   hintEnabledRotation?: boolean;
 }
 
-export interface IRingExternalProps {
+export interface IRotaryTimerRingProps {
   ringWidth?: number;
   ringActiveColor?: string;
   ringInactiveColor?: string;
+}
+
+export interface IRotaryTimerBackgroundProps {
+  backgroundColor?: string;
+  backgroundSize?: number;
+  backgroundStyle?: AnimatedStyle<ViewStyle>;
 }
 
 export interface IRotaryTimerRef {
@@ -103,20 +109,14 @@ export interface IRotaryTimerRef {
   reset: (rotation: number) => void;
 }
 
-export interface IBackgroundExternalProps {
-  backgroundColor?: string;
-  backgroundSize?: number;
-  backgroundStyle?: AnimatedStyle<ViewStyle>;
-}
-
 export interface IRotaryTimerProps
-  extends ICommonProps,
-    ISnapProps,
-    IFeedbackProps,
-    ITicksExternalProps,
-    IMarkerExternalProps,
-    ILabelExternalProps,
-    IHintExternalProps,
-    IRingExternalProps,
-    IBackgroundExternalProps,
+  extends IRotaryTimerCommonProps,
+    IRotaryTimerSnapProps,
+    IRotaryTimerFeedbackProps,
+    IRotaryTimerTicksProps,
+    IRotaryTimerMarkerProps,
+    IRotaryTimerLabelProps,
+    IRotaryTimerHintProps,
+    IRotaryTimerRingProps,
+    IRotaryTimerBackgroundProps,
     Partial<IRotaryTimerComponents> {}

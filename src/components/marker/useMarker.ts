@@ -1,8 +1,8 @@
-import useRotaryTimer from '../../hooks/useRotaryTimer';
 import { useAnimatedStyle } from 'react-native-reanimated';
-import { normalizeAngle0To2Pi } from '../../helper';
+import { useRotaryTimer } from '../../hooks';
+import { normalizeAngle0To2Pi } from '../../helpers';
 
-const useMarker = () => {
+export const useMarker = () => {
   const { size, ringWidth, rotationSharedValue } = useRotaryTimer();
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -18,5 +18,3 @@ const useMarker = () => {
 
   return animatedStyle;
 };
-
-export default useMarker;

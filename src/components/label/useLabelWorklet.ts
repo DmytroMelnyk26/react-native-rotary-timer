@@ -1,7 +1,7 @@
-import useRotaryTimer from '../../hooks/useRotaryTimer';
 import { useAnimatedProps, useDerivedValue } from 'react-native-reanimated';
+import { useRotaryTimer } from '../../hooks';
 
-const useLabel = () => {
+export const useLabelWorklet = () => {
   const { rotationSharedValue, renderLabel } = useRotaryTimer();
 
   const textSharedValue = useDerivedValue(() => {
@@ -17,5 +17,3 @@ const useLabel = () => {
 
   return animatedProps;
 };
-
-export default useLabel;

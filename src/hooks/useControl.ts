@@ -1,11 +1,11 @@
 import React, { useCallback, useImperativeHandle } from 'react';
-import useRotaryTimer from './useRotaryTimer';
 import { withSpring } from 'react-native-reanimated';
-import { maxMinValue } from '../helper';
-import { DEFAULT_INITIAL_ROTATION } from '../constants/defaults';
+import { useRotaryTimer } from './useRotaryTimer';
+import { maxMinValue } from '../helpers';
+import { DEFAULT_INITIAL_ROTATION } from '../constants';
 import type { IRotaryTimerRef } from '../types';
 
-const useControl = (ref?: React.Ref<IRotaryTimerRef>) => {
+export const useControl = (ref?: React.Ref<IRotaryTimerRef>) => {
   const { rotationSharedValue, maxRotation, minRotation, initialRotation } =
     useRotaryTimer();
 
@@ -46,5 +46,3 @@ const useControl = (ref?: React.Ref<IRotaryTimerRef>) => {
     [increaseRotation, reduceRotation, setRotation, reset]
   );
 };
-
-export default useControl;

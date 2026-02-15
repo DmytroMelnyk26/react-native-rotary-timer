@@ -1,8 +1,6 @@
 import { useMemo } from 'react';
-import { getStepAngle } from '../helper';
+import { getStepAngle } from '../helpers';
 
-const useStepAngle = (angle?: number, step?: number) => {
+export const useStepAngle = (angle?: number, step?: number) => {
   return useMemo(() => getStepAngle(angle, step), [angle, step]);
 };
-
-export default useStepAngle;

@@ -1,9 +1,9 @@
 import { useSharedValue } from 'react-native-reanimated';
 import { useEffect } from 'react';
 import type { IRotaryTimerProps } from '../types';
-import { DEFAULT_INITIAL_ROTATION } from '../constants/defaults';
+import { DEFAULT_INITIAL_ROTATION } from '../constants';
 
-const useRotationSharedValue = (
+export const useRotationSharedValue = (
   externalRotationSharedValue: IRotaryTimerProps['rotationSharedValue'],
   initialRotation: IRotaryTimerProps['initialRotation'] = DEFAULT_INITIAL_ROTATION
 ) => {
@@ -20,5 +20,3 @@ const useRotationSharedValue = (
 
   return rotationSharedValue;
 };
-
-export default useRotationSharedValue;

@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
-import { TWO_PI } from '../../constants/math';
-import useRotaryTimer from '../../hooks/useRotaryTimer';
-import useStepAngle from '../../hooks/useStepAngle';
+import { TWO_PI } from '../../constants';
+import { useRotaryTimer, useStepAngle } from '../../hooks';
 
-const useTicks = () => {
+export const useTicks = () => {
   const { ticksCount, tickAngle, tickOffsetAngle } = useRotaryTimer();
 
   const angleStep = useStepAngle(tickAngle, ticksCount);
@@ -21,5 +20,3 @@ const useTicks = () => {
 
   return ticks;
 };
-
-export default useTicks;
