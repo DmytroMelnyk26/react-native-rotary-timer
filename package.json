@@ -43,7 +43,18 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "timer",
+    "rotary",
+    "circular",
+    "dial",
+    "countdown",
+    "draggable",
+    "gesture",
+    "reanimated",
+    "svg",
+    "clock",
+    "time-picker"
   ],
   "repository": {
     "type": "git",
