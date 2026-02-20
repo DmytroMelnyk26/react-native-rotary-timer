@@ -1,7 +1,7 @@
 {
   "name": "react-native-rotary-timer",
   "version": "0.2.2",
-  "description": "A circular, draggable timer",
+  "description": "A highly customizable, circular draggable timer component for React Native with smooth 60 FPS animations, gesture interactions, snapping, haptic feedback, and full render injection support. Built with react-native-reanimated, react-native-gesture-handler, and react-native-svg.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
