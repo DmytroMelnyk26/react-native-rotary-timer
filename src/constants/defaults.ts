@@ -19,3 +19,5 @@ export const DEFAULT_HINT_SIZE = 120;
 export const DEFAULT_HINT_COLOR = '#000';
 export const DEFAULT_HINT_ENABLED_ROTATION = true;
 export const DEFAULT_HINT_HIDE_WHEN_NOT_ZERO = true;
+
+export const DEFAULT_LABEL_HIDE_WHEN_ZERO = true;

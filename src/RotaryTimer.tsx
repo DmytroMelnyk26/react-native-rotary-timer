@@ -9,6 +9,7 @@ import {
   DEFAULT_HINT_SIZE,
   DEFAULT_INITIAL_ROTATION,
   DEFAULT_IS_EDITABLE,
+  DEFAULT_LABEL_HIDE_WHEN_ZERO,
   DEFAULT_RING_ACTIVE_COLOR,
   DEFAULT_RING_INACTIVE_COLOR,
   DEFAULT_RING_WIDTH,
@@ -62,7 +63,7 @@ export const RotaryTimer = React.memo(
     markerSize = ringWidth,
 
     labelTextStyle,
-    labelHideWhenZero,
+    labelHideWhenZero = DEFAULT_LABEL_HIDE_WHEN_ZERO,
     renderLabel = renderLabelDefault,
 
     hintSize = DEFAULT_HINT_SIZE,

@@ -24,7 +24,7 @@ export const useFeedback = () => {
         rotationSharedValue.value + (feedbackOffsetAngle || 0)
       );
 
-      return Math.floor(angle / stepFeedback);
+      return Math.round(angle / stepFeedback);
     },
     (currentStep, prevStep) => {
       if (currentStep !== prevStep && prevStep != null && onFeedback) {

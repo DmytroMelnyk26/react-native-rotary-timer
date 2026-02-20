@@ -136,10 +136,10 @@ The marker indicates the current drag position on the ring.
 
 The label displays the current time value in the center of the timer.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `labelTextStyle` | `AnimatedStyle<TextStyle>` | — | Animated text style for the label |
-| `labelHideWhenZero` | `boolean` | — | Hide the label when the rotation is zero |
+| Prop | Type | Default    | Description |
+|------|------|------------|-------------|
+| `labelTextStyle` | `AnimatedStyle<TextStyle>` | —          | Animated text style for the label |
+| `labelHideWhenZero` | `boolean` | `true` | Hide the label when the rotation is zero |
 | `renderLabel` | `(rad: number) => string` | `HH:MM:SS` | Worklet function that converts radians to a display string |
 
 ---

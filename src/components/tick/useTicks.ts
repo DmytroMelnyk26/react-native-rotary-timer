@@ -8,12 +8,12 @@ export const useTicks = () => {
   const angleStep = useStepAngle(tickAngle, ticksCount);
 
   const ticks = useMemo(() => {
-    const count = angleStep ? Math.floor(TWO_PI / angleStep) : 0;
+    const count = angleStep ? Math.round(TWO_PI / angleStep) : 0;
 
     return Array.from({ length: count }, (_, index) => {
       return {
         index,
-        angle: index * angleStep + (tickOffsetAngle || 0),
+        angle: index * angleStep + (tickOffsetAngle || 0) - Math.PI / 2,
       };
     });
   }, [angleStep, tickOffsetAngle]);

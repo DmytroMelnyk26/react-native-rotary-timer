@@ -12,12 +12,7 @@ export const useTickItem = (angle: number) => {
   const rotationDeg = ((angle + Math.PI / 2) * 180) / Math.PI;
 
   const x = rotateX - width / 2;
-  const y =
-    rotateY -
-    height / 2 +
-    ringWidth / 2 +
-    height / 2 +
-    (tickSpaceFromRing || 0);
+  const y = rotateY + ringWidth / 2 + height / 2 + (tickSpaceFromRing || 0);
 
   return { x, y, height, width, rotationDeg, rotateX, rotateY };
 };
