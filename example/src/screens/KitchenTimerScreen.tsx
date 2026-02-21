@@ -8,10 +8,11 @@ import * as Haptics from 'expo-haptics';
 
 const renderLabel = (rad: number): string => {
   const ms = convertRadiansToMilliseconds(rad);
-  const { minutes, seconds } = convertMillisecondsToTime(ms);
-  const mm = String(minutes).padStart(2, '0');
-  const ss = String(seconds).padStart(2, '0');
-  return `${mm}:${ss}`;
+  const { totalHours, minutes } = convertMillisecondsToTime(ms);
+  if (totalHours) {
+    return `${totalHours}h ${minutes}m`;
+  }
+  return `${minutes}m`;
 };
 
 export const KitchenTimerScreen = () => {
