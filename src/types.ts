@@ -43,7 +43,7 @@ export interface IRotaryTimerCommonProps {
 
   rotationSharedValue?: SharedValue<number>;
 
-  onChange?: (ms: number) => void;
+  onChange?: (rad: number) => void;
   onTouchStart?: (rad: number) => void;
   onTouchEnd?: (rad: number) => void;
 }

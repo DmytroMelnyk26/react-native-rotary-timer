@@ -15,7 +15,6 @@ A highly customizable, circular draggable timer component for React Native. Buil
 ## Demo
 
 Try it in [Expo Snack!](https://snack.expo.dev/@dmytromelnyk/react-native-rotary-timer)
-
 ![darkThemeTimer.gif](gif/darkThemeTimer.gif)
 
 ## Installation
@@ -48,7 +47,7 @@ export default function App() {
       size={250}
       ringActiveColor="#4CAF50"
       ringInactiveColor="#E0E0E0"
-      onChange={(ms) => console.log('Time in ms:', ms)}
+      onChange={(rad) => console.log('Time in ms:', ms)}
     />
   );
 }
@@ -62,18 +61,18 @@ All props are **optional**. The component works out of the box with sensible def
 
 ### Common
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop | Type                         | Default | Description |
+|------|------------------------------|---------|-------------|
 | `ref` | `React.Ref<IRotaryTimerRef>` | — | Imperative handle for programmatic control |
-| `size` | `number` | `200` | Diameter of the timer in pixels |
-| `isEditable` | `boolean` | `true` | Whether the user can drag the timer |
-| `initialRotation` | `number` | `0` | Initial rotation angle in radians |
-| `minRotation` | `number` | `−Infinity` | Minimum allowed rotation (radians) |
-| `maxRotation` | `number` | `+Infinity` | Maximum allowed rotation (radians) |
-| `rotationSharedValue` | `SharedValue<number>` | — | External Reanimated shared value to sync with |
-| `onChange` | `(ms: number) => void` | — | Called when the rotation changes, with time in ms |
-| `onTouchStart` | `(rad: number) => void` | — | Called when the user starts dragging |
-| `onTouchEnd` | `(rad: number) => void` | — | Called when the user stops dragging |
+| `size` | `number`                     | `200` | Diameter of the timer in pixels |
+| `isEditable` | `boolean`                    | `true` | Whether the user can drag the timer |
+| `initialRotation` | `number`                     | `0` | Initial rotation angle in radians |
+| `minRotation` | `number`                     | `−Infinity` | Minimum allowed rotation (radians) |
+| `maxRotation` | `number`                     | `+Infinity` | Maximum allowed rotation (radians) |
+| `rotationSharedValue` | `SharedValue<number>`        | — | External Reanimated shared value to sync with |
+| `onChange` | `(rad: number) => void`      | — | Called when the rotation changes |
+| `onTouchStart` | `(rad: number) => void`      | — | Called when the user starts dragging |
+| `onTouchEnd` | `(rad: number) => void`      | — | Called when the user stops dragging |
 
 ---
 
