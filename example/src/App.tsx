@@ -1,89 +1,121 @@
-import { View, StyleSheet, Button } from 'react-native';
-import RotaryTimer, {
-  useCountdown,
-  convertMillisecondsToRadians,
-  type IRotaryTimerRef,
-} from 'react-native-rotary-timer';
+import React, { useCallback, useState } from 'react';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import * as Haptics from 'expo-haptics';
+import { HomeScreen, type IExample } from './screens/HomeScreen';
+import { DefaultTimerScreen } from './screens/DefaultTimerScreen';
+import { DarkThemeScreen } from './screens/DarkThemeScreen';
+import { PomodoroScreen } from './screens/PomodoroScreen';
+import { KitchenTimerScreen } from './screens/KitchenTimerScreen';
+import { CustomComponentsScreen } from './screens/CustomComponentsScreen';
+import { RefApiScreen } from './screens/RefApiScreen';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { useCallback, useRef, useState } from 'react';
+const EXAMPLES: IExample[] = [
+  {
+    key: 'default',
+    title: '⏱️  Default Timer',
+    description: 'Zero configuration — works out of the box with all defaults',
+  },
+  {
+    key: 'dark',
+    title: '🌙  Dark Theme',
+    description:
+      'Full visual customization — ring, ticks, marker, background, label styling',
+  },
+  {
+    key: 'pomodoro',
+    title: '🍅  Pomodoro Timer',
+    description:
+      'Countdown with useCountdown hook, haptic feedback, and ref control',
+  },
+  {
+    key: 'kitchen',
+    title: '🍳  Kitchen Timer',
+    description:
+      'Custom MM:SS label, snapping, haptics, and multi-turn rotation (120 min)',
+  },
+  {
+    key: 'custom',
+    title: '🧩  Custom Components',
+    description:
+      'Render injection — diamond marker, major ticks, patterned background',
+  },
+  {
+    key: 'ref',
+    title: '🎮  Ref API & Shared Value',
+    description:
+      'Programmatic control: increase, reduce, set, reset, isEditable toggle',
+  },
+];
 
-// const renderLabel = (rad: number) => {
-//   return rad.toFixed(2);
-// };
+const SCREENS: Record<string, React.ComponentType> = {
+  default: DefaultTimerScreen,
+  dark: DarkThemeScreen,
+  pomodoro: PomodoroScreen,
+  kitchen: KitchenTimerScreen,
+  custom: CustomComponentsScreen,
+  ref: RefApiScreen,
+};
 
 export default function App() {
-  const [isActive, setIsActive] = useState(false);
-  const onChange = useCallback((rad: number) => {
-    console.log('onChange', rad);
+  const [activeScreen, setActiveScreen] = useState<string | null>(null);
+
+  const handleSelect = useCallback((key: string) => {
+    setActiveScreen(key);
   }, []);
 
-  const onFeedback = useCallback(() => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  const handleBack = useCallback(() => {
+    setActiveScreen(null);
   }, []);
 
-  const timerRef = useRef<IRotaryTimerRef>(null);
-
-  const interval = useCallback(() => {
-    const rad = convertMillisecondsToRadians(1000);
-    return setInterval(() => {
-      timerRef.current?.reduceRotation?.(rad);
-    }, 1000);
-  }, []);
-
-  const { onTouchEnd, onTouchStart } = useCountdown(interval, isActive);
+  const ScreenComponent = activeScreen ? SCREENS[activeScreen] : null;
 
   return (
-    <GestureHandlerRootView>
-      <View style={styles.container}>
-        <RotaryTimer
-          size={300}
-          hintSize={200}
-          ref={timerRef}
-          // rotationSharedValue={rotationSharedValue}
-          ringWidth={20}
-          // maxRotation={Math.PI}
-          minRotation={0}
-          // ticksCount={20}
-          // snapTicksCount={60}
-          // initialRotation={Math.PI}
-          labelHideWhenZero={false}
-          // ticksCount={24}
-          tickWidth={1}
-          tickRounding={1}
-          tickSpaceFromRing={10}
-          // minRotation={0}
-          onChange={onChange}
-          onFeedback={onFeedback}
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
-          // markerColor={'blue'}
-          // markerSize={5}
-          // feedbackTicksCount={4}
-          // feedbackAngle={Math.PI / 2}
-          // feedbackOffsetAngle={Math.PI / 4}
-          // LabelComponent={LabelWorklet}
-          // isEditable={false}
-          // ticksCount={30}
-          // renderLabel={renderLabel}
-          backgroundColor={'#f0f0f0'}
-          backgroundSize={250}
-        />
-        <Button
-          title={isActive ? 'Stop timer' : 'Start timer'}
-          onPress={() => setIsActive(!isActive)}
-        />
-      </View>
-    </GestureHandlerRootView>
+    <SafeAreaProvider>
+      <GestureHandlerRootView>
+        <SafeAreaView style={styles.root}>
+          {ScreenComponent ? (
+            <>
+              <TouchableOpacity
+                style={styles.backButton}
+                onPress={handleBack}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.backText}>← Examples</Text>
+              </TouchableOpacity>
+              <ScreenComponent />
+            </>
+          ) : (
+            <HomeScreen examples={EXAMPLES} onSelect={handleSelect} />
+          )}
+        </SafeAreaView>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 56,
+    left: 16,
+    zIndex: 10,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  backText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#1a1a2e',
   },
 });
