@@ -27,6 +27,8 @@ export const LabelView = React.memo(
 const styles = StyleSheet.create({
   text: {
     position: 'absolute',
+    alignSelf: 'center',
+    width: '100%',
     fontSize: 24,
     fontWeight: '600',
     textAlign: 'center',
