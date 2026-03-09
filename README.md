@@ -98,6 +98,7 @@ All props are **optional**. The component works out of the box with sensible def
 | `tickColor` | `string` | `'#000'` | Color of the tick marks |
 | `tickSpaceFromRing` | `number` | — | Gap between the ring and the ticks |
 | `tickRounding` | `number` | — | Border radius of the tick marks |
+| `tickRotationEnabled` | `boolean` | `false` | Set `true` to rotate ticks together with the ring             |
 
 ---
 

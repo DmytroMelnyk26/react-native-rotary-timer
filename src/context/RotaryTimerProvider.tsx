@@ -29,6 +29,7 @@ export const RotaryTimerProvider = React.memo(
     tickColor,
     tickSpaceFromRing,
     tickRounding,
+    tickRotationEnabled,
 
     feedbackAngle,
     feedbackTicksCount,
@@ -82,6 +83,7 @@ export const RotaryTimerProvider = React.memo(
         tickColor,
         tickSpaceFromRing,
         tickRounding,
+        tickRotationEnabled,
 
         feedbackAngle,
         feedbackTicksCount,
@@ -132,6 +134,7 @@ export const RotaryTimerProvider = React.memo(
         tickColor,
         tickSpaceFromRing,
         tickRounding,
+        tickRotationEnabled,
 
         feedbackAngle,
         feedbackTicksCount,

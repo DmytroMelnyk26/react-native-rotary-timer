@@ -1,5 +1,10 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useDerivedValue,
+  withSpring,
+} from 'react-native-reanimated';
 import Svg from 'react-native-svg';
 import { TickItem } from './TickItem';
 import { useTicks } from './useTicks';
@@ -13,20 +18,40 @@ export interface ITicksProps {
 
 export const Ticks = React.memo(
   ({ TickItemComponent = TickItem, TickItemViewComponent }: ITicksProps) => {
-    const { size } = useRotaryTimer();
+    const { size, rotationSharedValue, tickRotationEnabled } = useRotaryTimer();
     const ticks = useTicks();
 
+    const animatedRotationSharedValue = useDerivedValue(() => {
+      if (!tickRotationEnabled) {
+        return 0;
+      }
+      return withSpring(rotationSharedValue.value);
+    });
+
+    const animatedStyle = useAnimatedStyle(() => {
+      if (!tickRotationEnabled) {
+        return {};
+      }
+
+      const rotation = animatedRotationSharedValue.value;
+      return {
+        transform: [{ rotate: `${rotation}rad` }],
+      };
+    });
+
     return (
-      <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
-        {ticks.map(({ index, angle }) => (
-          <TickItemComponent
-            key={index}
-            index={index}
-            angle={angle}
-            ViewComponent={TickItemViewComponent}
-          />
-        ))}
-      </Svg>
+      <Animated.View style={[StyleSheet.absoluteFill, animatedStyle]}>
+        <Svg width={size} height={size}>
+          {ticks.map(({ index, angle }) => (
+            <TickItemComponent
+              key={index}
+              index={index}
+              angle={angle}
+              ViewComponent={TickItemViewComponent}
+            />
+          ))}
+        </Svg>
+      </Animated.View>
     );
   }
 );

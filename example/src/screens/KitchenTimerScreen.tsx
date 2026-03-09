@@ -47,6 +47,7 @@ export const KitchenTimerScreen = () => {
           markerColor="#e65100"
           markerSize={24}
           renderLabel={renderLabel}
+          tickRotationEnabled={true}
           hintColor="#ff9800"
           hintSize={180}
           backgroundColor="#fff3e0"

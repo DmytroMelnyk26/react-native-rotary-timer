@@ -15,6 +15,7 @@ import {
   DEFAULT_RING_WIDTH,
   DEFAULT_TICK_COLOR,
   DEFAULT_TICK_HEIGHT,
+  DEFAULT_TICK_ROTATION_ENABLED,
   DEFAULT_TICK_WIDTH,
   DEFAULT_TICKS_COUNT,
   DEFAULT_TIMER_SIZE,
@@ -49,6 +50,7 @@ export const RotaryTimer = React.memo(
     tickColor = DEFAULT_TICK_COLOR,
     tickSpaceFromRing,
     tickRounding,
+    tickRotationEnabled = DEFAULT_TICK_ROTATION_ENABLED,
 
     snapTicksCount = ticksCount,
     snapAngle,
@@ -119,6 +121,7 @@ export const RotaryTimer = React.memo(
         tickColor={tickColor}
         tickSpaceFromRing={tickSpaceFromRing}
         tickRounding={tickRounding}
+        tickRotationEnabled={tickRotationEnabled}
         snapTicksCount={snapTicksCount}
         snapAngle={snapAngle}
         snapOffsetAngle={snapOffsetAngle}

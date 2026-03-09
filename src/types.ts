@@ -70,6 +70,7 @@ export interface IRotaryTimerTicksProps {
   tickColor?: string;
   tickSpaceFromRing?: number;
   tickRounding?: number;
+  tickRotationEnabled?: boolean;
 }
 
 export interface IRotaryTimerMarkerProps {
