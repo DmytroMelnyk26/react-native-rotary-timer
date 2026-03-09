@@ -1,11 +1,7 @@
 import { useMemo } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
 import { scheduleOnRN } from 'react-native-worklets';
-import {
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
+import { useSharedValue } from 'react-native-reanimated';
 import { useRotaryTimer, useStepAngle } from '../../hooks';
 import {
   angleFromPointTopZero,
@@ -33,7 +29,6 @@ export const useGesture = () => {
   const stepSnapping = useStepAngle(snapAngle, snapTicksCount);
 
   const previousAngleSharedValue = useSharedValue<number | null>(null);
-  const currentRotationSharedValue = useSharedValue<number | null>(null);
   const initialRotationSharedValue = useSharedValue<number>(0);
 
   const panGesture = useMemo(
@@ -45,7 +40,6 @@ export const useGesture = () => {
           }
 
           previousAngleSharedValue.value = null;
-          currentRotationSharedValue.value = rotationSharedValue.value;
           initialRotationSharedValue.value = rotationSharedValue.value;
         })
         .onChange((e) => {
@@ -60,15 +54,12 @@ export const useGesture = () => {
             );
 
             const limitedRotation = maxMinValue(
-              (currentRotationSharedValue.value || 0) + deltaAngle,
+              (rotationSharedValue.value || 0) + deltaAngle,
               maxRotation,
               minRotation
             );
 
-            currentRotationSharedValue.value = limitedRotation;
-            rotationSharedValue.value = withSpring(limitedRotation, {
-              duration: 100,
-            });
+            rotationSharedValue.value = limitedRotation;
           }
 
           previousAngleSharedValue.value = currentAngle;
@@ -86,9 +77,7 @@ export const useGesture = () => {
             minRotation
           );
 
-          rotationSharedValue.value = withTiming(limitedRotation, {
-            duration: 100,
-          });
+          rotationSharedValue.value = limitedRotation;
 
           if (onTouchEnd) {
             scheduleOnRN(onTouchEnd, limitedRotation);
@@ -104,7 +93,6 @@ export const useGesture = () => {
     [
       size,
       previousAngleSharedValue,
-      currentRotationSharedValue,
       initialRotationSharedValue,
       rotationSharedValue,
       maxRotation,
@@ -148,9 +136,7 @@ export const useGesture = () => {
             minRotation
           );
 
-          rotationSharedValue.value = withTiming(limitedRotation, {
-            duration: 500,
-          });
+          rotationSharedValue.value = limitedRotation;
 
           if (onTouchEnd) {
             scheduleOnRN(onTouchEnd, limitedRotation);

@@ -1,4 +1,9 @@
-import { useAnimatedProps, useAnimatedStyle } from 'react-native-reanimated';
+import {
+  useAnimatedProps,
+  useAnimatedStyle,
+  useDerivedValue,
+  withSpring,
+} from 'react-native-reanimated';
 import { useRotaryTimer } from '../../hooks';
 import { normalizeAngle0To2Pi } from '../../helpers';
 import { TWO_PI } from '../../constants';
@@ -6,9 +11,13 @@ import { TWO_PI } from '../../constants';
 export const useRing = () => {
   const { size, ringWidth, rotationSharedValue } = useRotaryTimer();
 
+  const animatedRotationSharedValue = useDerivedValue(() => {
+    return withSpring(rotationSharedValue.value);
+  });
+
   const animatedProps = useAnimatedProps(() => {
     const radius = (size - ringWidth) / 2;
-    const absRotations = Math.abs(rotationSharedValue.value);
+    const absRotations = Math.abs(animatedRotationSharedValue.value);
     const fullRotations = Math.floor(absRotations / TWO_PI);
     const remainder = normalizeAngle0To2Pi(absRotations);
     const remainderLength = remainder * radius;
@@ -23,7 +32,7 @@ export const useRing = () => {
   });
 
   const animatedStyle = useAnimatedStyle(() => {
-    const isNegative = rotationSharedValue.value < 0;
+    const isNegative = animatedRotationSharedValue.value < 0;
     return { transform: [{ scaleX: isNegative ? -1 : 1 }] };
   });
 

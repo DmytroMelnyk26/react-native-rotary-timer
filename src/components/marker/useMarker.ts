@@ -1,12 +1,20 @@
-import { useAnimatedStyle } from 'react-native-reanimated';
+import {
+  useAnimatedStyle,
+  useDerivedValue,
+  withSpring,
+} from 'react-native-reanimated';
 import { useRotaryTimer } from '../../hooks';
 import { normalizeAngle0To2Pi } from '../../helpers';
 
 export const useMarker = () => {
   const { size, ringWidth, rotationSharedValue } = useRotaryTimer();
 
+  const animatedRotationSharedValue = useDerivedValue(() => {
+    return withSpring(rotationSharedValue.value);
+  });
+
   const animatedStyle = useAnimatedStyle(() => {
-    const progress = normalizeAngle0To2Pi(rotationSharedValue.value);
+    const progress = normalizeAngle0To2Pi(animatedRotationSharedValue.value);
     const x = size / 2 + ((size - ringWidth) / 2) * Math.sin(progress);
     const y = size / 2 - ((size - ringWidth) / 2) * Math.cos(progress);
 

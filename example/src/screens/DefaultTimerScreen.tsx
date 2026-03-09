@@ -10,7 +10,7 @@ export const DefaultTimerScreen = () => {
         used.
       </Text>
       <View style={styles.timerContainer}>
-        <RotaryTimer />
+        <RotaryTimer initialRotation={Math.PI} />
       </View>
     </View>
   );

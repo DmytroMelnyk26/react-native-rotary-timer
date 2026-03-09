@@ -47,7 +47,7 @@ export default function App() {
       size={250}
       ringActiveColor="#4CAF50"
       ringInactiveColor="#E0E0E0"
-      onChange={(rad) => console.log('Time in ms:', ms)}
+      onChange={(rad) => console.log('Time in rad:', rad)}
     />
   );
 }

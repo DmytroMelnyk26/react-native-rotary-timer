@@ -4,6 +4,7 @@ import {
   useAnimatedReaction,
   useDerivedValue,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useRotaryTimer } from '../../hooks';
@@ -20,10 +21,14 @@ export const useLabel = () => {
     [renderLabel]
   );
 
+  const animatedRotationSharedValue = useDerivedValue(() => {
+    return withTiming(rotationSharedValue.value);
+  });
+
   useAnimatedReaction(
-    () => rotationSharedValue.value,
-    () => {
-      scheduleOnRN(updateText, rotationSharedValue.value);
+    () => animatedRotationSharedValue.value,
+    (value) => {
+      scheduleOnRN(updateText, value);
     }
   );
 
@@ -31,7 +36,7 @@ export const useLabel = () => {
     return labelHideWhenZero
       ? withSpring(rotationSharedValue.value === 0 ? 0 : 1)
       : 1;
-  }, [labelHideWhenZero]);
+  });
 
   const animatedProps = useAnimatedProps(() => {
     return {
@@ -39,7 +44,7 @@ export const useLabel = () => {
       defaultValue: text,
       opacity: opacitySharedValue.value,
     };
-  }, [text]);
+  });
 
   return animatedProps;
 };
