@@ -145,6 +145,7 @@ export const useGesture = () => {
             scheduleOnRN(onChange, limitedRotation);
           }
         })
+        .maxDistance(10)
         .enabled(!!isEditable),
     [
       size,
