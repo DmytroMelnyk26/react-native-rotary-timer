@@ -1,4 +1,4 @@
-import React, { type ComponentProps, useId, useMemo } from 'react';
+import React, { useId, useMemo } from 'react';
 import { StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
   type AnimatedProps,
@@ -20,7 +20,7 @@ const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 const ARC_OVERLAP = 0.01;
 
 export interface IRingViewProps {
-  animatedProps: AnimatedProps<ComponentProps<typeof Circle>>;
+  animatedProps: AnimatedProps<typeof AnimatedCircle>;
   animatedStyle: AnimatedStyle<ViewStyle>;
   size: number;
   width: number;
