@@ -91,9 +91,15 @@ export interface IRotaryTimerHintProps {
   hintEnabledRotation?: boolean;
 }
 
+export type IGradientColors =
+  | string
+  | [string]
+  | [string, string]
+  | [string, string, ...string[]];
+
 export interface IRotaryTimerRingProps {
   ringWidth?: number;
-  ringActiveColor?: string;
+  ringActiveColor?: IGradientColors;
   ringInactiveColor?: string;
 }
 

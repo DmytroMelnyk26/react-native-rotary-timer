@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ComponentProps } from 'react';
 import { StyleSheet, TextInput, type TextStyle } from 'react-native';
 import Animated, {
   type AnimatedProps,
@@ -8,7 +8,7 @@ import Animated, {
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 export interface ILabelViewProps {
-  animatedProps: AnimatedProps<typeof AnimatedTextInput>;
+  animatedProps: AnimatedProps<ComponentProps<typeof TextInput>>;
   style?: AnimatedStyle<TextStyle>;
 }
 

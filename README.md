@@ -6,6 +6,7 @@ A highly customizable, circular draggable timer component for React Native. Buil
 
 - 🎯 Draggable circular timer with snapping support
 - 🎨 Fully customizable ring, ticks, marker, label, hint, and background
+- 🌈 AngularGradient support for the ring
 - 🔄 Clockwise / counter-clockwise fill
 - 📳 Haptic-ready feedback callbacks
 - 🏗️ Replaceable sub-components via render injection
@@ -78,11 +79,11 @@ All props are **optional**. The component works out of the box with sensible def
 
 ### Ring
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `ringWidth` | `number` | `20` | Width of the ring stroke |
-| `ringActiveColor` | `string` | `'#f00'` | Color of the filled (active) portion |
-| `ringInactiveColor` | `string` | `'#ccc'` | Color of the unfilled (inactive) portion |
+| Prop | Type                 | Default | Description                                                                                                                                                                                                                                      |
+|------|----------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ringWidth` | `number`             | `20` | Width of the ring stroke                                                                                                                                                                                                                         |
+| `ringActiveColor` | `string`, `string[]` | `'#f00'` | Color of the filled (active) portion. Use an array of colors if you need an Angular Gradient. It's recommended to use 3 or more colors. If you use 2 colors, the middle color will be chosen using `interpolateColor` from `react-native-reanimated` |
+| `ringInactiveColor` | `string`             | `'#ccc'` | Color of the unfilled (inactive) portion                                                                                                                                                                                                         |
 
 ---
 

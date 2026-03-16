@@ -15,6 +15,8 @@ const renderLabel = (rad: number): string => {
   return `${minutes}m`;
 };
 
+const Marker = () => null;
+
 export const KitchenTimerScreen = () => {
   const onFeedback = useCallback(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
@@ -31,7 +33,7 @@ export const KitchenTimerScreen = () => {
         <RotaryTimer
           size={280}
           ringWidth={22}
-          ringActiveColor="#ff9800"
+          ringActiveColor={['#ff9800', '#e65100']}
           ringInactiveColor="#ffe0b2"
           minRotation={0}
           maxRotation={4 * Math.PI}
@@ -44,8 +46,6 @@ export const KitchenTimerScreen = () => {
           snapTicksCount={60}
           feedbackTicksCount={60}
           onFeedback={onFeedback}
-          markerColor="#e65100"
-          markerSize={24}
           renderLabel={renderLabel}
           tickRotationEnabled={true}
           hintColor="#ff9800"
@@ -53,6 +53,7 @@ export const KitchenTimerScreen = () => {
           backgroundColor="#fff3e0"
           backgroundSize={230}
           labelTextStyle={styles.label}
+          MarkerComponent={Marker}
         />
       </View>
     </View>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ComponentProps } from 'react';
 import { StyleSheet } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import Animated, { type AnimatedProps } from 'react-native-reanimated';
@@ -6,7 +6,7 @@ import Animated, { type AnimatedProps } from 'react-native-reanimated';
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
 export interface IHintViewProps {
-  animatedProps: AnimatedProps<typeof AnimatedSvg>;
+  animatedProps: AnimatedProps<ComponentProps<typeof Svg>>;
   size?: number;
   color?: string;
 }
