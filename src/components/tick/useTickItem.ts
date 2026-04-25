@@ -1,8 +1,8 @@
-import { useRotaryTimer } from '../../hooks';
+import { useRotaryTimerCore, useRotaryTimerTicks } from '../../hooks';
 
 export const useTickItem = (angle: number) => {
-  const { size, ringWidth, tickHeight, tickWidth, tickSpaceFromRing } =
-    useRotaryTimer();
+  const { size, ringWidth } = useRotaryTimerCore();
+  const { tickHeight, tickWidth, tickSpaceFromRing } = useRotaryTimerTicks();
 
   const height = tickHeight || 0;
   const width = tickWidth || 0;

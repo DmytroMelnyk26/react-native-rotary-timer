@@ -3,11 +3,11 @@ import {
   useDerivedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { useRotaryTimer } from '../../hooks';
+import { useRotaryTimerCore } from '../../hooks';
 import { normalizeAngle0To2Pi } from '../../helpers';
 
 export const useMarker = () => {
-  const { size, ringWidth, rotationSharedValue } = useRotaryTimer();
+  const { size, ringWidth, rotationSharedValue } = useRotaryTimerCore();
 
   const animatedRotationSharedValue = useDerivedValue(() => {
     return withSpring(rotationSharedValue.value);

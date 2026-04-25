@@ -1,27 +1,14 @@
-import type { SharedValue } from 'react-native-reanimated';
-import type {
-  IRotaryTimerBackgroundProps,
-  IRotaryTimerCommonProps,
-  IRotaryTimerFeedbackProps,
-  IRotaryTimerHintProps,
-  IRotaryTimerLabelProps,
-  IRotaryTimerMarkerProps,
-  IRotaryTimerRingProps,
-  IRotaryTimerSnapProps,
-  IRotaryTimerTicksProps,
-} from '../types';
+import type { IRotaryTimerCoreContext } from './RotaryTimerCoreContext';
+import type { IRotaryTimerCallbacksContext } from './RotaryTimerCallbacksContext';
+import type { IRotaryTimerSnapProps } from '../types';
+import type { IRotaryTimerFeedbackContext } from './RotaryTimerFeedbackContext';
+import type { IRotaryTimerTicksProps } from '../types';
+import type { IRotaryTimerAppearanceContext } from './RotaryTimerAppearanceContext';
 
 export interface IRotaryTimerContext
-  extends IRotaryTimerSnapProps,
-    IRotaryTimerFeedbackProps,
+  extends IRotaryTimerCoreContext,
+    IRotaryTimerCallbacksContext,
+    IRotaryTimerSnapProps,
+    IRotaryTimerFeedbackContext,
     IRotaryTimerTicksProps,
-    IRotaryTimerMarkerProps,
-    IRotaryTimerLabelProps,
-    IRotaryTimerHintProps,
-    IRotaryTimerRingProps,
-    IRotaryTimerBackgroundProps,
-    IRotaryTimerCommonProps {
-  rotationSharedValue: SharedValue<number>;
-  size: number;
-  ringWidth: number;
-}
+    IRotaryTimerAppearanceContext {}

@@ -8,13 +8,14 @@ import {
   withRepeat,
   withSpring,
 } from 'react-native-reanimated';
-import { useRotaryTimer } from '../../hooks';
+import { useRotaryTimerCore, useRotaryTimerAppearance } from '../../hooks';
 
 const INVISIBLE_ARROW_TIME = 300;
 
 export const useHint = () => {
-  const { rotationSharedValue, hintEnabledRotation, hintHideWhenNotZero } =
-    useRotaryTimer();
+  const { rotationSharedValue } = useRotaryTimerCore();
+  const { hintEnabledRotation, hintHideWhenNotZero } =
+    useRotaryTimerAppearance();
 
   const arrowRotationSharedValue = useSharedValue(0);
 

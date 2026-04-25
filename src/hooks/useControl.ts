@@ -1,12 +1,12 @@
 import React, { useCallback, useImperativeHandle } from 'react';
-import { useRotaryTimer } from './useRotaryTimer';
+import { useRotaryTimerCore } from './useRotaryTimerContexts';
 import { maxMinValue } from '../helpers';
 import { DEFAULT_INITIAL_ROTATION } from '../constants';
 import type { IRotaryTimerRef } from '../types';
 
 export const useControl = (ref?: React.Ref<IRotaryTimerRef>) => {
   const { rotationSharedValue, maxRotation, minRotation, initialRotation } =
-    useRotaryTimer();
+    useRotaryTimerCore();
 
   const setRotation = useCallback(
     (rotation: number) => {

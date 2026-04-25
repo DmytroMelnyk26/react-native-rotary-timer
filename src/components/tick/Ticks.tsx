@@ -9,7 +9,7 @@ import Svg from 'react-native-svg';
 import { TickItem } from './TickItem';
 import { useTicks } from './useTicks';
 import type { ITickItemViewProps } from './TickItemView';
-import { useRotaryTimer } from '../../hooks';
+import { useRotaryTimerCore, useRotaryTimerTicks } from '../../hooks';
 
 export interface ITicksProps {
   TickItemComponent?: React.ComponentType<any>;
@@ -18,7 +18,8 @@ export interface ITicksProps {
 
 export const Ticks = React.memo(
   ({ TickItemComponent = TickItem, TickItemViewComponent }: ITicksProps) => {
-    const { size, rotationSharedValue, tickRotationEnabled } = useRotaryTimer();
+    const { size, rotationSharedValue } = useRotaryTimerCore();
+    const { tickRotationEnabled } = useRotaryTimerTicks();
     const ticks = useTicks();
 
     const animatedRotationSharedValue = useDerivedValue(() => {

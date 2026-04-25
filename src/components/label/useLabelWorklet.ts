@@ -3,10 +3,11 @@ import {
   useDerivedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { useRotaryTimer } from '../../hooks';
+import { useRotaryTimerCore, useRotaryTimerAppearance } from '../../hooks';
 
 export const useLabelWorklet = () => {
-  const { rotationSharedValue, renderLabel } = useRotaryTimer();
+  const { rotationSharedValue } = useRotaryTimerCore();
+  const { renderLabel } = useRotaryTimerAppearance();
 
   const animatedRotationSharedValue = useDerivedValue(() => {
     return withTiming(rotationSharedValue.value);

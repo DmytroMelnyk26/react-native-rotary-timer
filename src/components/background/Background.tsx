@@ -1,6 +1,6 @@
 import React from 'react';
 import { BackgroundView, type IBackgroundViewProps } from './BackgroundView';
-import { useRotaryTimer } from '../../hooks';
+import { useRotaryTimerAppearance } from '../../hooks';
 
 export interface IBackgroundProps {
   ViewComponent?: React.ComponentType<IBackgroundViewProps>;
@@ -9,7 +9,7 @@ export interface IBackgroundProps {
 export const Background = React.memo(
   ({ ViewComponent = BackgroundView }: IBackgroundProps) => {
     const { backgroundColor, backgroundSize, backgroundStyle } =
-      useRotaryTimer();
+      useRotaryTimerAppearance();
     return (
       <ViewComponent
         color={backgroundColor}

@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { TWO_PI } from '../../constants';
-import { useRotaryTimer, useStepAngle } from '../../hooks';
+import { useRotaryTimerTicks, useStepAngle } from '../../hooks';
 
 export const useTicks = () => {
-  const { ticksCount, tickAngle, tickOffsetAngle } = useRotaryTimer();
+  const { ticksCount, tickAngle, tickOffsetAngle } = useRotaryTimerTicks();
 
   const angleStep = useStepAngle(tickAngle, ticksCount);
 

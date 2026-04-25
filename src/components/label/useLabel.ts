@@ -7,12 +7,12 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { useRotaryTimer } from '../../hooks';
+import { useRotaryTimerCore, useRotaryTimerAppearance } from '../../hooks';
 
 export const useLabel = () => {
   const [text, setText] = useState('');
-  const { rotationSharedValue, labelHideWhenZero, renderLabel } =
-    useRotaryTimer();
+  const { rotationSharedValue } = useRotaryTimerCore();
+  const { labelHideWhenZero, renderLabel } = useRotaryTimerAppearance();
 
   const updateText = useCallback(
     (value: number) => {

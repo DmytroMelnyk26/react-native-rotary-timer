@@ -1,7 +1,7 @@
 import React from 'react';
 import { TickItemView, type ITickItemViewProps } from './TickItemView';
 import { useTickItem } from './useTickItem';
-import { useRotaryTimer } from '../../hooks';
+import { useRotaryTimerTicks } from '../../hooks';
 
 export interface ITickItemProps {
   index: number;
@@ -11,7 +11,7 @@ export interface ITickItemProps {
 
 export const TickItem = React.memo(
   ({ angle, ViewComponent = TickItemView }: ITickItemProps) => {
-    const { tickRounding, tickColor } = useRotaryTimer();
+    const { tickRounding, tickColor } = useRotaryTimerTicks();
     const { x, y, height, width, rotationDeg, rotateY, rotateX } =
       useTickItem(angle);
 

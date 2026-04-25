@@ -98,7 +98,6 @@ export const RotaryTimer = React.memo(
 
     const onChangeStable = useStableCallback(onChange);
     const onFeedbackStable = useStableCallback(onFeedback);
-
     const onTouchStartStable = useStableCallback(onTouchStart);
     const onTouchEndStable = useStableCallback(onTouchEnd);
 
