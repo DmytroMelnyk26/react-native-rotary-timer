@@ -6,13 +6,13 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import Svg from 'react-native-svg';
-import { TickItem } from './TickItem';
+import { type ITickItemProps, TickItem } from './TickItem';
 import { useTicks } from './useTicks';
 import type { ITickItemViewProps } from './TickItemView';
 import { useRotaryTimerCore, useRotaryTimerTicks } from '../../hooks';
 
 export interface ITicksProps {
-  TickItemComponent?: React.ComponentType<any>;
+  TickItemComponent?: React.ComponentType<ITickItemProps>;
   TickItemViewComponent?: React.ComponentType<ITickItemViewProps>;
 }
 

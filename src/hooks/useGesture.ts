@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useSharedValue } from 'react-native-reanimated';
-import { useStepAngle } from './index';
+import { useStepAngle } from './useStepAngle';
 import {
   angleFromPointTopZero,
   maxMinValue,

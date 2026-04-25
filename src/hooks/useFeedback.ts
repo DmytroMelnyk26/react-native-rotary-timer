@@ -1,6 +1,6 @@
 import { useAnimatedReaction } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { useStepAngle } from './index';
+import { useStepAngle } from './useStepAngle';
 import { normalizeAngle0To2Pi } from '../helpers';
 import {
   useRotaryTimerCore,
