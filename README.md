@@ -16,6 +16,7 @@ A highly customizable, circular draggable timer component for React Native. Buil
 ## Demo
 
 Try it in [Expo Snack!](https://snack.expo.dev/@dmytromelnyk/react-native-rotary-timer)
+
 ![darkThemeTimer.gif](gif/darkThemeTimer.gif)
 
 ## Installation
