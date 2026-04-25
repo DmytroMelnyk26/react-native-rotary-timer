@@ -1,10 +1,8 @@
 import React from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { TimerView } from './TimerView';
-import { useGesture } from './useGesture';
 import type { IRotaryTimerComponents, IRotaryTimerRef } from '../../types';
-import { useFeedback } from './useFeedback';
-import { useControl } from '../../hooks';
+import { useFeedback, useGesture, useControl } from '../../hooks';
 
 export type ITimerProps = Partial<IRotaryTimerComponents> & {
   ref?: React.Ref<IRotaryTimerRef>;

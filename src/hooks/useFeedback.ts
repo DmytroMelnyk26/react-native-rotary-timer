@@ -1,7 +1,7 @@
 import { useAnimatedReaction } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { useRotaryTimer, useStepAngle } from '../../hooks';
-import { normalizeAngle0To2Pi } from '../../helpers';
+import { useRotaryTimer, useStepAngle } from './index';
+import { normalizeAngle0To2Pi } from '../helpers';
 
 export const useFeedback = () => {
   const {

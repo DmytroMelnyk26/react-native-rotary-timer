@@ -26,12 +26,33 @@ export function getStepAngle(angle?: number, stepCount?: number): number {
   return 0;
 }
 
-export const snapToStep = (value: number, step: number, offset: number = 0) => {
+export const snapToStep = (
+  value: number,
+  step: number,
+  offset: number = 0,
+  maxValue?: number,
+  minValue?: number
+) => {
   'worklet';
   if (!step) {
     return value;
   }
-  return Math.round((value - offset) / step) * step + offset;
+
+  let result = Math.round((value - offset) / step) * step + offset;
+  if (
+    maxValue !== undefined &&
+    Math.abs(value - maxValue) < Math.abs(value - result)
+  ) {
+    return maxValue;
+  }
+  if (
+    minValue !== undefined &&
+    Math.abs(value - minValue) < Math.abs(value - result)
+  ) {
+    return minValue;
+  }
+
+  return result;
 };
 
 export const maxMinValue = (

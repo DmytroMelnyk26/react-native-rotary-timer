@@ -2,14 +2,14 @@ import { useMemo } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useSharedValue } from 'react-native-reanimated';
-import { useRotaryTimer, useStepAngle } from '../../hooks';
+import { useRotaryTimer, useStepAngle } from './index';
 import {
   angleFromPointTopZero,
   maxMinValue,
   normalizeAngle0To2Pi,
   normalizeDeltaAngle,
   snapToStep,
-} from '../../helpers';
+} from '../helpers';
 
 export const useGesture = () => {
   const {
@@ -68,7 +68,9 @@ export const useGesture = () => {
           const snapRotation = snapToStep(
             rotationSharedValue.value,
             stepSnapping,
-            snapOffsetAngle
+            snapOffsetAngle,
+            maxRotation,
+            minRotation
           );
 
           const limitedRotation = maxMinValue(
@@ -124,14 +126,16 @@ export const useGesture = () => {
           const normalizedCurrent = normalizeAngle0To2Pi(currentRotation);
           const diff = normalizeDeltaAngle(angle - normalizedCurrent);
 
-          const targetRotation = snapToStep(
+          const snapRotation = snapToStep(
             currentRotation + diff,
             stepSnapping,
-            snapOffsetAngle
+            snapOffsetAngle,
+            maxRotation,
+            minRotation
           );
 
           const limitedRotation = maxMinValue(
-            targetRotation,
+            snapRotation,
             maxRotation,
             minRotation
           );

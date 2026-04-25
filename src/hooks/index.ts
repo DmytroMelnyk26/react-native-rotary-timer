@@ -4,3 +4,5 @@ export * from './useRotaryTimer';
 export * from './useRotationSharedValue';
 export * from './useStableCallback';
 export * from './useStepAngle';
+export * from './useGesture';
+export * from './useFeedback';
