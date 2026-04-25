@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRotaryTimer } from '../../hooks';
+import { useRotaryTimerCore } from '../../hooks';
 import { StyleSheet, View } from 'react-native';
 import type { IRotaryTimerComponents } from '../../types';
 import { Ring } from '../ring';
@@ -25,7 +25,7 @@ export const TimerView = React.memo(
     HintComponent = Hint,
     HintViewComponent,
   }: Partial<IRotaryTimerComponents>) => {
-    const { size } = useRotaryTimer();
+    const { size } = useRotaryTimerCore();
 
     return (
       <View

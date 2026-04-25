@@ -1,16 +1,18 @@
 import { useAnimatedReaction } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { useRotaryTimer, useStepAngle } from './index';
+import { useStepAngle } from './index';
 import { normalizeAngle0To2Pi } from '../helpers';
+import {
+  useRotaryTimerCore,
+  useRotaryTimerCallbacks,
+  useRotaryTimerFeedback,
+} from './useRotaryTimerContexts';
 
 export const useFeedback = () => {
-  const {
-    rotationSharedValue,
-    feedbackAngle,
-    feedbackOffsetAngle,
-    feedbackTicksCount,
-    onFeedback,
-  } = useRotaryTimer();
+  const { rotationSharedValue } = useRotaryTimerCore();
+  const { onFeedback } = useRotaryTimerCallbacks();
+  const { feedbackAngle, feedbackOffsetAngle, feedbackTicksCount } =
+    useRotaryTimerFeedback();
 
   const stepFeedback = useStepAngle(feedbackAngle, feedbackTicksCount);
 

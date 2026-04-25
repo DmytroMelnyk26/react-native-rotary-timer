@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useSharedValue } from 'react-native-reanimated';
-import { useRotaryTimer, useStepAngle } from './index';
+import { useStepAngle } from './index';
 import {
   angleFromPointTopZero,
   maxMinValue,
@@ -10,21 +10,19 @@ import {
   normalizeDeltaAngle,
   snapToStep,
 } from '../helpers';
+import {
+  useRotaryTimerCore,
+  useRotaryTimerCallbacks,
+  useRotaryTimerSnap,
+} from './useRotaryTimerContexts';
 
 export const useGesture = () => {
-  const {
-    size,
-    maxRotation,
-    minRotation,
-    rotationSharedValue,
-    isEditable,
-    snapTicksCount,
-    snapAngle,
-    snapOffsetAngle,
-    onChange,
-    onTouchStart,
-    onTouchEnd,
-  } = useRotaryTimer();
+  const { size, maxRotation, minRotation, rotationSharedValue, isEditable } =
+    useRotaryTimerCore();
+
+  const { onChange, onTouchStart, onTouchEnd } = useRotaryTimerCallbacks();
+
+  const { snapAngle, snapTicksCount, snapOffsetAngle } = useRotaryTimerSnap();
 
   const stepSnapping = useStepAngle(snapAngle, snapTicksCount);
 

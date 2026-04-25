@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLabel } from './useLabel';
 import { LabelView, type ILabelViewProps } from './LabelView';
-import { useRotaryTimer } from '../../hooks';
+import { useRotaryTimerAppearance } from '../../hooks';
 
 export interface ILabelProps {
   ViewComponent?: React.ComponentType<ILabelViewProps>;
@@ -9,7 +9,7 @@ export interface ILabelProps {
 
 export const Label = React.memo(
   ({ ViewComponent = LabelView }: ILabelProps) => {
-    const { labelTextStyle } = useRotaryTimer();
+    const { labelTextStyle } = useRotaryTimerAppearance();
 
     const animatedProps = useLabel();
 
