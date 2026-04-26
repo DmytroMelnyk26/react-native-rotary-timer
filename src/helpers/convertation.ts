@@ -1,6 +1,6 @@
 import { TWO_PI, DEFAULT_MINUTES_PER_CIRCLE } from '../constants';
 
-export function convertMillisecondsToTime(ms: number): {
+export function convertMillisecondsToTime(value: number): {
   days: number;
   hours: number;
   totalHours: number;
@@ -9,16 +9,19 @@ export function convertMillisecondsToTime(ms: number): {
   seconds: number;
   totalSeconds: number;
   milliseconds: number;
+  isNegative: boolean;
 } {
   'worklet';
-  const totalSeconds = Math.floor(ms / 1000);
+  const isNegative = value < 0;
+  const ms = Math.abs(value);
   const milliseconds = Math.floor(ms % 1000);
-  const totalMinutes = Math.floor(totalSeconds / 60);
+  const totalSeconds = Math.floor(ms / 1000);
   const seconds = totalSeconds % 60;
-  const totalHours = Math.floor(totalMinutes / 60);
+  const totalMinutes = Math.floor(totalSeconds / 60);
   const minutes = totalMinutes % 60;
-  const days = Math.floor(totalHours / 24);
+  const totalHours = Math.floor(totalMinutes / 60);
   const hours = totalHours % 24;
+  const days = Math.floor(totalHours / 24);
 
   return {
     days,
@@ -29,6 +32,7 @@ export function convertMillisecondsToTime(ms: number): {
     seconds,
     totalSeconds,
     milliseconds,
+    isNegative,
   };
 }
 
@@ -37,12 +41,7 @@ export function convertRadiansToMilliseconds(
   minutesPerCircle = DEFAULT_MINUTES_PER_CIRCLE
 ): number {
   'worklet';
-  const ms = Math.max(
-    0,
-    Math.round((rad / TWO_PI) * minutesPerCircle * 60 * 1000)
-  );
-
-  return ms;
+  return Math.round((rad / TWO_PI) * minutesPerCircle * 60 * 1000);
 }
 
 export function convertMillisecondsToRadians(

@@ -9,11 +9,9 @@ export function renderLabel(rad: number, minutesPerCircle?: number): string {
     return '00:00:00';
   }
 
-  const value = Math.abs(rad);
-  const isNegative = rad < 0;
-
-  const ms = convertRadiansToMilliseconds(value, minutesPerCircle);
-  const { totalHours, minutes, seconds } = convertMillisecondsToTime(ms);
+  const ms = convertRadiansToMilliseconds(rad, minutesPerCircle);
+  const { totalHours, minutes, seconds, isNegative } =
+    convertMillisecondsToTime(ms);
 
   const pad2 = (n: number) => String(n).padStart(2, '0');
 

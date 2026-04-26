@@ -266,7 +266,7 @@ const rad = convertMillisecondsToRadians(1800000); // → Math.PI
 
 // Break milliseconds into time components. Use it to create your own `renderLabel` function
 const time = convertMillisecondsToTime(3661000);
-// → { days: 0, hours: 1, totalHours: 1, minutes: 1, totalMinutes: 61, seconds: 1, totalSeconds: 3661, milliseconds: 0 }
+// → { days: 0, hours: 1, totalHours: 1, minutes: 1, totalMinutes: 61, seconds: 1, totalSeconds: 3661, milliseconds: 0, isNegative: false }
 ```
 
 ## Contributing
