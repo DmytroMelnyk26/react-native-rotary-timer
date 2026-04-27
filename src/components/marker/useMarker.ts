@@ -7,10 +7,13 @@ import { useRotaryTimerCore } from '../../hooks';
 import { normalizeAngle0To2Pi } from '../../helpers';
 
 export const useMarker = () => {
-  const { size, ringWidth, rotationSharedValue } = useRotaryTimerCore();
+  const { size, ringWidth, rotationSharedValue, isDraggingSharedValue } =
+    useRotaryTimerCore();
 
   const animatedRotationSharedValue = useDerivedValue(() => {
-    return withSpring(rotationSharedValue.value);
+    return isDraggingSharedValue.value
+      ? rotationSharedValue.value
+      : withSpring(rotationSharedValue.value);
   });
 
   const animatedStyle = useAnimatedStyle(() => {
