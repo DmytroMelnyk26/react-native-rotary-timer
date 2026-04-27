@@ -9,10 +9,13 @@ import { normalizeAngle0To2Pi } from '../../helpers';
 import { TWO_PI } from '../../constants';
 
 export const useRing = () => {
-  const { size, ringWidth, rotationSharedValue } = useRotaryTimerCore();
+  const { size, ringWidth, rotationSharedValue, isDraggingSharedValue } =
+    useRotaryTimerCore();
 
   const animatedRotationSharedValue = useDerivedValue(() => {
-    return withSpring(rotationSharedValue.value);
+    return isDraggingSharedValue.value
+      ? rotationSharedValue.value
+      : withSpring(rotationSharedValue.value);
   });
 
   const animatedProps = useAnimatedProps(() => {

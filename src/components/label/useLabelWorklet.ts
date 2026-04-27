@@ -6,11 +6,13 @@ import {
 import { useRotaryTimerCore, useRotaryTimerAppearance } from '../../hooks';
 
 export const useLabelWorklet = () => {
-  const { rotationSharedValue } = useRotaryTimerCore();
+  const { rotationSharedValue, isDraggingSharedValue } = useRotaryTimerCore();
   const { renderLabel } = useRotaryTimerAppearance();
 
   const animatedRotationSharedValue = useDerivedValue(() => {
-    return withTiming(rotationSharedValue.value);
+    return isDraggingSharedValue.value
+      ? rotationSharedValue.value
+      : withTiming(rotationSharedValue.value);
   });
 
   const textSharedValue = useDerivedValue(() => {
