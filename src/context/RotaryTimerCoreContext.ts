@@ -5,6 +5,7 @@ export interface IRotaryTimerCoreContext {
   size: number;
   ringWidth: number;
   rotationSharedValue: SharedValue<number>;
+  isDraggingSharedValue: SharedValue<boolean>;
   isEditable?: boolean;
   initialRotation?: number;
   minRotation?: number;

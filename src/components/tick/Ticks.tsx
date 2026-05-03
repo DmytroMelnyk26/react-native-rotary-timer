@@ -18,7 +18,8 @@ export interface ITicksProps {
 
 export const Ticks = React.memo(
   ({ TickItemComponent = TickItem, TickItemViewComponent }: ITicksProps) => {
-    const { size, rotationSharedValue } = useRotaryTimerCore();
+    const { size, rotationSharedValue, isDraggingSharedValue } =
+      useRotaryTimerCore();
     const { tickRotationEnabled } = useRotaryTimerTicks();
     const ticks = useTicks();
 
@@ -26,7 +27,10 @@ export const Ticks = React.memo(
       if (!tickRotationEnabled) {
         return 0;
       }
-      return withSpring(rotationSharedValue.value);
+
+      return isDraggingSharedValue.value
+        ? rotationSharedValue.value
+        : withSpring(rotationSharedValue.value);
     });
 
     const animatedStyle = useAnimatedStyle(() => {
