@@ -17,8 +17,14 @@ import {
 } from './useRotaryTimerContexts';
 
 export const useGesture = () => {
-  const { size, maxRotation, minRotation, rotationSharedValue, isEditable } =
-    useRotaryTimerCore();
+  const {
+    size,
+    maxRotation,
+    minRotation,
+    rotationSharedValue,
+    isDraggingSharedValue,
+    isEditable,
+  } = useRotaryTimerCore();
 
   const { onChange, onTouchStart, onTouchEnd } = useRotaryTimerCallbacks();
 
@@ -33,6 +39,8 @@ export const useGesture = () => {
     () =>
       Gesture.Pan()
         .onStart(() => {
+          isDraggingSharedValue.value = true;
+
           if (onTouchStart) {
             scheduleOnRN(onTouchStart, rotationSharedValue.value);
           }
@@ -63,6 +71,8 @@ export const useGesture = () => {
           previousAngleSharedValue.value = currentAngle;
         })
         .onEnd(() => {
+          isDraggingSharedValue.value = false;
+
           const snapRotation = snapToStep(
             rotationSharedValue.value,
             stepSnapping,
@@ -95,6 +105,7 @@ export const useGesture = () => {
       previousAngleSharedValue,
       initialRotationSharedValue,
       rotationSharedValue,
+      isDraggingSharedValue,
       maxRotation,
       minRotation,
       isEditable,

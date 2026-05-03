@@ -35,7 +35,8 @@ export const normalizeColors = (color?: IGradientColors): string[] => {
 };
 
 export const useRing = () => {
-  const { size, ringWidth, rotationSharedValue } = useRotaryTimerCore();
+  const { size, ringWidth, rotationSharedValue, isDraggingSharedValue } =
+    useRotaryTimerCore();
   const { ringActiveColor } = useRotaryTimerAppearance();
 
   const cx = size / 2;
@@ -43,7 +44,9 @@ export const useRing = () => {
   const radius = Math.max((size - ringWidth) / 2, 0);
 
   const animatedRotationSharedValue = useDerivedValue(() => {
-    return withSpring(rotationSharedValue.value);
+    return isDraggingSharedValue.value
+      ? rotationSharedValue.value
+      : withSpring(rotationSharedValue.value);
   });
 
   const colors = useMemo(

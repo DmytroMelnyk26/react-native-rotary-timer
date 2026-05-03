@@ -11,7 +11,7 @@ import { useRotaryTimerCore, useRotaryTimerAppearance } from '../../hooks';
 
 export const useLabel = () => {
   const [text, setText] = useState('');
-  const { rotationSharedValue } = useRotaryTimerCore();
+  const { rotationSharedValue, isDraggingSharedValue } = useRotaryTimerCore();
   const { labelHideWhenZero, renderLabel } = useRotaryTimerAppearance();
 
   const updateText = useCallback(
@@ -22,7 +22,9 @@ export const useLabel = () => {
   );
 
   const animatedRotationSharedValue = useDerivedValue(() => {
-    return withTiming(rotationSharedValue.value);
+    return isDraggingSharedValue.value
+      ? rotationSharedValue.value
+      : withTiming(rotationSharedValue.value);
   });
 
   useAnimatedReaction(

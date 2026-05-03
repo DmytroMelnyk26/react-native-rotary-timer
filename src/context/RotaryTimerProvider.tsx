@@ -1,4 +1,5 @@
 import React, { type PropsWithChildren, useMemo } from 'react';
+import { useSharedValue } from 'react-native-reanimated';
 import { RotaryTimerCoreContext } from './RotaryTimerCoreContext';
 import { RotaryTimerCallbacksContext } from './RotaryTimerCallbacksContext';
 import { RotaryTimerSnapContext } from './RotaryTimerSnapContext';
@@ -9,7 +10,7 @@ import type { IRotaryTimerContext } from './types';
 
 interface IRotaryTimerProviderProps
   extends PropsWithChildren,
-    IRotaryTimerContext {}
+    Omit<IRotaryTimerContext, 'isDraggingSharedValue'> {}
 
 export const RotaryTimerProvider = React.memo(
   ({
@@ -55,11 +56,14 @@ export const RotaryTimerProvider = React.memo(
     backgroundColor,
     backgroundStyle,
   }: IRotaryTimerProviderProps) => {
+    const isDraggingSharedValue = useSharedValue(false);
+
     const coreValue = useMemo(
       () => ({
         size,
         ringWidth,
         rotationSharedValue,
+        isDraggingSharedValue,
         isEditable,
         initialRotation,
         maxRotation,
@@ -69,6 +73,7 @@ export const RotaryTimerProvider = React.memo(
         size,
         ringWidth,
         rotationSharedValue,
+        isDraggingSharedValue,
         isEditable,
         initialRotation,
         maxRotation,
