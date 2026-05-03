@@ -1,7 +1,7 @@
 import React from 'react';
-import { useRotaryTimerCore, useRotaryTimerAppearance } from '../../hooks';
 import { useRing } from './useRing';
 import { RingView, type IRingViewProps } from './RingView';
+import { useRotaryTimerAppearance, useRotaryTimerCore } from '../../hooks';
 
 export interface IRingProps {
   ViewComponent?: React.ComponentType<IRingViewProps>;
@@ -9,16 +9,17 @@ export interface IRingProps {
 
 export const Ring = React.memo(({ ViewComponent = RingView }: IRingProps) => {
   const { size, ringWidth } = useRotaryTimerCore();
-  const { ringActiveColor, ringInactiveColor } = useRotaryTimerAppearance();
-  const { animatedStyle, animatedProps } = useRing();
+  const { ringInactiveColor } = useRotaryTimerAppearance();
+  const { animatedStyle, animatedProps, animatedTipProps, colors } = useRing();
 
   return (
     <ViewComponent
       animatedProps={animatedProps}
+      animatedTipProps={animatedTipProps}
       animatedStyle={animatedStyle}
       size={size}
       width={ringWidth}
-      activeColor={ringActiveColor}
+      colors={colors}
       inactiveColor={ringInactiveColor}
     />
   );

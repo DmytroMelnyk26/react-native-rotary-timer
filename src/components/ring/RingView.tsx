@@ -3,7 +3,6 @@ import { StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
   type AnimatedProps,
   type AnimatedStyle,
-  interpolateColor,
 } from 'react-native-reanimated';
 import Svg, {
   Circle,
@@ -12,53 +11,45 @@ import Svg, {
   Path,
   Stop,
 } from 'react-native-svg';
-import { DEFAULT_RING_ACTIVE_COLOR } from '../../constants';
-import type { IGradientColors } from '../../types';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
-const ARC_OVERLAP = 0.01;
 
 export interface IRingViewProps {
   animatedProps: AnimatedProps<typeof AnimatedCircle>;
   animatedStyle: AnimatedStyle<ViewStyle>;
+  animatedTipProps: AnimatedProps<typeof AnimatedCircle>;
   size: number;
   width: number;
-  activeColor?: IGradientColors;
+  colors: string[];
   inactiveColor?: string;
 }
 
-const averageColor = (c1: string, c2: string) => {
-  return interpolateColor(0.5, [0, 1], [c1, c2]);
-};
-const normalizeColors = (color?: string | string[]): string[] => {
-  if (!color) {
-    return Array(3).fill(DEFAULT_RING_ACTIVE_COLOR);
-  }
+export interface IArcSegment {
+  d: string;
+  startColor: string;
+  endColor: string;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+}
 
-  const colors = Array.isArray(color) ? color : [color];
-
-  if (colors.length === 1) {
-    return Array(3).fill(colors[0]);
-  }
-
-  if (colors.length === 2) {
-    const avg = averageColor(colors[0]!, colors[1]!);
-    return [colors[0]!, avg, colors[1]!];
-  }
-
-  return colors;
-};
+const ARC_OVERLAP = 0.01;
 
 //reference https://github.com/wcandillon/can-it-be-done-in-react-native/blob/master/the-10-min/src/AngularGradient/AngularGradient.tsx
-
-const generateArcs = (cx: number, cy: number, r: number, colors: string[]) => {
-  const segments = Array.isArray(colors) ? Math.max(colors.length - 1, 1) : 1;
+export const generateArcs = (
+  cx: number,
+  cy: number,
+  r: number,
+  colors: string[]
+): IArcSegment[] => {
+  const segments = Math.max(colors.length - 1, 1);
   const step = (2 * Math.PI) / segments;
-  const xPos = (α: number) => cx + r * Math.sin(α);
-  const yPos = (α: number) => cy - r * Math.cos(α);
+  const xPos = (a: number) => cx + r * Math.sin(a);
+  const yPos = (a: number) => cy - r * Math.cos(a);
 
-  const arcs = [];
+  const arcs: IArcSegment[] = [];
   for (let i = 0; i < segments; i++) {
     const a = i * step - ARC_OVERLAP;
     const aEnd = (i + 1) * step;
@@ -69,8 +60,8 @@ const generateArcs = (cx: number, cy: number, r: number, colors: string[]) => {
       d: `M ${xPos(a)} ${yPos(a)} A ${r} ${r} 0 ${largeArc} 1 ${xPos(
         aEnd
       )} ${yPos(aEnd)}`,
-      startColor: colors[i],
-      endColor: colors[i + 1] || colors[i],
+      startColor: colors[i]!,
+      endColor: colors[i + 1] ?? colors[i]!,
       x1: xPos(a),
       y1: yPos(a),
       x2: xPos(aEnd),
@@ -84,23 +75,22 @@ export const RingView = React.memo(
   ({
     animatedProps,
     animatedStyle,
+    animatedTipProps,
     size,
     width,
-    activeColor,
+    colors,
     inactiveColor,
   }: IRingViewProps) => {
+    const id = useId();
+
     const cx = size / 2;
     const cy = size / 2;
     const radius = Math.max((size - width) / 2, 0);
-
-    const colors = useMemo(() => normalizeColors(activeColor), [activeColor]);
 
     const arcs = useMemo(
       () => generateArcs(cx, cy, radius, colors),
       [cx, cy, radius, colors]
     );
-
-    const id = useId();
 
     return (
       <AnimatedSvg
@@ -125,7 +115,17 @@ export const RingView = React.memo(
           ))}
         </Defs>
 
-        {/* Gradient arc segments (always fully drawn) */}
+        {/* Inactive background ring */}
+        <Circle
+          cx={cx}
+          cy={cy}
+          r={radius}
+          stroke={inactiveColor}
+          strokeWidth={width}
+          fill="none"
+        />
+
+        {/* Active angular gradient arcs */}
         {arcs.map((arc, key) => (
           <Path
             key={`${id}-arc-${key}`}
@@ -136,7 +136,7 @@ export const RingView = React.memo(
           />
         ))}
 
-        {/* Mask circle: covers unfilled portion with inactiveColor */}
+        {/* Inactive mask circle covering unfilled portion */}
         <AnimatedCircle
           cx={cx}
           cy={cy}
@@ -147,6 +147,12 @@ export const RingView = React.memo(
           fill="none"
           transform={`rotate(-90 ${cx} ${cy})`}
         />
+
+        {/* Start cap dot at 12 o'clock */}
+        <Circle cx={cx} cy={cy - radius} r={width / 2} fill={colors[0]} />
+
+        {/* Tip cap dot at animated progress position */}
+        <AnimatedCircle r={width / 2} animatedProps={animatedTipProps} />
       </AnimatedSvg>
     );
   }
