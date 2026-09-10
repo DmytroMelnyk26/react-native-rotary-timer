@@ -38,16 +38,18 @@ export function convertMillisecondsToTime(value: number): {
 
 export function convertRadiansToMilliseconds(
   rad: number,
-  minutesPerCircle = DEFAULT_MINUTES_PER_CIRCLE
+  minutesPerCircle?: number
 ): number {
   'worklet';
-  return Math.round((rad / TWO_PI) * minutesPerCircle * 60 * 1000);
+  const perCircle = minutesPerCircle ?? DEFAULT_MINUTES_PER_CIRCLE;
+  return Math.round((rad / TWO_PI) * perCircle * 60 * 1000);
 }
 
 export function convertMillisecondsToRadians(
   ms: number,
-  minutesPerCircle = DEFAULT_MINUTES_PER_CIRCLE
+  minutesPerCircle?: number
 ) {
   'worklet';
-  return (ms / (minutesPerCircle * 60 * 1000)) * TWO_PI;
+  const perCircle = minutesPerCircle ?? DEFAULT_MINUTES_PER_CIRCLE;
+  return (ms / (perCircle * 60 * 1000)) * TWO_PI;
 }
