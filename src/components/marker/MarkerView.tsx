@@ -4,8 +4,6 @@ import Animated, { type AnimatedStyle } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
 import type { IRotaryTimerContext } from '../../context';
 
-const AnimatedSvg = Animated.createAnimatedComponent(Svg);
-
 export interface IMarkerViewProps {
   animatedStyle: StyleProp<AnimatedStyle<ViewStyle>>;
   size?: IRotaryTimerContext['ringWidth'];
@@ -14,8 +12,10 @@ export interface IMarkerViewProps {
 
 export const MarkerView = React.memo(
   ({ animatedStyle, size = 0, color }: IMarkerViewProps) => (
-    <AnimatedSvg width={size} height={size} style={animatedStyle}>
-      <Circle cx={size / 2} cy={size / 2} r={size / 2} fill={color} />
-    </AnimatedSvg>
+    <Animated.View style={animatedStyle}>
+      <Svg width={size} height={size}>
+        <Circle cx={size / 2} cy={size / 2} r={size / 2} fill={color} />
+      </Svg>
+    </Animated.View>
   )
 );
